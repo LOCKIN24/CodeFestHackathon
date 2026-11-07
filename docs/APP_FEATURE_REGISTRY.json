@@ -1,0 +1,2110 @@
+{
+  "schema_version": "1.0",
+  "scope": "Source-audited features and relationships; no AI actions approved",
+  "verification_status_definitions": {
+    "verified": "actual feature behavior verified in stated environment",
+    "source_code_only": "reviewed source; physical test pending",
+    "requires_authentication": "confirmed authentication prerequisite",
+    "unavailable": "confirmed feature unavailable",
+    "unknown": "insufficient evidence"
+  },
+  "features": [
+    {
+      "id": "home",
+      "display_name": "首頁",
+      "description": "Home with banners, activities, city news and subscriptions",
+      "aliases": [
+        "home",
+        "主頁"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "flutter.home_tab",
+      "platform": "flutter",
+      "navigation_type": "bottom_tab",
+      "route": null,
+      "required_parameters": [],
+      "prerequisites": [
+        "MainView initialized"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "low",
+      "source_file": "TownPass/lib/page/home/home_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Simulator tab observed; physical pending. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.main",
+        "flutter.home_tab",
+        "flutter.account",
+        "flutter.activityList",
+        "flutter.activityDetail",
+        "flutter.subscription",
+        "flutter.webView"
+      ],
+      "related_control_ids": [
+        "main.tab_select",
+        "home.account",
+        "activity.banner",
+        "activity.more",
+        "activity.list_item",
+        "activity.url",
+        "home.city_news",
+        "home.call1999",
+        "home.subscription_item",
+        "home.subscription_settings",
+        "home.subscription_more",
+        "home.subscription_empty_settings",
+        "home.news_banner",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Main-tab source relationship audit completed; linked feature internals, deployment and runtime still need their own audits.",
+      "related_edge_ids": [
+        "main.select_home",
+        "home.account",
+        "activity.url",
+        "activity.list_item",
+        "activity.banner",
+        "activity.more",
+        "home.subscription_item",
+        "home.subscription_settings",
+        "home.subscription_more",
+        "home.subscription_empty_settings",
+        "home.news_banner",
+        "shared.flutter_appbar.back.subscription",
+        "shared.flutter_appbar.back.activityList",
+        "shared.flutter_appbar.back.activityDetail"
+      ],
+      "normal_entry_path": "App startup → 首頁 tab (or select 首頁 from main bottom bar)",
+      "source_dependencies": [
+        "Main IndexedStack selected index defaults to 1 and may be overridden by saved home_index",
+        "Home activity and news banner controllers load bundled mock JSON; images and external links may require network",
+        "Home subscription list is in-memory and initialized empty",
+        "Activity list and detail require ActivityList and ActivityItem arguments"
+      ],
+      "known_limitations": [
+        "City news callback is empty",
+        "Activity list or banner arguments can be null during loading despite typed destination requirements",
+        "Direct navigation and device behavior unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/main/main_view.dart:14",
+        "TownPass/lib/page/home/home_view.dart:16",
+        "TownPass/lib/page/home/widget/activity_info/activity_banner_widget_controller.dart:22",
+        "TownPass/lib/page/home/widget/news/news_banner_widget_controller.dart:35"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "services",
+      "display_name": "服務",
+      "description": "Browse pinned, official and trending services",
+      "aliases": [
+        "services",
+        "市政服務"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "flutter.services_tab",
+      "platform": "flutter",
+      "navigation_type": "bottom_tab",
+      "route": null,
+      "required_parameters": [],
+      "prerequisites": [
+        "MainView initialized"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "low",
+      "source_file": "TownPass/lib/page/city_service/city_service_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Simulator tab observed; physical pending. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.main",
+        "flutter.services_tab",
+        "flutter.serviceEdit",
+        "flutter.onlinePolice",
+        "flutter.webView"
+      ],
+      "related_control_ids": [
+        "main.tab_select",
+        "services.account",
+        "services.more",
+        "services.add",
+        "pinned.item",
+        "serviceedit.item",
+        "services.trending",
+        "services.citizen_report",
+        "services.police",
+        "services.citylife",
+        "services.health",
+        "services.apps",
+        "services.municipal",
+        "pinned.remove",
+        "serviceedit.add",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Main-tab source relationship audit completed; linked feature internals, deployment and runtime still need their own audits.",
+      "related_edge_ids": [
+        "main.select_services",
+        "services.account",
+        "services.more",
+        "services.add",
+        "serviceedit.item",
+        "pinned.item",
+        "pinned.editor.item",
+        "services.trending",
+        "services.citizen_report",
+        "services.police",
+        "shared.flutter_appbar.back.onlinePolice",
+        "shared.flutter_appbar.back.serviceEdit"
+      ],
+      "normal_entry_path": "App startup → bottom bar 服務; 我的服務 更多 opens editor",
+      "source_dependencies": [
+        "Pinned service list is a reactive in-memory list with maximum 12",
+        "Service catalog has fixed local and remote URLs; empty destinations do not open",
+        "Hosted service URLs require network; local scheme dispatches to GetX route",
+        "Authentication requirements unknown"
+      ],
+      "known_limitations": [
+        "Four official-service cards have TODO-only callbacks; several catalog destinations are empty",
+        "Save in editor retains in-memory pin state without observed persistence",
+        "Hosted deployment and device behavior unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/city_service/city_service_view.dart:16",
+        "TownPass/lib/page/city_service/widget/pinned_service_widget_controller.dart:5",
+        "TownPass/lib/page/city_service/model/my_service_model.dart:43",
+        "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:116"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "perks",
+      "display_name": "優惠",
+      "description": "Browse hosted coupon and ticket pages",
+      "aliases": [
+        "perks",
+        "優惠券"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "flutter.perks_tab",
+      "platform": "flutter_webview",
+      "navigation_type": "bottom_tab",
+      "route": null,
+      "required_parameters": [],
+      "prerequisites": [
+        "Network for hosted coupon page"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "medium",
+      "source_file": "TownPass/lib/page/perk/perk_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Simulator tab and hosted page observed; physical pending. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.main",
+        "flutter.perks_tab",
+        "flutter.webView",
+        "vue.CouponView",
+        "vue.CouponListView",
+        "vue.HotSpotView",
+        "vue.TicketDetail",
+        "vue.CouponDetail",
+        "vue.BuyTicketView",
+        "vue.TicketPayment",
+        "vue.PaymentFinishedView",
+        "vue.TicketWallet",
+        "vue.TicketExchange"
+      ],
+      "related_control_ids": [
+        "main.tab_select",
+        "perks.account",
+        "perks.wallet",
+        "perks.embedded_load",
+        "coupon.back",
+        "coupon.open_use",
+        "coupon.open_store",
+        "wallet.back",
+        "wallet.ticket",
+        "wallet.coupon",
+        "wallet.empty.coupon",
+        "wallet.empty.coupon_alt",
+        "couponlist.search",
+        "coupon.ticket.search_input",
+        "coupon.ticket.search_button",
+        "coupon.ticket.popular",
+        "coupon.ticket.hotspot",
+        "coupon.coupon.search_input",
+        "coupon.coupon.search_button",
+        "ticket.payment.back",
+        "ticket.payment.confirm",
+        "ticket.payment.card_favorite",
+        "ticket.payment.easycard",
+        "ticket.payment.card",
+        "ticket.payment.smart",
+        "ticket.detail.back",
+        "ticket.detail.map",
+        "ticket.detail.explanation",
+        "ticket.detail.introduction",
+        "ticket.detail.buy",
+        "buy.back",
+        "buy.adult.minus",
+        "buy.adult.plus",
+        "buy.concession.minus",
+        "buy.concession.plus",
+        "buy.citizen.minus",
+        "buy.citizen.plus",
+        "buy.group.minus",
+        "buy.group.plus",
+        "buy.usage.open",
+        "buy.usage.close",
+        "buy.pay",
+        "hotspot.map",
+        "hotspot.description",
+        "hotspot.back",
+        "hotspot.fallback",
+        "ticket.finished.wallet",
+        "ticket.finished.exchange",
+        "coupon.hot.item",
+        "coupon.result.item",
+        "coupon.hotspot.item",
+        "coupon.hot.more",
+        "application.tabs"
+      ],
+      "audit_note": "Main-tab source relationship audit completed; linked feature internals, deployment and runtime still need their own audits.",
+      "related_edge_ids": [
+        "main.select_perks",
+        "perks.account",
+        "perks.wallet",
+        "coupon.back.coupon",
+        "coupon.back.wallet",
+        "coupon.back.history",
+        "wallet.back",
+        "wallet.ticket",
+        "wallet.coupon",
+        "wallet.empty.coupon",
+        "wallet.empty.coupon_alt",
+        "ticket.payment.back",
+        "ticket.payment.confirm",
+        "coupon.ticket.search_input",
+        "coupon.ticket.search_button",
+        "coupon.ticket.popular",
+        "coupon.ticket.hotspot",
+        "coupon.coupon.search_input",
+        "coupon.coupon.search_button",
+        "ticket.detail.back",
+        "buy.back",
+        "ticket.detail.buy",
+        "buy.pay",
+        "ticket.finished.wallet",
+        "ticket.finished.exchange",
+        "hotspot.fallback",
+        "hotspot.back",
+        "coupon.hot.item.ticket",
+        "coupon.hot.item.coupon",
+        "coupon.result.item.ticket",
+        "coupon.result.item.coupon",
+        "coupon.result.item.hotspot_ticket",
+        "coupon.hotspot.item",
+        "coupon.hot.more",
+        "perks.embedded_load"
+      ],
+      "normal_entry_path": "Main bottom bar → 優惠; embedded hosted coupon URL loads on WebView creation; 票夾 opens separate WebView",
+      "source_dependencies": [
+        "Hosted WebView needs network; deployment source/version is unverified",
+        "Coupon root initializes Pinia lists from mock coupon_data.json; details depend on route id and populated store",
+        "Ticket purchase uses local Pinia payment information and hard-coded sample ticket",
+        "Map links use bridge and possible window fallback"
+      ],
+      "known_limitations": [
+        "Store/use confirmation handlers show success states without establishing wallet mutation or real redemption",
+        "Payment confirmation leads to completion UI without evidence of real payment",
+        "Map, deployment and device behavior unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/perk/perk_view.dart:14",
+        "TownPass-Services/src/views/CouponView.vue:70",
+        "TownPass-Services/src/views/CouponDetail.vue:141",
+        "TownPass-Services/src/views/TicketPayment.vue:18"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "bills",
+      "display_name": "帳務",
+      "description": "Browse bill categories and payment links",
+      "aliases": [
+        "bills",
+        "繳費"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "flutter.bills_tab",
+      "platform": "flutter",
+      "navigation_type": "bottom_tab",
+      "route": null,
+      "required_parameters": [],
+      "prerequisites": [
+        "Network for linked fee pages"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "high",
+      "source_file": "TownPass/lib/page/bill/bill_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Simulator tab observed; payment not tested. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.main",
+        "flutter.bills_tab",
+        "flutter.webView",
+        "vue.FeePaymentOthersView",
+        "vue.FeePaymentDetailView",
+        "vue.FeePaymentResultView",
+        "vue.FeePaymentStepView",
+        "vue.FeePaymentFinishedView",
+        "vue.FeePaymentScanView",
+        "vue.FeePaymentHistoryView",
+        "vue.FeePaymentHistoryDetailView"
+      ],
+      "related_control_ids": [
+        "main.tab_select",
+        "bills.account",
+        "bills.scan",
+        "bills.history",
+        "bills.invoice",
+        "bills.receipt",
+        "bills.settings",
+        "bills.bind",
+        "bills.popular_item",
+        "fees.others.item",
+        "fees.result.pay",
+        "fees.result.empty_return",
+        "fees.step.confirm",
+        "fees.finished.return",
+        "fees.others.expand",
+        "fees.result.select_all",
+        "fees.step.back",
+        "fees.step.card_favorite",
+        "fees.step.easycard",
+        "fees.step.card",
+        "fees.step.smart",
+        "fees.scan.result",
+        "fees.history.item",
+        "fees.detail.scan",
+        "fees.form.search",
+        "fees.form.date",
+        "fees.detail.tabs",
+        "fees.result.bill_checkbox",
+        "fees.history.filters",
+        "fees.form.fields"
+      ],
+      "audit_note": "Main-tab source relationship audit completed; linked feature internals, deployment and runtime still need their own audits.",
+      "related_edge_ids": [
+        "main.select_bills",
+        "bills.account",
+        "bills.scan",
+        "bills.history",
+        "bills.popular_item",
+        "fees.others.item",
+        "fees.result.pay",
+        "fees.result.empty_return",
+        "fees.finished.return",
+        "fees.step.confirm",
+        "fees.step.back",
+        "fees.scan.result",
+        "fees.history.item",
+        "fees.detail.scan",
+        "fees.form.search"
+      ],
+      "normal_entry_path": "Main bottom bar → 帳務 → hosted fee item, 掃描 or 紀錄 via separate WebView",
+      "source_dependencies": [
+        "Hosted fee pages require network and local Vue route parameters id and, for payment step, bill_id",
+        "Fee store supplies mock payment and bill data; QR scan uses Flutter bridge and camera capability",
+        "Authentication and deployed service integration unknown"
+      ],
+      "known_limitations": [
+        "設定 and 新增綁定 callbacks are empty; 發票 and 收據 have no callbacks",
+        "Reviewed fee payment confirmation only routes to a completion UI; no real transaction established",
+        "Scanner, backend and device behavior unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/bill/bill_view.dart:27",
+        "TownPass/lib/page/bill/bill_view.dart:94",
+        "TownPass/lib/page/bill/widget/bill_app_bar.dart:76",
+        "TownPass-Services/src/views/FeePaymentStepView.vue:30"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "account",
+      "display_name": "帳戶",
+      "description": "View account menu and access settings",
+      "aliases": [
+        "account",
+        "帳號"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "flutter.account",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/account",
+      "required_parameters": [],
+      "prerequisites": [
+        "AccountService loads bundled mock account; production authentication unknown"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "high",
+      "source_file": "TownPass/lib/page/account/account_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Device and direct route pending. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.account",
+        "flutter.setting",
+        "flutter.message",
+        "flutter.feedback",
+        "flutter.webView"
+      ],
+      "related_control_ids": [
+        "account.name_settings",
+        "account.phone_settings",
+        "account.message",
+        "account.auth_history",
+        "account.subscription",
+        "account.tutorial",
+        "account.feedback",
+        "account.close",
+        "account.privacy",
+        "account.contact",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "normal_entry_path": "Any main tab → 帳戶 icon",
+      "source_dependencies": [
+        "AccountService initializes account from bundled mock JSON",
+        "Mail link uses device, OS and app-version metadata and requires a mail handler",
+        "Hosted FAQ and privacy links require network",
+        "Authentication requirements unknown"
+      ],
+      "known_limitations": [
+        "Account history/authorization and subscription callbacks are empty",
+        "Account data is mock; no real login established",
+        "Phone masking, accessibility and links unverified on device"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/account/account_view.dart:21",
+        "TownPass/lib/page/account/account_view_controller.dart:30",
+        "TownPass/lib/page/account/widget/account_view_footer.dart:21",
+        "TownPass/lib/service/account_service.dart:10"
+      ],
+      "related_edge_ids": [
+        "account.name_settings",
+        "account.phone_settings",
+        "account.message",
+        "account.tutorial",
+        "account.feedback",
+        "account.close",
+        "account.privacy",
+        "shared.flutter_appbar.back.feedback",
+        "shared.flutter_appbar.back.message",
+        "shared.flutter_appbar.back.setting"
+      ],
+      "source_audit_status": "reviewed",
+      "audit_note": "Source relationship audit completed; deployed and device behavior remain unverified."
+    },
+    {
+      "id": "language_settings",
+      "display_name": "語言",
+      "description": "Display language choices; selection callback is empty",
+      "aliases": [
+        "language",
+        "語言設定"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "flutter.language",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/language",
+      "required_parameters": [],
+      "prerequisites": [
+        "Open via account settings; actual locale change unavailable in current callback"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "low",
+      "source_file": "TownPass/lib/page/language/language_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Feature reviewed in source; device and programmatic navigation remain unverified.",
+      "related_screen_ids": [
+        "flutter.language",
+        "flutter.setting"
+      ],
+      "related_control_ids": [
+        "language.select",
+        "settings.language",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Source audit completed for this feature; stated runtime gaps remain open.",
+      "related_edge_ids": [
+        "settings.language",
+        "shared.flutter_appbar.back.language",
+        "shared.flutter_appbar.back.setting"
+      ],
+      "normal_entry_path": "首頁 → 帳戶 → 設定 → 語言",
+      "source_dependencies": [
+        "Controller-backed language enum; no confirmed authentication requirement"
+      ],
+      "known_limitations": [
+        "Selection callback is empty; locale and preference are not changed",
+        "Runtime and accessibility remain unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/language/language_view.dart:24",
+        "TownPass/lib/page/language/language_view_controller.dart:16"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "settings",
+      "display_name": "設定",
+      "description": "View personal, preference, notification and security settings",
+      "aliases": [
+        "settings",
+        "設定"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "flutter.setting",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/setting",
+      "required_parameters": [],
+      "prerequisites": [
+        "Open from account settings icon; authentication requirement unknown"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "high",
+      "source_file": "TownPass/lib/page/setting/setting_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Device and direct route pending; some controls have no callbacks. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.setting",
+        "flutter.basicInfo",
+        "flutter.language",
+        "flutter.settingStartPage",
+        "flutter.invoiceReceipt",
+        "flutter.suspendAccount"
+      ],
+      "related_control_ids": [
+        "settings.basic",
+        "settings.language",
+        "settings.start",
+        "settings.invoice",
+        "settings.suspend",
+        "settings.notification",
+        "settings.auth_history",
+        "settings.quick_login",
+        "settings.logout",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "normal_entry_path": "Any main tab → 帳戶 → 設定",
+      "source_dependencies": [
+        "Controller lastLoginDateTime returns DateTime.now",
+        "Settings switches are local uncontrolled TPSwitch values",
+        "Authentication and persistence requirements unknown"
+      ],
+      "known_limitations": [
+        "Notification and quick-login switches change only local widget state in inspected code",
+        "History tile and logout have no action callback",
+        "Last-login label displays current time, not a verified login timestamp"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/setting/setting_view.dart:24",
+        "TownPass/lib/page/setting/setting_view_controller.dart:21",
+        "TownPass/lib/util/tp_switch.dart:30",
+        "TownPass/lib/util/tp_button.dart:110"
+      ],
+      "related_edge_ids": [
+        "settings.basic",
+        "settings.language",
+        "settings.start",
+        "settings.invoice",
+        "settings.suspend",
+        "shared.flutter_appbar.back.basicInfo",
+        "shared.flutter_appbar.back.invoiceReceipt",
+        "shared.flutter_appbar.back.language",
+        "shared.flutter_appbar.back.setting",
+        "shared.flutter_appbar.back.settingStartPage",
+        "shared.flutter_appbar.back.suspendAccount"
+      ],
+      "source_audit_status": "reviewed",
+      "audit_note": "Source relationship audit completed; deployed and device behavior remain unverified."
+    },
+    {
+      "id": "activity_information",
+      "display_name": "活動訊息",
+      "description": "Browse activity list and detail from bundled data",
+      "aliases": [
+        "activities",
+        "活動"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "flutter.activityList",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/activity_list",
+      "required_parameters": [
+        {
+          "name": "arguments",
+          "type": "ActivityList",
+          "required": true
+        }
+      ],
+      "prerequisites": [
+        "Home activity controller must have loaded its list; detail requires ActivityItem"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "low",
+      "source_file": "TownPass/lib/page/home/widget/activity_info/activity_info_widget.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Direct opening without correct arguments unsafe; physical pending. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.home_tab",
+        "flutter.activityList",
+        "flutter.activityDetail"
+      ],
+      "related_control_ids": [
+        "activity.more",
+        "activity.banner",
+        "activity.list_item",
+        "activity.url",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Feature paths and controls reviewed in source; runtime and deployment equivalence remain unverified.",
+      "related_edge_ids": [
+        "activity.url",
+        "activity.list_item",
+        "activity.banner",
+        "activity.more",
+        "shared.flutter_appbar.back.activityList",
+        "shared.flutter_appbar.back.activityDetail"
+      ],
+      "normal_entry_path": "首頁 → 活動訊息 → 更多 → activity row, or select an activity banner",
+      "source_dependencies": [
+        "Activity controller loads bundled mock activity JSON after timer; images and remote URLs may need network",
+        "Activity list expects ActivityList argument and detail expects ActivityItem",
+        "Authentication requirements unknown"
+      ],
+      "known_limitations": [
+        "More and loading-placeholder banner callbacks can pass null while destinations expect typed values",
+        "Failure and image/network behavior require runtime verification"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/home/widget/activity_info/activity_info_widget.dart:34",
+        "TownPass/lib/page/home/widget/activity_info/activity_banner_widget.dart:57",
+        "TownPass/lib/page/home/widget/activity_info/activity_banner_widget_controller.dart:24",
+        "TownPass/lib/page/activity_detail/activity_detail_view.dart:18"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "municipal_applications",
+      "display_name": "申辦服務",
+      "description": "Browse mock municipal application categories and case progress",
+      "aliases": [
+        "applications",
+        "市政申辦"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "vue.HomeView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "catalog_webview",
+      "route": "/",
+      "required_parameters": [],
+      "prerequisites": [
+        "Network for hosted page; form requires valid id; userinfo bridge requested; real authentication unknown"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "high",
+      "source_file": "TownPass-Services/src/views/HomeView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Local browser rendered; physical WebView and direct route pending. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.services_tab",
+        "flutter.webView",
+        "vue.HomeView",
+        "vue.FormView",
+        "flutter.serviceEdit"
+      ],
+      "related_control_ids": [
+        "pinned.item",
+        "application.tabs",
+        "application.search",
+        "application.category",
+        "application.form.item",
+        "application.next",
+        "application.previous",
+        "application.preview.modify",
+        "application.preview.submit",
+        "application.preview.view",
+        "application.preview.confirm",
+        "application.in_progress",
+        "application.closed",
+        "application.form.expand",
+        "application.form.multiple_change",
+        "application.general.expand",
+        "application.multiselect.open",
+        "application.multiselect.confirm",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Feature paths and controls reviewed in source; runtime and deployment equivalence remain unverified.",
+      "related_edge_ids": [
+        "pinned.item",
+        "pinned.editor.item",
+        "application.previous",
+        "application.form.item",
+        "application.preview.view",
+        "application.preview.confirm",
+        "shared.flutter_appbar.back.serviceEdit"
+      ],
+      "normal_entry_path": "服務 → pinned 申辦服務 → hosted WebView → Vue application home → service item",
+      "source_dependencies": [
+        "Catalog points to hosted root; local Vue version may differ from deployed site",
+        "Vue home uses mock service list and case progress and requests userinfo over bridge",
+        "Form route requires path id; form format is bundled mock JSON",
+        "Network required for hosted page; authentication unknown"
+      ],
+      "known_limitations": [
+        "Form preview submit logs data and shows completion dialog; fetch example is commented",
+        "Bridge user identity and real submission are unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/city_service/model/my_service_model.dart:50",
+        "TownPass-Services/src/views/HomeView.vue:12",
+        "TownPass-Services/src/views/HomeView.vue:209",
+        "TownPass-Services/src/components/organisms/FormPreview.vue:68"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "library_services",
+      "display_name": "圖書借閱",
+      "description": "Browse mock books, records and branch map",
+      "aliases": [
+        "library",
+        "圖書館",
+        "借書"
+      ],
+      "locale": "zh-TW",
+      "screen_id": "vue.LibraryServiceView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "catalog_webview",
+      "route": "/library-service",
+      "required_parameters": [],
+      "prerequisites": [
+        "Network for hosted page; map needs configured Google Maps key; location permission for location use; authentication unknown"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "medium",
+      "source_file": "TownPass-Services/src/views/LibraryServiceView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "owner_reported_ui_flow",
+      "verification_notes": "Local browser rendered and search navigation observed; physical WebView pending. Owner reports navigating to this feature in the exact flows in NAVIGATION_TEST_PLAN.md; direct navigation remains unverified.",
+      "related_screen_ids": [
+        "flutter.services_tab",
+        "flutter.serviceEdit",
+        "flutter.webView",
+        "vue.LibraryServiceView",
+        "vue.LibraryKeywordSearchView",
+        "vue.LibraryRankingListView",
+        "vue.LibraryBookDetailView",
+        "vue.LibraryNoticeListView",
+        "vue.LibraryNoticeDetailView"
+      ],
+      "related_control_ids": [
+        "serviceedit.item",
+        "pinned.item",
+        "library.main.tabs",
+        "library.home.search",
+        "library.home.new_book",
+        "library.home.ranking",
+        "library.home.notices",
+        "library.search.button",
+        "library.search.book",
+        "library.pick_library",
+        "library.pick_limit",
+        "library.reserve",
+        "library.map.gps",
+        "library.records.cancel",
+        "library.records.extend",
+        "library.records.renew",
+        "library.open_external_alert",
+        "library.external_confirm",
+        "library.success.home",
+        "library.success.list",
+        "library.error.home",
+        "library.error.list",
+        "library.series_checkbox",
+        "library.ranking.book",
+        "library.search.clear",
+        "library.search.history",
+        "library.search.hot",
+        "library.notice.site",
+        "library.notice.empty_site",
+        "library.selector.close",
+        "library.notice.item",
+        "library.selector.tabs",
+        "library.map.spot",
+        "library.map.list",
+        "library.map.geo_close",
+        "library.records.expand",
+        "library.records.map",
+        "library.records.sort",
+        "library.detail.back",
+        "library.detail.map",
+        "library.detail.call",
+        "library.list.item",
+        "library.list.map",
+        "library.list.top",
+        "library.home.ranking_book",
+        "library.home.notice",
+        "library.records.book",
+        "library.search.initial_query",
+        "shared.flutter_appbar.implied_back",
+        "library.selector.library",
+        "library.selector.district",
+        "library.records.list_select",
+        "library.home.notice_external",
+        "library.notice.external"
+      ],
+      "audit_note": "Feature paths and controls reviewed in source; runtime and deployment equivalence remain unverified.",
+      "related_edge_ids": [
+        "serviceedit.item",
+        "pinned.item",
+        "library.success.home",
+        "library.success.list",
+        "library.error.home",
+        "library.error.list",
+        "pinned.editor.item",
+        "library.external",
+        "library.ranking.book",
+        "library.search.route",
+        "library.search.book",
+        "library.search.history.query",
+        "library.search.hot.query",
+        "library.notice.item",
+        "library.records.renew",
+        "library.home.search",
+        "library.home.new_book",
+        "library.home.ranking",
+        "library.home.ranking_book",
+        "library.home.notices",
+        "library.home.notice",
+        "library.records.book",
+        "library.search.mount_query",
+        "shared.flutter_appbar.back.serviceEdit",
+        "library.home.notice_external",
+        "library.notice.external"
+      ],
+      "normal_entry_path": "服務 → 我的服務 → 更多 → 圖書借閱 (or pinned library) → hosted WebView",
+      "source_dependencies": [
+        "Library store uses mock book, notice, record and branch JSON",
+        "Optional type query selects tab; book and notice details require id",
+        "Map loader has empty API key; geolocation needs device/browser permission",
+        "Reservations and cancellations use local state/localStorage; hosted network required"
+      ],
+      "known_limitations": [
+        "Local reservation success does not prove a live library transaction",
+        "Geolocation, map configuration, empty or invalid IDs and deployment behavior need runtime verification",
+        "Nested record links may propagate to parent router link"
+      ],
+      "source_audit_evidence": [
+        "TownPass-Services/src/views/LibraryServiceView.vue:12",
+        "TownPass-Services/src/stores/library.ts:3",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:74",
+        "TownPass-Services/src/stores/googleMaps.ts:6"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "messages",
+      "display_name": "訊息",
+      "description": "View message list and details",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "flutter.message",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/message",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass/lib/page/message/message_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Feature reviewed in source; device and programmatic navigation remain unverified.",
+      "related_screen_ids": [
+        "flutter.message",
+        "flutter.messageDetail",
+        "flutter.account"
+      ],
+      "related_control_ids": [
+        "message.tabs",
+        "message.row",
+        "message.trash",
+        "message.detail_link",
+        "account.message",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Source audit completed for this feature; limitations and runtime verification remain open.",
+      "related_edge_ids": [
+        "account.message",
+        "message.row",
+        "message.detail_link",
+        "shared.flutter_appbar.back.message",
+        "shared.flutter_appbar.back.messageDetail"
+      ],
+      "normal_entry_path": "首頁 → 帳戶 → 訊息 → selected message",
+      "source_dependencies": [
+        "Bundled mock message JSON via MessageViewController",
+        "MessageDetail requires MessageItem Get.arguments",
+        "Optional remote image and rich-text URL require network for remote content",
+        "Authentication requirements unknown"
+      ],
+      "known_limitations": [
+        "Trash callback empty",
+        "全部已讀 is display text with unread count, no tap handler in list source",
+        "Loading failure and runtime behavior unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/message/message_view.dart:30",
+        "TownPass/lib/page/message/message_view_controller.dart:33",
+        "TownPass/lib/page/message/widget/_message_list_view.dart:13",
+        "TownPass/lib/page/message_detail/message_detail_view.dart:15"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "personal_information",
+      "display_name": "基本資料",
+      "description": "View and edit basic profile information",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "flutter.basicInfo",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/basic_info",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass/lib/page/basic_info/basic_info_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Feature reviewed in source; device and programmatic navigation remain unverified.",
+      "related_screen_ids": [
+        "flutter.basicInfo",
+        "flutter.basicInfoEdit",
+        "flutter.setting"
+      ],
+      "related_control_ids": [
+        "basic.id",
+        "basic.birthday",
+        "basic.email",
+        "basic.phone",
+        "basic.address",
+        "basic.edit_text",
+        "basic.edit_confirm",
+        "settings.basic",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Source audit completed for this feature; limitations and runtime verification remain open.",
+      "related_edge_ids": [
+        "settings.basic",
+        "basic.id",
+        "basic.birthday",
+        "basic.email",
+        "basic.phone",
+        "basic.address",
+        "basic.edit_confirm",
+        "shared.flutter_appbar.back.basicInfo",
+        "shared.flutter_appbar.back.basicInfoEdit",
+        "shared.flutter_appbar.back.setting"
+      ],
+      "normal_entry_path": "首頁 → 帳戶 → 設定 → 基本資料 → selected field",
+      "source_dependencies": [
+        "AccountService initializes bundled mock account and keeps updates in memory",
+        "Editor requires BasicInfoEditArgument with title and currentValue; caller supplies field validator",
+        "Authentication and persistence beyond process are unknown"
+      ],
+      "known_limitations": [
+        "Updates are local mock account changes; no remote update in inspected service",
+        "Editor return uses navigator pop; runtime validation and persistence unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/basic_info/basic_info_view.dart:28",
+        "TownPass/lib/page/basic_info/basic_info_view_controller.dart:39",
+        "TownPass/lib/page/basic_info_edit/basic_info_edit_view_controller.dart:4",
+        "TownPass/lib/service/account_service.dart:10"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "feedback",
+      "display_name": "意見回饋",
+      "description": "Display feedback form",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "flutter.feedback",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/feedback",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass/lib/page/feedback/feedback_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Feature reviewed in source; device and programmatic navigation remain unverified.",
+      "related_screen_ids": [
+        "flutter.feedback",
+        "flutter.account"
+      ],
+      "related_control_ids": [
+        "feedback.dropdown",
+        "feedback.select",
+        "feedback.text",
+        "feedback.citizen_link",
+        "feedback.phone",
+        "feedback.send",
+        "account.feedback",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Source audit completed for this feature; limitations and runtime verification remain open.",
+      "related_edge_ids": [
+        "account.feedback",
+        "shared.flutter_appbar.back.feedback"
+      ],
+      "normal_entry_path": "首頁 → 帳戶 → 意見回饋",
+      "source_dependencies": [
+        "Feedback category and text are held in controller memory",
+        "Phone action needs a capable telephone handler",
+        "Authentication requirement unknown"
+      ],
+      "known_limitations": [
+        "sendFeedback is empty",
+        "有話要說 tap recognizer is empty",
+        "Phone launch result and runtime permission handling unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/feedback/feedback_view.dart:27",
+        "TownPass/lib/page/feedback/feedback_view.dart:119",
+        "TownPass/lib/page/feedback/feedback_view.dart:153",
+        "TownPass/lib/page/feedback/feedback_view_controller.dart:27"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "startup_page",
+      "display_name": "APP起始頁面",
+      "description": "Select app start page",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "flutter.settingStartPage",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/setting_start_page",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass/lib/page/app_home_page/app_home_page_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Feature reviewed in source; device and programmatic navigation remain unverified.",
+      "related_screen_ids": [
+        "flutter.settingStartPage",
+        "flutter.main",
+        "flutter.setting"
+      ],
+      "related_control_ids": [
+        "startup.select",
+        "main.tab_select",
+        "settings.start",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Source audit completed for this feature; stated runtime gaps remain open.",
+      "related_edge_ids": [
+        "settings.start",
+        "shared.flutter_appbar.back.setting",
+        "shared.flutter_appbar.back.settingStartPage"
+      ],
+      "normal_entry_path": "首頁 → 帳戶 → 設定 → APP起始頁面",
+      "source_dependencies": [
+        "SharedPreferencesService stores home_index",
+        "MainViewController reads it when initialized, with default index 1"
+      ],
+      "known_limitations": [
+        "Persistence and next-launch behavior not tested on device",
+        "Changing preference is not itself a tab-navigation action"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/app_home_page/app_home_page_view.dart:36",
+        "TownPass/lib/page/app_home_page/app_home_page_controller.dart:15",
+        "TownPass/lib/page/main/main_view_controller.dart:6"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "invoice_receipt",
+      "display_name": "手機載具",
+      "description": "Display invoice settings",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "flutter.invoiceReceipt",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/invoice_receipt",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass/lib/page/invoice_receipt/invoice_receipt_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Feature reviewed in source; device and programmatic navigation remain unverified.",
+      "audit_note": "Source audit completed for this feature; stated runtime gaps remain open.",
+      "related_screen_ids": [
+        "flutter.invoiceReceipt",
+        "flutter.setting"
+      ],
+      "related_control_ids": [
+        "settings.invoice",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "related_edge_ids": [
+        "settings.invoice",
+        "shared.flutter_appbar.back.invoiceReceipt",
+        "shared.flutter_appbar.back.setting"
+      ],
+      "normal_entry_path": "首頁 → 帳戶 → 設定 → 手機載具",
+      "source_dependencies": [
+        "No explicit route argument or network request in view",
+        "Authentication requirement unknown"
+      ],
+      "known_limitations": [
+        "View contains placeholder privacy-statement text and no carrier-entry or binding control",
+        "Default app-bar back is inherited; route and device behavior unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/setting/setting_view.dart:42",
+        "TownPass/lib/page/invoice_receipt/invoice_receipt_view.dart:10"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "online_police",
+      "display_name": "警政服務",
+      "description": "View police report links and emergency numbers",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "flutter.onlinePolice",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/online_police",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass/lib/page/online_police/online_police_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.services_tab",
+        "flutter.onlinePolice",
+        "flutter.webView",
+        "vue.PoliceReportView",
+        "vue.PoliceReportRecordView"
+      ],
+      "related_control_ids": [
+        "services.police",
+        "police.report",
+        "police.records",
+        "police.call110",
+        "police.call119",
+        "police.call165",
+        "police.call113",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Feature paths and controls reviewed in source; runtime and deployment equivalence remain unverified.",
+      "related_edge_ids": [
+        "police.report",
+        "police.records",
+        "services.police",
+        "shared.flutter_appbar.back.onlinePolice"
+      ],
+      "normal_entry_path": "服務 → 警政報案 card attempts local online police route; URI host lacks the registered leading slash and resolution is unverified.",
+      "source_dependencies": [
+        "Web report and record cards open hosted URLs in WebView and require network",
+        "Telephone cards call url_launcher and require a suitable phone handler",
+        "Authentication and hosted deployment behavior unknown"
+      ],
+      "known_limitations": [
+        "No phone call or report was performed",
+        "Web page content and any actual submission require separate verification",
+        "The services card passes local://online_police; openUri forwards host online_police without the leading slash used by the registered /online_police route. Resolution is unverified."
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/city_service/widget/official_service_card/official_service_card_top_right.dart:82",
+        "TownPass/lib/page/online_police/online_police_view.dart:24",
+        "TownPass/lib/page/online_police/online_police_view.dart:73"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "qr_scan",
+      "display_name": "掃描 QR Code",
+      "description": "Scan with camera or select an image",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "flutter.qrCodeScan",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/qr_code_scan",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.bills_tab",
+        "flutter.webView",
+        "vue.FeePaymentScanView",
+        "flutter.qrCodeScan",
+        "vue.FeePaymentResultView"
+      ],
+      "related_control_ids": [
+        "bills.scan",
+        "fees.scan.bridge_request",
+        "qr.close",
+        "qr.photo",
+        "qr.help",
+        "qr.camera_capture",
+        "fees.scan.result",
+        "fees.result.bill_checkbox"
+      ],
+      "related_edge_ids": [
+        "bills.scan",
+        "qr.close",
+        "qr.photo_result",
+        "fees.scan.result",
+        "fees.scan.open_flutter",
+        "qr.camera_result"
+      ],
+      "normal_entry_path": "帳務 → 掃描 → hosted fee-scan page → qr_code_scan bridge → Flutter scanner",
+      "source_dependencies": [
+        "Flutter bridge handler opens GetX scanner and returns result",
+        "Camera scanner and gallery picker require applicable device permissions",
+        "Vue handler expects nonempty Base64 JSON containing fee id and matching fee store item",
+        "Hosted page and bridge availability are unverified"
+      ],
+      "known_limitations": [
+        "Null or cancelled image selection shows recognition error; stack pop destination depends on navigator",
+        "No real scan or permission prompt tested in this review",
+        "QR bridge handling and camera/barcode data require device verification"
+      ],
+      "source_audit_evidence": [
+        "TownPass-Services/src/views/FeePaymentScanView.vue:14",
+        "TownPass-Services/src/views/FeePaymentScanView.vue:40",
+        "TownPass/lib/util/web_message_handler/tp_web_message_handler.dart:267",
+        "TownPass/lib/page/qr_code_scan/qr_code_scan_controller.dart:25"
+      ],
+      "source_audit_status": "reviewed",
+      "audit_note": "Feature paths and controls reviewed in source; runtime and deployment equivalence remain unverified."
+    },
+    {
+      "id": "service_catalog",
+      "display_name": "我的服務",
+      "description": "Browse and edit pinned services",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "flutter.serviceEdit",
+      "platform": "flutter",
+      "navigation_type": "getx",
+      "route": "/service_edit",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.services_tab",
+        "flutter.serviceEdit",
+        "flutter.webView"
+      ],
+      "related_control_ids": [
+        "services.more",
+        "services.add",
+        "pinned.item",
+        "serviceedit.cancel",
+        "serviceedit.save",
+        "serviceedit.edit",
+        "serviceedit.item",
+        "serviceedit.add",
+        "pinned.remove",
+        "services.trending",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Source path and control audit complete; deployment and runtime remain unverified.",
+      "related_edge_ids": [
+        "services.more",
+        "services.add",
+        "serviceedit.item",
+        "pinned.item",
+        "pinned.editor.item",
+        "services.trending",
+        "shared.flutter_appbar.back.serviceEdit"
+      ],
+      "normal_entry_path": "服務 → 我的服務 → 更多 or 新增 → 我的服務 editor",
+      "source_dependencies": [
+        "Static MyServiceItemId catalog supplies names, categories and URLs",
+        "PinnedServiceWidgetController holds reactive in-memory list with 12-item limit",
+        "Nonempty remote URLs open WebView; empty destination does nothing; hosted content needs network",
+        "Authentication and deployment state unknown"
+      ],
+      "known_limitations": [
+        "Save toggles editing off but no durable persistence is established; cancel restores recorded snapshot where possible",
+        "Several catalog items have empty destinations",
+        "Host and device behavior remain unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:20",
+        "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:116",
+        "TownPass/lib/page/city_service_edit/city_service_edit_view_controller.dart:23",
+        "TownPass/lib/page/city_service/widget/pinned_service_widget_controller.dart:5"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "citizen_report",
+      "display_name": "有話要說",
+      "description": "Browse citizen report categories and example cases",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.CitizenReportView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "catalog_webview",
+      "route": "/citizen-report",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/CitizenReportView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.services_tab",
+        "flutter.webView",
+        "vue.CitizenReportView",
+        "vue.CitizenReportListView",
+        "vue.CitizenReportFormView",
+        "vue.CitizenReportSearchView",
+        "vue.CitizenReportSearchDetailView"
+      ],
+      "related_control_ids": [
+        "services.citizen_report",
+        "citizen.home.search",
+        "citizen.home.more",
+        "citizen.result.item",
+        "citizen.call1999",
+        "citizen.category",
+        "citizen.list.service",
+        "citizen.list.report",
+        "citizen.list.other",
+        "citizen.search.item",
+        "citizen.form.location",
+        "citizen.form.submit",
+        "citizen.form.done",
+        "citizen.other_category",
+        "citizen.result_search",
+        "citizen.date_citizen",
+        "citizen.date_disaster",
+        "citizen.list.search",
+        "citizen.search",
+        "citizen.express",
+        "citizen.upload.info",
+        "citizen.upload.remove",
+        "citizen.upload.close",
+        "location.close",
+        "location.clear",
+        "location.confirm",
+        "shared.upload.choose",
+        "application.tabs"
+      ],
+      "audit_note": "Source path and control audit complete; deployment and runtime remain unverified.",
+      "related_edge_ids": [
+        "services.citizen_report",
+        "citizen.list.search",
+        "citizen.list.service",
+        "citizen.list.report",
+        "citizen.list.other",
+        "citizen.home.search",
+        "citizen.home.more",
+        "citizen.result.item",
+        "citizen.form.done",
+        "citizen.search.item",
+        "citizen.express",
+        "citizen.call1999.agreement"
+      ],
+      "normal_entry_path": "服務 → 有話要說 → hosted WebView → report/search tabs and selected category",
+      "source_dependencies": [
+        "Citizen root initializes Pinia from bundled citizen_report and citizen_result mock JSON",
+        "Form path requires id, including special R-99; location modal uses bridge and empty map key",
+        "Voice action posts 1999agree bridge; hosted page requires network; authentication unknown"
+      ],
+      "known_limitations": [
+        "Form checks local fields and shows receipt dialog without a submission request in inspected handler",
+        "Search detail logs route ID but displays same mock detail regardless",
+        "Host deployment, permissions and actual report outcomes unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass-Services/src/views/CitizenReportView.vue:14",
+        "TownPass-Services/src/views/CitizenReportFormView.vue:27",
+        "TownPass-Services/src/views/CitizenReportFormView.vue:48",
+        "TownPass-Services/src/views/CitizenReportSearchDetailView.vue:6"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "disaster_report",
+      "display_name": "災情通報",
+      "description": "Browse disaster report categories",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.DisasterReportView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "catalog_webview",
+      "route": "/disaster-report",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/DisasterReportView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.services_tab",
+        "flutter.serviceEdit",
+        "flutter.webView",
+        "vue.DisasterReportView",
+        "vue.DisasterReportFormView"
+      ],
+      "related_control_ids": [
+        "serviceedit.item",
+        "pinned.item",
+        "disaster.search",
+        "disaster.option",
+        "disaster.location",
+        "disaster.submit",
+        "disaster.form.done",
+        "shared.upload.choose",
+        "shared.flutter_appbar.implied_back",
+        "disaster.search_text",
+        "citizen.category",
+        "disaster.form.fields",
+        "disaster.form.consent"
+      ],
+      "audit_note": "Source path and control audit complete; deployment and runtime remain unverified.",
+      "related_edge_ids": [
+        "serviceedit.item",
+        "pinned.item",
+        "disaster.option",
+        "pinned.editor.item",
+        "disaster.form.done",
+        "catalog.disaster.editor",
+        "catalog.disaster.pinned",
+        "shared.flutter_appbar.back.serviceEdit"
+      ],
+      "normal_entry_path": "服務 → 我的服務 → 更多 → 災情通報 (or pinned item) → hosted WebView",
+      "source_dependencies": [
+        "Root initializes disaster store from bundled mock disaster_reporting.json",
+        "Form route requires option id and uses format from store",
+        "Location modal bridge/geocoding has empty API key; hosted network and location permission may be needed"
+      ],
+      "known_limitations": [
+        "Submit validates local fields, logs the form and opens success dialog; no real submission established",
+        "Direct form entry can lack initialized store data",
+        "Device, map and deployment outcomes unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/city_service/model/my_service_model.dart:114",
+        "TownPass-Services/src/views/DisasterReportView.vue:8",
+        "TownPass-Services/src/views/DisasterReportFormView.vue:22",
+        "TownPass-Services/src/views/DisasterReportFormView.vue:90"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "counter_calling",
+      "display_name": "臨櫃叫號",
+      "description": "Browse counter calling information",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.CounterCallingView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "catalog_webview",
+      "route": "/counter-calling",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/CounterCallingView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.serviceEdit",
+        "flutter.webView",
+        "vue.CounterCallingView",
+        "vue.CounterCallingDetailView",
+        "flutter.services_tab"
+      ],
+      "related_control_ids": [
+        "serviceedit.item",
+        "pinned.item",
+        "counter.edit",
+        "counter.remove",
+        "counter.regular.item",
+        "counter.item",
+        "counter.add_regular",
+        "counter.remove_regular",
+        "counter.open_map",
+        "counter.phone",
+        "counter.fax",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Source path and control audit complete; deployment and runtime remain unverified.",
+      "related_edge_ids": [
+        "serviceedit.item",
+        "pinned.item",
+        "pinned.editor.item",
+        "counter.fax",
+        "counter.regular.item",
+        "counter.item",
+        "catalog.counter.editor",
+        "catalog.counter.pinned",
+        "shared.flutter_appbar.back.serviceEdit"
+      ],
+      "normal_entry_path": "服務 → 我的服務 → 更多 → 臨櫃叫號 (or pinned item) → hosted WebView",
+      "source_dependencies": [
+        "Counter store initializes bundled mock counter_list.json; favorites mutate Pinia state",
+        "Detail route requires counter id and optionally subId query",
+        "Map and phone use bridge; hosted page needs network"
+      ],
+      "known_limitations": [
+        "No real counter reservation or live wait-time integration established",
+        "Fax is a same-route link without explicit params; runtime route resolution unverified",
+        "Phone and map bridge effects not exercised"
+      ],
+      "source_audit_evidence": [
+        "TownPass-Services/src/stores/counter.ts:1",
+        "TownPass-Services/src/views/CounterCallingView.vue:56",
+        "TownPass-Services/src/views/CounterCallingDetailView.vue:13",
+        "TownPass-Services/src/views/CounterCallingDetailView.vue:143"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "subscription",
+      "display_name": "訂閱",
+      "description": "Browse municipal subscription topics",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.SubscriptionView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "webview",
+      "route": "/subscription",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/SubscriptionView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.home_tab",
+        "flutter.subscription",
+        "flutter.webView",
+        "vue.SubscriptionView",
+        "vue.SubscriptionItemListView",
+        "vue.SubscriptionItemDetailView"
+      ],
+      "related_control_ids": [
+        "home.subscription_item",
+        "home.subscription_settings",
+        "home.subscription_more",
+        "home.subscription_empty_settings",
+        "subscription.expand",
+        "subscription.subscribe",
+        "subscription.unsubscribe",
+        "subscription.item.read",
+        "subscription.list.settings",
+        "shared.flutter_appbar.implied_back"
+      ],
+      "audit_note": "Source path and control audit complete; deployment and runtime remain unverified.",
+      "related_edge_ids": [
+        "home.subscription_item",
+        "home.subscription_settings",
+        "home.subscription_more",
+        "home.subscription_empty_settings",
+        "subscription.list.settings",
+        "subscription.list.item",
+        "shared.flutter_appbar.back.subscription"
+      ],
+      "normal_entry_path": "首頁 → 訂閱 設定 or 更多 → hosted WebView; local subscription row opens Flutter detail",
+      "source_dependencies": [
+        "Flutter SubscriptionService is in-memory demo data; Flutter detail requires SubscriptionItem argument",
+        "Vue subscription choices start from mock JSON or localStorage and post notify bridge",
+        "Vue item list/detail use bundled mock JSON; item-detail requires id",
+        "Hosted network and notification permissions/bridge availability require runtime"
+      ],
+      "known_limitations": [
+        "Vue subscription API example is commented; localStorage update does not prove backend subscription",
+        "Flutter and Vue subscription states are separate implementations",
+        "No change or notification was performed in this audit"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/home/widget/subscription/subscription_widget.dart:40",
+        "TownPass/lib/service/subscription_service.dart:4",
+        "TownPass-Services/src/views/SubscriptionView.vue:22",
+        "TownPass-Services/src/views/SubscriptionItemDetailView.vue:9"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "surrounding_services",
+      "display_name": "周邊服務",
+      "description": "Browse places on map and list",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.SurroundingServiceView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "catalog_webview",
+      "route": "/surrounding-service",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/SurroundingServiceView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.services_tab",
+        "flutter.webView",
+        "vue.SurroundingServiceView",
+        "flutter.serviceEdit"
+      ],
+      "related_control_ids": [
+        "services.trending",
+        "pinned.item",
+        "surrounding.gps",
+        "surrounding.spot",
+        "surrounding.list",
+        "surrounding.geo_close",
+        "places.select",
+        "places.category.expand",
+        "places.history.select",
+        "places.history.clear",
+        "places.list.item",
+        "places.list.map",
+        "places.detail.back",
+        "places.history.expand",
+        "places.history.open_clear",
+        "places.history.cancel",
+        "places.list.top",
+        "shared.flutter_appbar.implied_back",
+        "places.selector.toggle"
+      ],
+      "audit_note": "Source relationship audit complete; described unknowns and runtime limitations remain.",
+      "related_edge_ids": [
+        "pinned.item",
+        "pinned.editor.item",
+        "services.trending",
+        "catalog.disaster.pinned",
+        "catalog.counter.pinned",
+        "shared.flutter_appbar.back.serviceEdit"
+      ],
+      "normal_entry_path": "服務 → 找地點 (pinned or 熱門) → hosted WebView",
+      "source_dependencies": [
+        "Place catalog starts from bundled mock place_list.json; selected sources may fetch JSON or APIs using axios",
+        "Google Maps loader API key is empty; geolocation requires browser/device availability and permission",
+        "Remote data and hosted WebView need network; deployment equivalence unknown"
+      ],
+      "known_limitations": [
+        "Fetch errors return empty results; map loading and permission behavior remain runtime-unverified",
+        "No authenticated or production service capability established"
+      ],
+      "source_audit_evidence": [
+        "TownPass-Services/src/views/SurroundingServiceView.vue:38",
+        "TownPass-Services/src/views/SurroundingServiceView.vue:87",
+        "TownPass-Services/src/views/SurroundingServiceView.vue:218",
+        "TownPass-Services/src/components/molecules/FindPlace.vue:45"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "police_report",
+      "display_name": "警政報案",
+      "description": "View online police reporting options",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.PoliceReportView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "webview",
+      "route": "/police-report",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/PoliceReportView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.services_tab",
+        "flutter.onlinePolice",
+        "flutter.webView",
+        "vue.PoliceReportView",
+        "vue.PoliceReportFormView",
+        "vue.PoliceReportRecordView",
+        "vue.PoliceReportRecordDetailView"
+      ],
+      "related_control_ids": [
+        "services.police",
+        "police.report",
+        "police.records",
+        "police.agree",
+        "police.general.next",
+        "police.detail.location",
+        "police.detail.submit",
+        "police.form.done",
+        "police.records.row",
+        "police.general.agree",
+        "police.detail.agree",
+        "shared.upload.choose",
+        "application.tabs",
+        "shared.flutter_appbar.implied_back",
+        "police.notice.checkbox",
+        "police.general.contact_fields",
+        "police.general.address_fields",
+        "police.general.same_address",
+        "police.detail.fields",
+        "police.general.consent_checkbox",
+        "police.detail.consent_checkbox"
+      ],
+      "audit_note": "Source relationship audit complete; described unknowns and runtime limitations remain.",
+      "related_edge_ids": [
+        "police.report",
+        "police.records",
+        "police.records.row",
+        "services.police",
+        "police.form.done",
+        "police.agree",
+        "shared.flutter_appbar.back.onlinePolice"
+      ],
+      "normal_entry_path": "服務 → 警政報案 attempts local online police route (name resolution unverified); if reached, 網路報案 or 案件查詢 opens hosted WebView.",
+      "source_dependencies": [
+        "Hosted network and deployment version are unknown",
+        "Agreement and local validation gate the form; location picker uses bridge and empty map key",
+        "Record list initializes bundled mock JSON; detail requires id and initialized store"
+      ],
+      "known_limitations": [
+        "Form handlers log local data and show success dialog; real police submission is not established",
+        "Direct record detail may have empty store; runtime behavior not verified",
+        "The services card passes local://online_police; openUri forwards host online_police without the leading slash used by the registered /online_police route. Resolution is unverified."
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/online_police/online_police_view.dart:24",
+        "TownPass-Services/src/views/PoliceReportView.vue:9",
+        "TownPass-Services/src/views/PoliceReportFormView.vue:32",
+        "TownPass-Services/src/views/PoliceReportRecordView.vue:4"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "faq",
+      "display_name": "常見問題",
+      "description": "Browse FAQ categories",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.TopQnAListView",
+      "platform": "vue",
+      "navigation_type": "vue_route",
+      "route": "/qna",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/TopQnAListView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "vue.TopQnAListView",
+        "vue.QnAListView"
+      ],
+      "related_control_ids": [
+        "qna.expand",
+        "qna.categories",
+        "qna.category",
+        "qna.question"
+      ],
+      "audit_note": "Source relationship audit complete; described unknowns and runtime limitations remain.",
+      "related_edge_ids": [
+        "qna.categories"
+      ],
+      "normal_entry_path": "Normal TownPass UI entry to local Vue /qna is not established in inspected source; /qna categories is linked from the Vue FAQ root.",
+      "source_dependencies": [
+        "Both FAQ screens import bundled mock qna_list.json",
+        "Hosted Vue execution needs network; external deployment and authentication unknown"
+      ],
+      "known_limitations": [
+        "Account 功能教學 points to id.taipei external FAQ, not established as the local Vue /qna route",
+        "Normal entry and direct navigation remain unverified"
+      ],
+      "source_audit_evidence": [
+        "TownPass-Services/src/views/TopQnAListView.vue:4",
+        "TownPass-Services/src/views/TopQnAListView.vue:70",
+        "TownPass-Services/src/views/QnAListView.vue:4",
+        "TownPass/lib/page/account/account_view.dart:82"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "ticket_wallet",
+      "display_name": "票夾",
+      "description": "View tickets and coupons",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.TicketWallet",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "webview",
+      "route": "/ticket-wallet",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/TicketWallet.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.perks_tab",
+        "flutter.webView",
+        "vue.TicketWallet",
+        "vue.TicketExchange",
+        "vue.CouponDetail",
+        "vue.CouponView"
+      ],
+      "related_control_ids": [
+        "perks.wallet",
+        "wallet.back",
+        "wallet.ticket",
+        "wallet.coupon",
+        "wallet.empty.coupon",
+        "wallet.empty.coupon_alt",
+        "ticket.exchange.back",
+        "coupon.saved.wallet",
+        "application.tabs"
+      ],
+      "audit_note": "Source relationship audit complete; described unknowns and runtime limitations remain.",
+      "related_edge_ids": [
+        "perks.wallet",
+        "coupon.saved.wallet",
+        "wallet.back",
+        "wallet.ticket",
+        "wallet.coupon",
+        "wallet.empty.coupon",
+        "wallet.empty.coupon_alt",
+        "ticket.exchange.back"
+      ],
+      "normal_entry_path": "優惠 → 票夾 → separate hosted WebView → ticket or coupon item",
+      "source_dependencies": [
+        "Wallet view initializes Pinia ticket and wallet data from bundled mock JSON",
+        "walletTab=2 selects coupon tab; exchange route requires id and a populated wallet order map",
+        "Hosted WebView requires network; deployment and account linkage unknown"
+      ],
+      "known_limitations": [
+        "Displayed QR code and mock wallet are not evidence of real issuance or redemption",
+        "Missing exchange item causes no activeData view; direct navigation/runtime not verified"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/perk/perk_view.dart:27",
+        "TownPass-Services/src/views/TicketWallet.vue:73",
+        "TownPass-Services/src/views/TicketWallet.vue:194",
+        "TownPass-Services/src/views/TicketExchange.vue:20"
+      ],
+      "source_audit_status": "reviewed"
+    },
+    {
+      "id": "fee_search",
+      "display_name": "搜尋繳費項目",
+      "description": "Search fee categories",
+      "aliases": [],
+      "locale": "zh-TW",
+      "screen_id": "vue.FeePaymentSearchView",
+      "platform": "flutter_webview_vue",
+      "navigation_type": "webview",
+      "route": "/fee-payment/search",
+      "required_parameters": [],
+      "prerequisites": [
+        "Authentication, permissions and deeper state dependencies require review"
+      ],
+      "allowed_ai_actions": [],
+      "requires_confirmation": true,
+      "privacy_risk": "unknown",
+      "source_file": "TownPass-Services/src/views/FeePaymentSearchView.vue",
+      "verification_status": "source_code_only",
+      "direct_navigation_status": "unverified",
+      "physical_device_verification": "pending",
+      "verification_notes": "Source location identified; detailed behavior and device verification pending.",
+      "related_screen_ids": [
+        "flutter.bills_tab",
+        "flutter.webView",
+        "vue.FeePaymentOthersView",
+        "vue.FeePaymentSearchView",
+        "vue.FeePaymentDetailView"
+      ],
+      "related_control_ids": [
+        "bills.popular_item",
+        "fee.others.search",
+        "fees.search.search",
+        "fees.search.clear",
+        "fees.search.history",
+        "fees.search.item",
+        "fees.search.input",
+        "fees.form.fields"
+      ],
+      "audit_note": "Search entry and data flow reviewed in source; deployment and device behavior remain unverified.",
+      "related_edge_ids": [
+        "bills.popular_item",
+        "fee.others.search",
+        "fees.search.item"
+      ],
+      "normal_entry_path": "帳務 → 熱門繳費 其他 → hosted WebView → 搜尋項目名稱",
+      "source_dependencies": [
+        "Hosted fee URL requires network; deployment equivalence unknown",
+        "Fee names come from bundled mock fee_payment_list.json via Pinia",
+        "Search history is localStorage, up to ten unique terms; detail links require id"
+      ],
+      "known_limitations": [
+        "Blank search still runs name matching and can display all fees",
+        "Search and navigation are source-reviewed but deployed and device behavior are unverified",
+        "No actual payment capability established"
+      ],
+      "source_audit_evidence": [
+        "TownPass/lib/page/bill/bill_view.dart:68",
+        "TownPass-Services/src/views/FeePaymentOthersView.vue:28",
+        "TownPass-Services/src/views/FeePaymentSearchView.vue:16",
+        "TownPass-Services/src/stores/fee-payment.ts:3"
+      ],
+      "source_audit_status": "reviewed"
+    }
+  ]
+}

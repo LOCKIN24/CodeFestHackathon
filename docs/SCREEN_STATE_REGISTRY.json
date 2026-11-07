@@ -1,0 +1,1034 @@
+{
+  "schema_version": "0.1",
+  "status": "source_audit_complete",
+  "states": [
+    {
+      "id": "webview.history_back_visible",
+      "parent_screen_id": "flutter.webView",
+      "type": "conditional_navigation_state",
+      "condition": "canGoBack is true",
+      "source_file": "TownPass/lib/util/tp_web_view.dart",
+      "source_line": 55,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "webview.back"
+      ],
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Visited-history callback updates canGoBack; only true displays the history-back button.",
+      "semantic_audit_evidence": [
+        "TownPass/lib/util/tp_web_view.dart:55"
+      ]
+    },
+    {
+      "id": "qr.image_error",
+      "parent_screen_id": "flutter.qrCodeScan",
+      "type": "error_state",
+      "condition": "Image analysis returns null, picker cancelled, or caught error",
+      "description": "錯誤: 無法辨識 QR Code; 確認 closes dialog. Barrier dismissal disabled.",
+      "source_file": "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart",
+      "source_line": 83,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "qr.photo"
+      ],
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Photo tap invokes scanFromImage; null (including cancellation or caught errors) opens a non-barrier-dismissible error dialog.",
+      "semantic_audit_evidence": [
+        "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart:83",
+        "TownPass/lib/util/tp_dialog.dart:80",
+        "TownPass/lib/page/qr_code_scan/qr_code_scan_controller.dart:12"
+      ]
+    },
+    {
+      "id": "qr.help_dialog",
+      "parent_screen_id": "flutter.qrCodeScan",
+      "type": "dialog",
+      "condition": "Tap 掃描說明",
+      "description": "條碼示意圖 with QR illustration; 關閉 closes dialog. Barrier dismissal disabled.",
+      "source_file": "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart",
+      "source_line": 96,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "qr.help"
+      ],
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Help tap invokes showInfo; the shared dialog disables barrier dismissal.",
+      "semantic_audit_evidence": [
+        "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart:96",
+        "TownPass/lib/util/tp_dialog.dart:101"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "qr.scanner_error",
+      "parent_screen_id": "flutter.qrCodeScan",
+      "type": "error_state",
+      "condition": "MobileScanner errorBuilder receives error",
+      "description": "Displays error code-specific message and optional details.",
+      "source_file": "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart",
+      "source_line": 43,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "MobileScanner errorBuilder displays error-code-specific text and optional details.",
+      "semantic_audit_evidence": [
+        "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart:43",
+        "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart:198"
+      ]
+    },
+    {
+      "id": "coupon.map_dialog",
+      "parent_screen_id": "vue.CouponDetail",
+      "type": "dialog",
+      "condition": "Store-address link",
+      "description": "是否要開啟 Google Map; 開啟 sends launch_map bridge message with map URL; 取消 closes. A negative bridge result opens URL in a new window.",
+      "source_file": "TownPass-Services/src/views/CouponDetail.vue",
+      "source_line": 152,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "coupon.open_map",
+        "coupon.confirm_map"
+      ],
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Store-address tap opens dialog; positive sends map bridge request; a negative bridge response falls back to window.open.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CouponDetail.vue:152"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "coupon.use_dialog",
+      "parent_screen_id": "vue.CouponDetail",
+      "type": "dialog",
+      "condition": "立即使用 / 兌換",
+      "description": "確認使用本優惠? 使用 closes this dialog and opens exchange-success dialog; 取消 closes. No coupon mutation appears in this handler.",
+      "source_file": "TownPass-Services/src/views/CouponDetail.vue",
+      "source_line": 161,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "coupon.open_use",
+        "coupon.confirm_use"
+      ],
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Use button opens confirmation; positive opens exchange success, without a redemption mutation in this handler.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CouponDetail.vue:161"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "coupon.store_dialog",
+      "parent_screen_id": "vue.CouponDetail",
+      "type": "dialog",
+      "condition": "加入票夾 when needUse query is absent",
+      "description": "領取本優惠? 存入票夾 closes this dialog and opens store-success dialog; 取消 closes. No wallet mutation appears in this handler.",
+      "source_file": "TownPass-Services/src/views/CouponDetail.vue",
+      "source_line": 170,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "coupon.open_store",
+        "coupon.confirm_store"
+      ],
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Store button is shown when needUse is absent; confirmation opens success without a wallet mutation in this handler.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CouponDetail.vue:170"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "coupon.stored_dialog",
+      "parent_screen_id": "vue.CouponDetail",
+      "type": "dialog",
+      "condition": "Confirm store dialog",
+      "description": "領取成功，已存入我的票夾; 使用優惠 routes to wallet tab 2; 更多優惠 routes to coupon tab 2. The shown success text alone does not prove storage.",
+      "source_file": "TownPass-Services/src/views/CouponDetail.vue",
+      "source_line": 179,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "coupon.confirm_store",
+        "coupon.saved.wallet",
+        "coupon.saved.more"
+      ],
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Store confirmation opens success dialog; its two actions route to wallet tab 2 or coupon tab 2.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CouponDetail.vue:179"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "coupon.exchange_dialog",
+      "parent_screen_id": "vue.CouponDetail",
+      "type": "dialog",
+      "condition": "Confirm use dialog",
+      "description": "優惠已兌換; 確定 closes dialog. The shown success text alone does not prove redemption.",
+      "source_file": "TownPass-Services/src/views/CouponDetail.vue",
+      "source_line": 189,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "coupon.confirm_use",
+        "coupon.confirm_exchange"
+      ],
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Use confirmation opens exchange success dialog; displayed success does not establish redemption.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CouponDetail.vue:189"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "feedback.category_overlay",
+      "parent_screen_id": "flutter.feedback",
+      "type": "overlay",
+      "condition": "Feedback category control toggled open",
+      "description": "Lists five categories; selecting one stores local selection and closes overlay; barrier dismissal toggles it closed.",
+      "source_file": "TownPass/lib/page/feedback/feedback_view.dart",
+      "source_line": 30,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "feedback.dropdown",
+        "feedback.select"
+      ],
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Dropdown tap toggles the portal; selecting an enum value saves it locally and toggles the overlay; barrier also toggles it.",
+      "semantic_audit_evidence": [
+        "TownPass/lib/page/feedback/feedback_view.dart:30",
+        "TownPass/lib/page/feedback/feedback_view_controller.dart:35"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.select_dialog",
+      "parent_screen_id": "vue.LibraryBookDetailView",
+      "type": "dialog",
+      "condition": "Click pickup-library selection",
+      "description": "請選擇取書館; supports nearby and district tabs, radio selection emits selected library ID immediately; close icon or dialog close dismisses. Maps loader and location request run on component mount; on geolocation error it marks map ready, default position remains. Selection itself does not close dialog. District radio change also emits the current library inputValue, which can be empty or stale.",
+      "related_control_ids": [
+        "library.pick_library",
+        "library.selector.library",
+        "library.selector.district",
+        "library.selector.close",
+        "library.selector.tabs"
+      ],
+      "source_file": "TownPass-Services/src/views/LibraryBookDetailView.vue",
+      "source_line": 255,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Pickup selector click opens LibrarySelectDialog; radio change emits inputValue but does not close; close icon and Dialog close dismiss. District radio also emits the current library inputValue, possibly empty or stale; map load and location affect nearby list.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:236",
+        "TownPass-Services/src/components/molecules/LibrarySelectDialog.vue:60",
+        "TownPass-Services/src/components/molecules/LibrarySelectDialog.vue:96",
+        "TownPass-Services/src/components/molecules/LibrarySelectDialog.vue:208"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.limit_dialog",
+      "parent_screen_id": "vue.LibraryBookDetailView",
+      "type": "dialog",
+      "condition": "Attempt selecting an additional series when selected count is at least 7",
+      "description": "提醒: displays limit 7 and 關閉. Condition checks selected series count, despite displayed wording referring to existing reservations.",
+      "related_control_ids": [
+        "library.pick_limit",
+        "library.series_checkbox"
+      ],
+      "source_file": "TownPass-Services/src/views/LibraryBookDetailView.vue",
+      "source_line": 261,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "checkLimit opens the warning for an additional selection at seven; its positive button closes. The condition counts current selections, not existing reservations as the wording implies.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:56",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:261",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.success_dialog",
+      "parent_screen_id": "vue.LibraryBookDetailView",
+      "type": "dialog",
+      "condition": "At least one selected series is not already reserved",
+      "description": "預約成功 displays count, pickup library and external library link; 返回首頁 and 查看預約清單 route to library home and records tab. Record updates are demonstration local storage, not a verified live reservation.",
+      "related_control_ids": [
+        "library.reserve",
+        "library.success.home",
+        "library.success.list",
+        "library.open_external_alert"
+      ],
+      "source_file": "TownPass-Services/src/views/LibraryBookDetailView.vue",
+      "source_line": 269,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Submit with a new series opens success and updates local store/localStorage; buttons navigate to library home or records. Live reservation is not established.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:74",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:113",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:269"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.failure_dialog",
+      "parent_screen_id": "vue.LibraryBookDetailView",
+      "type": "dialog",
+      "condition": "All selected series duplicate existing records",
+      "description": "預約失敗 displays selected count, title and duplicate reason; 返回首頁 and 查看預約清單 route to library home and records tab.",
+      "related_control_ids": [
+        "library.reserve",
+        "library.error.home",
+        "library.error.list"
+      ],
+      "source_file": "TownPass-Services/src/views/LibraryBookDetailView.vue",
+      "source_line": 303,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Submit with zero new reservations opens failure with duplicate message; both buttons navigate. Zero selected series also meets that condition if handler is invoked outside disabled UI.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:83",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:246",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:303"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.external_dialog",
+      "parent_screen_id": "vue.LibraryBookDetailView",
+      "type": "dialog",
+      "condition": "Click 圖書館 in success dialog",
+      "description": "提醒 that app will be left; 取消 reopens success dialog; 確認 opens external library website.",
+      "related_control_ids": [
+        "library.open_external_alert",
+        "library.external_cancel",
+        "library.external_confirm"
+      ],
+      "source_file": "TownPass-Services/src/views/LibraryBookDetailView.vue",
+      "source_line": 322,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Library link in success closes it and opens warning; cancel reopens success, confirm creates and clicks a new-tab anchor.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:164",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:287",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue:322"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "counter.map_dialog",
+      "parent_screen_id": "vue.CounterCallingDetailView",
+      "type": "dialog",
+      "condition": "Selected address clicked",
+      "description": "Google Maps prompt; 開啟 sends launch_map bridge message with selected address URL; 取消 closes.",
+      "related_control_ids": [
+        "counter.open_map"
+      ],
+      "source_file": "TownPass-Services/src/views/CounterCallingDetailView.vue",
+      "source_line": 163,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Address opens map confirmation; positive posts selected address to launch_map, negative closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CounterCallingDetailView.vue:130",
+        "TownPass-Services/src/views/CounterCallingDetailView.vue:56",
+        "TownPass-Services/src/views/CounterCallingDetailView.vue:163",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "police.submit_dialog",
+      "parent_screen_id": "vue.PoliceReportFormView",
+      "type": "dialog",
+      "condition": "Detail form emits pass",
+      "description": "通報成功 and 感謝您提供寶貴資訊; 確認 routes to police-report. Form handler logs data and does not establish actual submission.",
+      "related_control_ids": [
+        "police.form.done"
+      ],
+      "source_file": "TownPass-Services/src/views/PoliceReportFormView.vue",
+      "source_line": 60,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Detail-form pass opens success after logging; confirm routes to police-report; no submission is established.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/PoliceReportFormView.vue:34",
+        "TownPass-Services/src/views/PoliceReportFormView.vue:45",
+        "TownPass-Services/src/views/PoliceReportFormView.vue:58",
+        "TownPass-Services/src/views/PoliceReportFormView.vue:60",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "disaster.location_modal",
+      "parent_screen_id": "vue.DisasterReportFormView",
+      "type": "dialog",
+      "condition": "Tap location icon",
+      "description": "Address input and map; 確認 emits address to parent and closes; close icon dismisses. Map/geocoding API keys are empty in source, and bridge location request occurs in component.",
+      "related_control_ids": [
+        "disaster.location"
+      ],
+      "source_file": "TownPass-Services/src/views/DisasterReportFormView.vue",
+      "source_line": 249,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Location button opens shared modal; confirm returns address, close dismisses; mapping services need configuration.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/DisasterReportFormView.vue:147",
+        "TownPass-Services/src/views/DisasterReportFormView.vue:249",
+        "TownPass-Services/src/components/organisms/LocationModal.vue:114",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "disaster.submit_dialog",
+      "parent_screen_id": "vue.DisasterReportFormView",
+      "type": "dialog",
+      "condition": "Valid form submit sets isSubmitSuccess and opens dialog",
+      "description": "Conditional success/error wording; reviewed submit handler opens success branch on successful validation, logs form, and confirm routes home only when isSubmitSuccess.",
+      "related_control_ids": [
+        "disaster.submit",
+        "disaster.form.done"
+      ],
+      "source_file": "TownPass-Services/src/views/DisasterReportFormView.vue",
+      "source_line": 255,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Valid submit logs form and opens success; confirm routes home only on success; no failure opener or real submission established.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/DisasterReportFormView.vue:90",
+        "TownPass-Services/src/views/DisasterReportFormView.vue:117",
+        "TownPass-Services/src/views/DisasterReportFormView.vue:255",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "fees.payment_dialog",
+      "parent_screen_id": "vue.FeePaymentStepView",
+      "type": "dialog",
+      "condition": "Select payment method",
+      "description": "Warning about entering payment-provider page; 是 routes to finished screen; 否 closes. Reviewed code does not contact a payment provider.",
+      "related_control_ids": [
+        "fees.step.card_favorite",
+        "fees.step.easycard",
+        "fees.step.card",
+        "fees.step.smart",
+        "fees.step.confirm"
+      ],
+      "source_file": "TownPass-Services/src/views/FeePaymentStepView.vue",
+      "source_line": 108,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Payment method updates local payment info and opens warning; confirm routes to finished rather than showing evidence of provider payment; negative closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/FeePaymentStepView.vue:33",
+        "TownPass-Services/src/views/FeePaymentStepView.vue:37",
+        "TownPass-Services/src/views/FeePaymentStepView.vue:108",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "ticket.payment.dialog",
+      "parent_screen_id": "vue.TicketPayment",
+      "type": "dialog",
+      "condition": "Select payment method",
+      "description": "Warning asks about entering provider; 是 routes to payment-finished, 否 closes. Handler does not contact payment provider.",
+      "related_control_ids": [
+        "ticket.payment.card_favorite",
+        "ticket.payment.easycard",
+        "ticket.payment.card",
+        "ticket.payment.smart",
+        "ticket.payment.confirm"
+      ],
+      "source_file": "TownPass-Services/src/views/TicketPayment.vue",
+      "source_line": 93,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Payment method updates payment info and opens warning; confirm routes to finished; provider payment is not established.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/TicketPayment.vue:17",
+        "TownPass-Services/src/views/TicketPayment.vue:23",
+        "TownPass-Services/src/views/TicketPayment.vue:93",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "fees.scan.error_dialog",
+      "parent_screen_id": "vue.FeePaymentScanView",
+      "type": "dialog",
+      "condition": "QR data cannot be decoded or does not match fee ID",
+      "description": "讀取失敗 / 此類型的行動條碼不適用; 重新掃描 closes dialog and posts qr_code_scan bridge message.",
+      "related_control_ids": [
+        "fees.scan.result"
+      ],
+      "source_file": "TownPass-Services/src/views/FeePaymentScanView.vue",
+      "source_line": 60,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Invalid decoded data or no matching fee opens error; retry closes and posts qr_code_scan bridge message.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/FeePaymentScanView.vue:21",
+        "TownPass-Services/src/views/FeePaymentScanView.vue:28",
+        "TownPass-Services/src/views/FeePaymentScanView.vue:60",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.ranking.external_dialog",
+      "parent_screen_id": "vue.LibraryRankingListView",
+      "type": "dialog",
+      "condition": "isDialogOpen true; no setter opening it found in this view",
+      "description": "提醒 about leaving for Taipei library site; 確認 opens external URL, 取消 closes. Normal entry point not established.",
+      "related_control_ids": [],
+      "source_file": "TownPass-Services/src/views/LibraryRankingListView.vue",
+      "source_line": 64,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "isDialogOpen initializes false and is only assigned false in this view; no opener is established. If opened, positive uses an external anchor and negative closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/LibraryRankingListView.vue:17",
+        "TownPass-Services/src/views/LibraryRankingListView.vue:19",
+        "TownPass-Services/src/views/LibraryRankingListView.vue:64"
+      ],
+      "opener_status": "no_established_opener"
+    },
+    {
+      "id": "surrounding.geo_dialog",
+      "parent_screen_id": "vue.SurroundingServiceView",
+      "type": "dialog",
+      "condition": "geolocation error code 1",
+      "description": "請啟用定位服務 and explanation; 確認 closes modal.",
+      "related_control_ids": [
+        "surrounding.gps",
+        "surrounding.geo_close"
+      ],
+      "source_file": "TownPass-Services/src/views/SurroundingServiceView.vue",
+      "source_line": 453,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Position error code 1 opens location-permission notice; confirm closes it.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/SurroundingServiceView.vue:197",
+        "TownPass-Services/src/views/SurroundingServiceView.vue:210",
+        "TownPass-Services/src/views/SurroundingServiceView.vue:453",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "counter.edit_dialog",
+      "parent_screen_id": "vue.CounterCallingView",
+      "type": "dialog",
+      "condition": "Tap 變更 while regularly used list nonempty",
+      "description": "請選擇要移除的地點; checkboxes select names, 移除地點 updates store flags and closes; Dialog close dismisses.",
+      "related_control_ids": [
+        "counter.edit",
+        "counter.remove"
+      ],
+      "source_file": "TownPass-Services/src/views/CounterCallingView.vue",
+      "source_line": 125,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Change link appears with regularly used entries and opens selection; remove clears selected flags in store and closes; dialog close also dismisses.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CounterCallingView.vue:56",
+        "TownPass-Services/src/views/CounterCallingView.vue:84",
+        "TownPass-Services/src/views/CounterCallingView.vue:125"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "ticket.detail.map_dialog",
+      "parent_screen_id": "vue.TicketDetail",
+      "type": "dialog",
+      "condition": "Tap ticket address",
+      "description": "是否要開啟 Google Map; 開啟 sends launch_map bridge message; false bridge response opens URL in new window; 取消 closes.",
+      "related_control_ids": [
+        "ticket.detail.map"
+      ],
+      "source_file": "TownPass-Services/src/views/TicketDetail.vue",
+      "source_line": 176,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Address click opens confirmation; positive sends launch_map bridge message and a false response opens a new window; negative closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/TicketDetail.vue:25",
+        "TownPass-Services/src/views/TicketDetail.vue:35",
+        "TownPass-Services/src/views/TicketDetail.vue:85",
+        "TownPass-Services/src/views/TicketDetail.vue:176",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "citizen.form.receipt_dialog",
+      "parent_screen_id": "vue.CitizenReportFormView",
+      "type": "dialog",
+      "condition": "Submit with nonempty title and description",
+      "description": "案件已完成受理; 確認 routes to citizen report home. No submission request in handler.",
+      "related_control_ids": [
+        "citizen.form.submit",
+        "citizen.form.done"
+      ],
+      "source_file": "TownPass-Services/src/views/CitizenReportFormView.vue",
+      "source_line": 142,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Submit opens success when title and description are nonempty; confirm routes to citizen-report; no submission request in handler.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CitizenReportFormView.vue:48",
+        "TownPass-Services/src/views/CitizenReportFormView.vue:55",
+        "TownPass-Services/src/views/CitizenReportFormView.vue:138",
+        "TownPass-Services/src/views/CitizenReportFormView.vue:142",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "citizen.form.location_dialog",
+      "parent_screen_id": "vue.CitizenReportFormView",
+      "type": "dialog",
+      "condition": "Tap location icon",
+      "description": "Address/map modal; confirm emits address and closes; map and geocode keys are empty in source.",
+      "related_control_ids": [
+        "citizen.form.location"
+      ],
+      "source_file": "TownPass-Services/src/views/CitizenReportFormView.vue",
+      "source_line": 149,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Location button opens shared modal, whose confirm emits address and closes; map configuration and runtime are unverified.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/CitizenReportFormView.vue:84",
+        "TownPass-Services/src/views/CitizenReportFormView.vue:149",
+        "TownPass-Services/src/components/organisms/LocationModal.vue:114",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "buy.usage_dialog",
+      "parent_screen_id": "vue.BuyTicketView",
+      "type": "dialog",
+      "condition": "Tap 使用時段說明",
+      "description": "Shows four ticket types and hard-coded 2024 date ranges; 確認 closes.",
+      "related_control_ids": [
+        "buy.usage.open",
+        "buy.usage.close"
+      ],
+      "source_file": "TownPass-Services/src/views/BuyTicketView.vue",
+      "source_line": 209,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Usage-information button opens modal with hard-coded ticket dates; confirm closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/BuyTicketView.vue:188",
+        "TownPass-Services/src/views/BuyTicketView.vue:209",
+        "TownPass-Services/src/views/BuyTicketView.vue:236"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "hotspot.map_dialog",
+      "parent_screen_id": "vue.HotSpotView",
+      "type": "dialog",
+      "condition": "Tap venue address",
+      "description": "是否要開啟 Google Map; 開啟 sends launch_map bridge message; false result opens URL in new window; 取消 closes.",
+      "related_control_ids": [
+        "hotspot.map"
+      ],
+      "source_file": "TownPass-Services/src/views/HotSpotView.vue",
+      "source_line": 121,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Address opens map warning; confirm sends launch_map; false bridge response opens new window; cancel closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/HotSpotView.vue:31",
+        "TownPass-Services/src/views/HotSpotView.vue:40",
+        "TownPass-Services/src/views/HotSpotView.vue:77",
+        "TownPass-Services/src/views/HotSpotView.vue:121",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.notice.dialog",
+      "parent_screen_id": "vue.LibraryNoticeListView",
+      "type": "dialog",
+      "condition": "Click 圖書館網站 in either notices or empty view",
+      "description": "提醒 about leaving for library website; 確認 opens https://tpml.gov.taipei/Default.aspx in a new tab; 取消 closes.",
+      "related_control_ids": [
+        "library.notice.site",
+        "library.notice.empty_site"
+      ],
+      "source_file": "TownPass-Services/src/views/LibraryNoticeListView.vue",
+      "source_line": 96,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Library website links in either list or empty view open warning; confirm clicks a new-tab anchor, cancel closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/views/LibraryNoticeListView.vue:21",
+        "TownPass-Services/src/views/LibraryNoticeListView.vue:70",
+        "TownPass-Services/src/views/LibraryNoticeListView.vue:88",
+        "TownPass-Services/src/views/LibraryNoticeListView.vue:96",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "fees.form.error",
+      "parent_screen_id": "vue.FeePaymentDetailView",
+      "type": "dialog",
+      "condition": "Search sees any falsy initialized form value",
+      "description": "提醒 / 請確認資料是否含空白或符號; 確認 closes. Validation tests truthiness and does not actually scan characters as dialog wording suggests.",
+      "related_control_ids": [
+        "fees.form.search"
+      ],
+      "source_file": "TownPass-Services/src/components/molecules/FeePaymentForm.vue",
+      "source_line": 243,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Search opens warning when a form value is falsy; confirm closes. Truthiness does not check symbols or whitespace as message suggests.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/molecules/FeePaymentForm.vue:78",
+        "TownPass-Services/src/components/molecules/FeePaymentForm.vue:87",
+        "TownPass-Services/src/components/molecules/FeePaymentForm.vue:240",
+        "TownPass-Services/src/components/molecules/FeePaymentForm.vue:243",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "police.detail.location_dialog",
+      "parent_screen_id": "vue.PoliceReportFormView",
+      "type": "dialog",
+      "condition": "Police detail location button clicked",
+      "description": "Police detail location icon opens shared address/map modal; confirm updates form address, close dismisses. Keys for map and geocoding are empty in source.",
+      "related_control_ids": [
+        "police.detail.location"
+      ],
+      "source_file": "TownPass-Services/src/components/molecules/PoliceReportDetailForm.vue",
+      "source_line": 212,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Location button opens shared modal; its confirmation assigns address and closes; keys and runtime need verification.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/molecules/PoliceReportDetailForm.vue:116",
+        "TownPass-Services/src/components/molecules/PoliceReportDetailForm.vue:212",
+        "TownPass-Services/src/components/organisms/LocationModal.vue:114"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "citizen.upload.dialog",
+      "parent_screen_id": "vue.CitizenReportFormView",
+      "type": "dialog",
+      "condition": "Attachment information button clicked",
+      "description": "Shared attachment-info dialog varies its format/size instructions by report type. Information button opens it; 確認 and close event dismiss. Files are held in form-store state; source includes TODO for sending to an API. Although report UI displays total 40 MB, the inspected handler does not enforce a 40 MB aggregate limit.",
+      "related_control_ids": [
+        "citizen.upload.info",
+        "citizen.upload.close"
+      ],
+      "source_file": "TownPass-Services/src/components/molecules/UploadSection.vue",
+      "source_line": 170,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "other_parent_screen_ids": [
+        "vue.DisasterReportFormView",
+        "vue.PoliceReportFormView"
+      ],
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Info button opens instructions varying by report type; confirm or dialog close dismisses; upload API and aggregate 40MB enforcement are not established.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/molecules/UploadSection.vue:31",
+        "TownPass-Services/src/components/molecules/UploadSection.vue:52",
+        "TownPass-Services/src/components/molecules/UploadSection.vue:98",
+        "TownPass-Services/src/components/molecules/UploadSection.vue:170",
+        "TownPass-Services/src/components/molecules/UploadSection.vue:217"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "places.clear_dialog",
+      "parent_screen_id": "vue.SurroundingServiceView",
+      "type": "dialog",
+      "condition": "Tap 清空 in history",
+      "description": "清空搜集紀錄 / 清空您的歷史搜尋紀錄; 取消 closes, 確認 empties in-memory history.",
+      "related_control_ids": [
+        "places.history.open_clear",
+        "places.history.cancel",
+        "places.history.clear"
+      ],
+      "source_file": "TownPass-Services/src/components/molecules/FindPlace.vue",
+      "source_line": 249,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "History clear opens confirmation without expanding parent; cancel closes; confirm clears in-memory history.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/molecules/FindPlace.vue:84",
+        "TownPass-Services/src/components/molecules/FindPlace.vue:152",
+        "TownPass-Services/src/components/molecules/FindPlace.vue:249",
+        "TownPass-Services/src/components/molecules/FindPlace.vue:259",
+        "TownPass-Services/src/components/molecules/FindPlace.vue:265"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "application.multiselect.dialog",
+      "parent_screen_id": "vue.FormView",
+      "type": "dialog",
+      "condition": "Open multiple-select field",
+      "description": "選項 checkbox list; 確認 emits checked values and closes; dialog close dismisses. After confirmation, the parent 變更 button invokes the emitted opener to reopen.",
+      "related_control_ids": [
+        "application.multiselect.open",
+        "application.multiselect.confirm",
+        "application.form.multiple_change"
+      ],
+      "source_file": "TownPass-Services/src/components/atoms/BaseMultipleSelect.vue",
+      "source_line": 71,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Empty selection opens dialog directly; confirm emits checked values and an opener callback. With selected values, the parent 變更 button invokes that callback to reopen; dialog close dismisses.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/atoms/BaseMultipleSelect.vue:27",
+        "TownPass-Services/src/components/atoms/BaseMultipleSelect.vue:31",
+        "TownPass-Services/src/components/atoms/BaseMultipleSelect.vue:53",
+        "TownPass-Services/src/components/atoms/BaseMultipleSelect.vue:71",
+        "TownPass-Services/src/components/atoms/BaseMultipleSelect.vue:120",
+        "TownPass-Services/src/components/molecules/ApplyServiceInfoForm.vue:46",
+        "TownPass-Services/src/components/molecules/ApplyServiceInfoForm.vue:188"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "location.no_result",
+      "parent_screen_id": "vue.CitizenReportFormView",
+      "type": "dialog",
+      "condition": "Geocoding returns zero results",
+      "description": "提醒 / 搜尋不到此地址，請重新輸入; default 確認 closes. Shared by report forms; empty API key and network affect behavior.",
+      "related_control_ids": [],
+      "source_file": "TownPass-Services/src/components/organisms/LocationModal.vue",
+      "source_line": 183,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Typing triggers geocode; zero returned results opens alert; default positive closes. Empty API key and request failures limit reachability.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/organisms/LocationModal.vue:90",
+        "TownPass-Services/src/components/organisms/LocationModal.vue:104",
+        "TownPass-Services/src/components/organisms/LocationModal.vue:183",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "automatic_condition",
+      "other_parent_screen_ids": [
+        "vue.DisasterReportFormView",
+        "vue.PoliceReportFormView"
+      ]
+    },
+    {
+      "id": "library.map.geo_dialog",
+      "parent_screen_id": "vue.LibraryServiceView",
+      "type": "dialog",
+      "condition": "Geolocation error code 1",
+      "description": "請啟用定位服務 with explanation; 確認 closes.",
+      "related_control_ids": [
+        "library.map.gps",
+        "library.map.geo_close"
+      ],
+      "source_file": "TownPass-Services/src/components/organisms/LibraryMapView.vue",
+      "source_line": 353,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Position error code 1 opens notice; confirm closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/organisms/LibraryMapView.vue:127",
+        "TownPass-Services/src/components/organisms/LibraryMapView.vue:140",
+        "TownPass-Services/src/components/organisms/LibraryMapView.vue:353",
+        "TownPass-Services/src/components/organisms/LibraryMapView.vue:361"
+      ],
+      "opener_status": "automatic_condition"
+    },
+    {
+      "id": "application.preview.finished",
+      "parent_screen_id": "vue.FormView",
+      "type": "dialog",
+      "condition": "Preview submit clicked",
+      "description": "案件已完成申辦 with query guidance; 前往查看 goes home with isSearch=true; 確認 goes home. Submission API code is commented.",
+      "related_control_ids": [
+        "application.preview.submit"
+      ],
+      "source_file": "TownPass-Services/src/components/organisms/FormPreview.vue",
+      "source_line": 198,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Preview submit logs and opens completion; positive routes home with isSearch=true, negative home; request example is commented.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/organisms/FormPreview.vue:72",
+        "TownPass-Services/src/components/organisms/FormPreview.vue:102",
+        "TownPass-Services/src/components/organisms/FormPreview.vue:107",
+        "TownPass-Services/src/components/organisms/FormPreview.vue:194",
+        "TownPass-Services/src/components/organisms/FormPreview.vue:198",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.records.map_dialog",
+      "parent_screen_id": "vue.LibraryServiceView",
+      "type": "dialog",
+      "condition": "Pickup-library address tapped",
+      "description": "Map confirmation shows selected location; 開啟 sends launch_map bridge message, 取消 closes.",
+      "related_control_ids": [
+        "library.records.map"
+      ],
+      "source_file": "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue",
+      "source_line": 223,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Pickup-address click selects record and opens map dialog; confirm posts launch_map, cancel clears selection.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:61",
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:174",
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:223",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.records.extend_dialog",
+      "parent_screen_id": "vue.LibraryServiceView",
+      "type": "dialog",
+      "condition": "延長兩日 tapped on eligible record",
+      "description": "Shows title, call number and limit; 確認 increments local extend count and pickup date then opens success dialog; 取消 closes.",
+      "related_control_ids": [
+        "library.records.extend"
+      ],
+      "source_file": "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue",
+      "source_line": 233,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Eligible record opens extension dialog; confirm increments local record only if extend_count < 1 and opens success; cancel clears selection.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:68",
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:188",
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:233",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.records.extend_success",
+      "parent_screen_id": "vue.LibraryServiceView",
+      "type": "dialog",
+      "condition": "Local extension succeeds",
+      "description": "延長兩日成功 shows title and call number; 關閉 clears selection and closes. No live library request established.",
+      "related_control_ids": [
+        "library.records.extend"
+      ],
+      "source_file": "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue",
+      "source_line": 246,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Extension success opens when local count is below one; close clears selected record. No live library operation is shown.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:68",
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:246",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.records.cancel_dialog",
+      "parent_screen_id": "vue.LibraryServiceView",
+      "type": "dialog",
+      "condition": "取消預約 tapped on ordering record",
+      "description": "Shows title and call number; 取消預約 filters local ordering records and writes localStorage; 我再想想 closes.",
+      "related_control_ids": [
+        "library.records.cancel"
+      ],
+      "source_file": "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue",
+      "source_line": 257,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "Cancel-reservation click selects record and opens dialog; confirm filters ordering store and writes localStorage, negative clears selection. No live cancellation is shown.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:82",
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:205",
+        "TownPass-Services/src/components/organisms/LibraryMyRecordsView.vue:257",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "library.detail.map_dialog",
+      "parent_screen_id": "vue.LibraryServiceView",
+      "type": "dialog",
+      "condition": "Library detail address tapped",
+      "description": "Map confirmation shows selected library name; 開啟 posts launch_map, 取消 closes.",
+      "related_control_ids": [
+        "library.detail.map"
+      ],
+      "source_file": "TownPass-Services/src/components/organisms/LibraryDetailView.vue",
+      "source_line": 70,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Library address click opens map confirmation; confirm posts launch_map with selected address; cancel closes.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/organisms/LibraryDetailView.vue:42",
+        "TownPass-Services/src/components/organisms/LibraryDetailView.vue:70",
+        "TownPass-Services/src/components/atoms/BaseDialog.vue:23"
+      ],
+      "opener_status": "established_in_source"
+    },
+    {
+      "id": "message.empty",
+      "parent_screen_id": "flutter.message",
+      "type": "empty_state",
+      "condition": "Loading is false and filtered list for selected message type is empty",
+      "description": "Shows 目前無訊息 and the filter suggestion.",
+      "source_file": "TownPass/lib/page/message/widget/_message_list_view.dart",
+      "source_line": 14,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "related_control_ids": [
+        "message.tabs"
+      ],
+      "semantic_audit_status": "verified_from_source",
+      "semantic_audit_reason": "Reactive list displays empty widget when loading is false and filtered list empty; no user-triggered opener.",
+      "semantic_audit_evidence": [
+        "TownPass/lib/page/message/widget/_message_list_view.dart:14"
+      ],
+      "opener_status": "automatic_condition"
+    },
+    {
+      "id": "shared.upload.size_error",
+      "parent_screen_id": "vue.DisasterReportFormView",
+      "other_parent_screen_ids": [
+        "vue.PoliceReportFormView"
+      ],
+      "type": "error_state",
+      "condition": "Selected file exceeds 10 MB for disaster or 20 MB for police, rounded to two decimal MB",
+      "description": "Displays 檔案大小超過限制. A subsequently accepted file clears the warning. Citizen report mode does not enforce the displayed aggregate 40 MB limit in this handler.",
+      "related_control_ids": [
+        "shared.upload.choose"
+      ],
+      "source_file": "TownPass-Services/src/components/molecules/UploadSection.vue",
+      "source_line": 166,
+      "verification_status": "source_reviewed_runtime_unverified",
+      "semantic_audit_status": "source_limitation_documented",
+      "semantic_audit_reason": "File change sets the inline warning according to props and rounded per-file size; no aggregate report-size check or upload API is implemented in this handler.",
+      "semantic_audit_evidence": [
+        "TownPass-Services/src/components/molecules/UploadSection.vue:35",
+        "TownPass-Services/src/components/molecules/UploadSection.vue:44",
+        "TownPass-Services/src/components/molecules/UploadSection.vue:166",
+        "TownPass-Services/src/views/DisasterReportFormView.vue:229",
+        "TownPass-Services/src/components/molecules/PoliceReportDetailForm.vue:165"
+      ],
+      "opener_status": "automatic_condition"
+    }
+  ],
+  "note": "Recorded states semantically source-reviewed; runtime behavior remains unverified."
+}

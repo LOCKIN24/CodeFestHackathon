@@ -1,0 +1,104 @@
+{
+  "original": {
+    "cases": 23,
+    "model_errors": 0,
+    "model_id_matches": 15,
+    "baseline_id_matches": 20,
+    "hybrid_id_matches": 23,
+    "supported_requests": 16,
+    "supported_correct": {
+      "model": 15,
+      "baseline": 15,
+      "hybrid": 16
+    },
+    "incorrect_accepted": [],
+    "status_counts": {
+      "incomplete": 6,
+      "preview": 8,
+      "clarify": 5,
+      "rejected": 4
+    },
+    "action_decisions": {
+      "rejected": 4
+    },
+    "unsupported_ambiguous_decisions": {
+      "clarify": 3
+    },
+    "false_rejections": [],
+    "supported_clarifications": [
+      "我要看活動詳情",
+      "我要看特定訊息詳情"
+    ],
+    "details": 2
+  },
+  "additional": {
+    "cases": 86,
+    "model_errors": 0,
+    "model_id_matches": 55,
+    "baseline_id_matches": 55,
+    "hybrid_id_matches": 86,
+    "supported_requests": 57,
+    "supported_correct": {
+      "model": 55,
+      "baseline": 34,
+      "hybrid": 57
+    },
+    "incorrect_accepted": [],
+    "status_counts": {
+      "incomplete": 30,
+      "rejected": 16,
+      "preview": 23,
+      "clarify": 17
+    },
+    "action_decisions": {
+      "rejected": 16
+    },
+    "unsupported_ambiguous_decisions": {
+      "clarify": 13
+    },
+    "false_rejections": [],
+    "supported_clarifications": [
+      "查看某一活動詳情",
+      "查看特定訊息詳情",
+      "Show a specific message detail",
+      "Show a specific activity detail"
+    ],
+    "details": 4
+  },
+  "all": {
+    "cases": 109,
+    "model_errors": 0,
+    "model_id_matches": 70,
+    "baseline_id_matches": 75,
+    "hybrid_id_matches": 109,
+    "supported_requests": 73,
+    "supported_correct": {
+      "model": 70,
+      "baseline": 49,
+      "hybrid": 73
+    },
+    "incorrect_accepted": [],
+    "status_counts": {
+      "incomplete": 36,
+      "preview": 31,
+      "clarify": 22,
+      "rejected": 20
+    },
+    "action_decisions": {
+      "rejected": 20
+    },
+    "unsupported_ambiguous_decisions": {
+      "clarify": 16
+    },
+    "false_rejections": [],
+    "supported_clarifications": [
+      "我要看活動詳情",
+      "我要看特定訊息詳情",
+      "查看某一活動詳情",
+      "查看特定訊息詳情",
+      "Show a specific message detail",
+      "Show a specific activity detail"
+    ],
+    "details": 6
+  }
+}

@@ -1,0 +1,1637 @@
+[
+  {
+    "corpus": "original",
+    "query": "我要查圖書借閱",
+    "expected_feature": "library_services",
+    "category": "view",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": "library_services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "original",
+    "query": "我要看活動訊息",
+    "expected_feature": "activity_information",
+    "category": "view",
+    "model": "activity_information",
+    "model_error": null,
+    "baseline": "activity_information",
+    "hybrid": {
+      "feature_id": "activity_information",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "original",
+    "query": "幫我找市政申辦",
+    "expected_feature": "municipal_applications",
+    "category": "view",
+    "model": "municipal_applications",
+    "model_error": null,
+    "baseline": "municipal_applications",
+    "hybrid": {
+      "feature_id": "municipal_applications",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "original",
+    "query": "我要查看我的票夾",
+    "expected_feature": "ticket_wallet",
+    "category": "view",
+    "model": "ticket_wallet",
+    "model_error": null,
+    "baseline": "ticket_wallet",
+    "hybrid": {
+      "feature_id": "ticket_wallet",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "original",
+    "query": "我要開啟語言設定",
+    "expected_feature": "language_settings",
+    "category": "view",
+    "model": "language_settings",
+    "model_error": null,
+    "baseline": "language_settings",
+    "hybrid": {
+      "feature_id": "language_settings",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "original",
+    "query": "Where can I find QR scanning?",
+    "expected_feature": "qr_scan",
+    "category": "view",
+    "model": "qr_scan",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "qr_scan",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "original",
+    "query": "How do I view account settings?",
+    "expected_feature": "settings",
+    "category": "view",
+    "model": "account",
+    "model_error": null,
+    "baseline": "settings",
+    "hybrid": {
+      "feature_id": "settings",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "original",
+    "query": "我要看首頁",
+    "expected_feature": "home",
+    "category": "view",
+    "model": "home",
+    "model_error": null,
+    "baseline": "home",
+    "hybrid": {
+      "feature_id": "home",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "original",
+    "query": "查看基本資料",
+    "expected_feature": "personal_information",
+    "category": "view",
+    "model": "personal_information",
+    "model_error": null,
+    "baseline": "personal_information",
+    "hybrid": {
+      "feature_id": "personal_information",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "original",
+    "query": "查看訊息",
+    "expected_feature": "messages",
+    "category": "view",
+    "model": "messages",
+    "model_error": null,
+    "baseline": "messages",
+    "hybrid": {
+      "feature_id": "messages",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "original",
+    "query": "我想看服務",
+    "expected_feature": "services",
+    "category": "view",
+    "model": "services",
+    "model_error": null,
+    "baseline": "services",
+    "hybrid": {
+      "feature_id": "services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "original",
+    "query": "我想看優惠券",
+    "expected_feature": "perks",
+    "category": "view",
+    "model": "perks",
+    "model_error": null,
+    "baseline": "perks",
+    "hybrid": {
+      "feature_id": "perks",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "original",
+    "query": "我要看活動詳情",
+    "expected_feature": "activity_information",
+    "category": "detail",
+    "model": "activity_information",
+    "model_error": null,
+    "baseline": "activity_information",
+    "hybrid": {
+      "feature_id": "activity_information",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "original",
+    "query": "我要看特定訊息詳情",
+    "expected_feature": "messages",
+    "category": "detail",
+    "model": "messages",
+    "model_error": null,
+    "baseline": "messages",
+    "hybrid": {
+      "feature_id": "messages",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "original",
+    "query": "我要看天氣預報",
+    "expected_feature": null,
+    "category": "unsupported",
+    "model": "home",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Model proposal lacks feature-specific evidence."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "original",
+    "query": "Help me find parking payments",
+    "expected_feature": null,
+    "category": "unsupported",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Model proposal lacks feature-specific evidence."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "original",
+    "query": "請付款",
+    "expected_feature": null,
+    "category": "action",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "original",
+    "query": "Submit my application",
+    "expected_feature": null,
+    "category": "action",
+    "model": "municipal_applications",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "original",
+    "query": "我要查看語言設定並修改帳號",
+    "expected_feature": null,
+    "category": "action",
+    "model": "language_settings",
+    "model_error": null,
+    "baseline": "language_settings",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "original",
+    "query": "打電話給市政府",
+    "expected_feature": null,
+    "category": "action",
+    "model": "online_police",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "original",
+    "query": "我要查看意見回饋",
+    "expected_feature": "feedback",
+    "category": "view",
+    "model": "feedback",
+    "model_error": null,
+    "baseline": "feedback",
+    "hybrid": {
+      "feature_id": "feedback",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "original",
+    "query": "查看警政服務",
+    "expected_feature": "online_police",
+    "category": "view",
+    "model": "online_police",
+    "model_error": null,
+    "baseline": "online_police",
+    "hybrid": {
+      "feature_id": "online_police",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "original",
+    "query": "我要查看圖書館或票夾",
+    "expected_feature": null,
+    "category": "ambiguous",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Please choose one destination."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "我要查看繳費紀錄",
+    "expected_feature": "bills",
+    "category": "view",
+    "model": "bills",
+    "model_error": null,
+    "baseline": "bills",
+    "hybrid": {
+      "feature_id": "bills",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "請幫我完成付款",
+    "expected_feature": null,
+    "category": "action",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "我要看我的帳單",
+    "expected_feature": "bills",
+    "category": "view",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "bills",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "哪裡可以查詢繳費項目",
+    "expected_feature": "fee_search",
+    "category": "view",
+    "model": "fee_search",
+    "model_error": null,
+    "baseline": "bills",
+    "hybrid": {
+      "feature_id": "fee_search",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "請直接繳費",
+    "expected_feature": null,
+    "category": "action",
+    "model": "bills",
+    "model_error": null,
+    "baseline": "bills",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "我要看付款紀錄",
+    "expected_feature": "bills",
+    "category": "view",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "bills",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "請送出申請",
+    "expected_feature": null,
+    "category": "action",
+    "model": "municipal_applications",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "我想看申辦服務",
+    "expected_feature": "municipal_applications",
+    "category": "view",
+    "model": "municipal_applications",
+    "model_error": null,
+    "baseline": "municipal_applications",
+    "hybrid": {
+      "feature_id": "municipal_applications",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看圖書館",
+    "expected_feature": "library_services",
+    "category": "view",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": "library_services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "找借書功能",
+    "expected_feature": "library_services",
+    "category": "view",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": "library_services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看我的圖書借閱",
+    "expected_feature": "library_services",
+    "category": "view",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": "library_services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "我要續借圖書",
+    "expected_feature": null,
+    "category": "action",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "我想看活動",
+    "expected_feature": "activity_information",
+    "category": "view",
+    "model": "activity_information",
+    "model_error": null,
+    "baseline": "activity_information",
+    "hybrid": {
+      "feature_id": "activity_information",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查詢活動訊息",
+    "expected_feature": "activity_information",
+    "category": "view",
+    "model": "activity_information",
+    "model_error": null,
+    "baseline": "activity_information",
+    "hybrid": {
+      "feature_id": "activity_information",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看某一活動詳情",
+    "expected_feature": "activity_information",
+    "category": "detail",
+    "model": "activity_information",
+    "model_error": null,
+    "baseline": "activity_information",
+    "hybrid": {
+      "feature_id": "activity_information",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "找票夾",
+    "expected_feature": "ticket_wallet",
+    "category": "view",
+    "model": "ticket_wallet",
+    "model_error": null,
+    "baseline": "ticket_wallet",
+    "hybrid": {
+      "feature_id": "ticket_wallet",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看優惠",
+    "expected_feature": "perks",
+    "category": "view",
+    "model": "perks",
+    "model_error": null,
+    "baseline": "perks",
+    "hybrid": {
+      "feature_id": "perks",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "請購買票券",
+    "expected_feature": null,
+    "category": "action",
+    "model": "perks",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "語言設定在哪裡",
+    "expected_feature": "language_settings",
+    "category": "view",
+    "model": "language_settings",
+    "model_error": null,
+    "baseline": "language_settings",
+    "hybrid": {
+      "feature_id": "language_settings",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看帳戶設定",
+    "expected_feature": "settings",
+    "category": "view",
+    "model": "account",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "settings",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "幫我修改語言設定",
+    "expected_feature": null,
+    "category": "action",
+    "model": "language_settings",
+    "model_error": null,
+    "baseline": "language_settings",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看帳戶",
+    "expected_feature": "account",
+    "category": "view",
+    "model": "account",
+    "model_error": null,
+    "baseline": "account",
+    "hybrid": {
+      "feature_id": "account",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "看看個人資料",
+    "expected_feature": "personal_information",
+    "category": "view",
+    "model": "personal_information",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "personal_information",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "修改基本資料",
+    "expected_feature": null,
+    "category": "action",
+    "model": "personal_information",
+    "model_error": null,
+    "baseline": "personal_information",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看訊息",
+    "expected_feature": "messages",
+    "category": "view",
+    "model": "messages",
+    "model_error": null,
+    "baseline": "messages",
+    "hybrid": {
+      "feature_id": "messages",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看特定訊息詳情",
+    "expected_feature": "messages",
+    "category": "detail",
+    "model": "messages",
+    "model_error": null,
+    "baseline": "messages",
+    "hybrid": {
+      "feature_id": "messages",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "找意見回饋",
+    "expected_feature": "feedback",
+    "category": "view",
+    "model": "feedback",
+    "model_error": null,
+    "baseline": "feedback",
+    "hybrid": {
+      "feature_id": "feedback",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看起始頁面",
+    "expected_feature": "startup_page",
+    "category": "view",
+    "model": "startup_page",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "startup_page",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看手機載具",
+    "expected_feature": "invoice_receipt",
+    "category": "view",
+    "model": "invoice_receipt",
+    "model_error": null,
+    "baseline": "invoice_receipt",
+    "hybrid": {
+      "feature_id": "invoice_receipt",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看警政服務",
+    "expected_feature": "online_police",
+    "category": "view",
+    "model": "online_police",
+    "model_error": null,
+    "baseline": "online_police",
+    "hybrid": {
+      "feature_id": "online_police",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "找掃描 QR Code",
+    "expected_feature": "qr_scan",
+    "category": "view",
+    "model": "qr_scan",
+    "model_error": null,
+    "baseline": "qr_scan",
+    "hybrid": {
+      "feature_id": "qr_scan",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "請啟動相機",
+    "expected_feature": null,
+    "category": "action",
+    "model": "qr_scan",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看我的服務",
+    "expected_feature": "service_catalog",
+    "category": "view",
+    "model": "service_catalog",
+    "model_error": null,
+    "baseline": "service_catalog",
+    "hybrid": {
+      "feature_id": "service_catalog",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "我要看有話要說",
+    "expected_feature": "citizen_report",
+    "category": "view",
+    "model": "citizen_report",
+    "model_error": null,
+    "baseline": "citizen_report",
+    "hybrid": {
+      "feature_id": "citizen_report",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看災情通報",
+    "expected_feature": "disaster_report",
+    "category": "view",
+    "model": "disaster_report",
+    "model_error": null,
+    "baseline": "disaster_report",
+    "hybrid": {
+      "feature_id": "disaster_report",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "我要看臨櫃叫號",
+    "expected_feature": "counter_calling",
+    "category": "view",
+    "model": "counter_calling",
+    "model_error": null,
+    "baseline": "counter_calling",
+    "hybrid": {
+      "feature_id": "counter_calling",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看訂閱",
+    "expected_feature": "subscription",
+    "category": "view",
+    "model": "subscription",
+    "model_error": null,
+    "baseline": "subscription",
+    "hybrid": {
+      "feature_id": "subscription",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看周邊服務",
+    "expected_feature": "surrounding_services",
+    "category": "view",
+    "model": "surrounding_services",
+    "model_error": null,
+    "baseline": "surrounding_services",
+    "hybrid": {
+      "feature_id": "surrounding_services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看警政報案",
+    "expected_feature": "police_report",
+    "category": "view",
+    "model": "police_report",
+    "model_error": null,
+    "baseline": "police_report",
+    "hybrid": {
+      "feature_id": "police_report",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "找常見問題",
+    "expected_feature": "faq",
+    "category": "view",
+    "model": "faq",
+    "model_error": null,
+    "baseline": "faq",
+    "hybrid": {
+      "feature_id": "faq",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看天氣預報",
+    "expected_feature": null,
+    "category": "unsupported",
+    "model": "home",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Model proposal lacks feature-specific evidence."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "找公車時刻表",
+    "expected_feature": null,
+    "category": "unsupported",
+    "model": "surrounding_services",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Model proposal lacks feature-specific evidence."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "查停車場空位",
+    "expected_feature": null,
+    "category": "unsupported",
+    "model": "home",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Please clarify whether you want to view a feature."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "我要查票夾或圖書館",
+    "expected_feature": null,
+    "category": "ambiguous",
+    "model": "ticket_wallet",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Please choose one destination."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看訊息以及活動",
+    "expected_feature": null,
+    "category": "ambiguous",
+    "model": "messages",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Please choose one destination."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "看設定還有票夾",
+    "expected_feature": null,
+    "category": "ambiguous",
+    "model": "settings",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Please choose one destination."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "我的資料在哪裡",
+    "expected_feature": null,
+    "category": "ambiguous",
+    "model": "personal_information",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Model proposal lacks feature-specific evidence."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where can I view payment history?",
+    "expected_feature": "bills",
+    "category": "view",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "bills",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Please pay my bill now",
+    "expected_feature": null,
+    "category": "action",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where can I find the library?",
+    "expected_feature": "library_services",
+    "category": "view",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": "library_services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show me the library books",
+    "expected_feature": "library_services",
+    "category": "view",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": "library_services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where are city applications?",
+    "expected_feature": "municipal_applications",
+    "category": "view",
+    "model": "municipal_applications",
+    "model_error": null,
+    "baseline": "municipal_applications",
+    "hybrid": {
+      "feature_id": "municipal_applications",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show my ticket wallet",
+    "expected_feature": "ticket_wallet",
+    "category": "view",
+    "model": "ticket_wallet",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "ticket_wallet",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where is the QR scanner?",
+    "expected_feature": "qr_scan",
+    "category": "view",
+    "model": "qr_scan",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "qr_scan",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Open the language settings page",
+    "expected_feature": "language_settings",
+    "category": "view",
+    "model": "language_settings",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "language_settings",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where are account settings?",
+    "expected_feature": "settings",
+    "category": "view",
+    "model": "account",
+    "model_error": null,
+    "baseline": "settings",
+    "hybrid": {
+      "feature_id": "settings",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show my account",
+    "expected_feature": "account",
+    "category": "view",
+    "model": "account",
+    "model_error": null,
+    "baseline": "account",
+    "hybrid": {
+      "feature_id": "account",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where can I see personal information?",
+    "expected_feature": "personal_information",
+    "category": "view",
+    "model": "personal_information",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "personal_information",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show my messages",
+    "expected_feature": "messages",
+    "category": "view",
+    "model": "messages",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "messages",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show a specific message detail",
+    "expected_feature": "messages",
+    "category": "detail",
+    "model": "messages",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "messages",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where are activities?",
+    "expected_feature": "activity_information",
+    "category": "view",
+    "model": "activity_information",
+    "model_error": null,
+    "baseline": "activity_information",
+    "hybrid": {
+      "feature_id": "activity_information",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show a specific activity detail",
+    "expected_feature": "activity_information",
+    "category": "detail",
+    "model": "activity_information",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "activity_information",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show the home page",
+    "expected_feature": "home",
+    "category": "view",
+    "model": "home",
+    "model_error": null,
+    "baseline": "home",
+    "hybrid": {
+      "feature_id": "home",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where can I browse services?",
+    "expected_feature": "services",
+    "category": "view",
+    "model": "services",
+    "model_error": null,
+    "baseline": "services",
+    "hybrid": {
+      "feature_id": "services",
+      "decision": "matched",
+      "source": "name_or_alias"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show coupons",
+    "expected_feature": "perks",
+    "category": "view",
+    "model": "perks",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "perks",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where can I find feedback?",
+    "expected_feature": "feedback",
+    "category": "view",
+    "model": "feedback",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "feedback",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Find the startup page",
+    "expected_feature": "startup_page",
+    "category": "view",
+    "model": "startup_page",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "startup_page",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show the invoice receipt page",
+    "expected_feature": "invoice_receipt",
+    "category": "view",
+    "model": "invoice_receipt",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "invoice_receipt",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where is the service catalog?",
+    "expected_feature": "service_catalog",
+    "category": "view",
+    "model": "service_catalog",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "service_catalog",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "preview"
+  },
+  {
+    "corpus": "additional",
+    "query": "Find the disaster report page",
+    "expected_feature": "disaster_report",
+    "category": "view",
+    "model": "disaster_report",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "disaster_report",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show subscriptions",
+    "expected_feature": "subscription",
+    "category": "view",
+    "model": "subscription",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "subscription",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Find the police report page",
+    "expected_feature": "police_report",
+    "category": "view",
+    "model": "police_report",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "police_report",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show the FAQ",
+    "expected_feature": "faq",
+    "category": "view",
+    "model": "faq",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": "faq",
+      "decision": "matched",
+      "source": "model_with_evidence"
+    },
+    "preview_status": "incomplete"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show the weather forecast",
+    "expected_feature": null,
+    "category": "unsupported",
+    "model": "home",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Model proposal lacks feature-specific evidence."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where is the bus timetable?",
+    "expected_feature": null,
+    "category": "unsupported",
+    "model": "surrounding_services",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Model proposal lacks feature-specific evidence."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "Find parking payments",
+    "expected_feature": null,
+    "category": "unsupported",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Model proposal lacks feature-specific evidence."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show the library and the wallet",
+    "expected_feature": null,
+    "category": "ambiguous",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Please choose one destination."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "Library or messages?",
+    "expected_feature": null,
+    "category": "ambiguous",
+    "model": "library_services",
+    "model_error": null,
+    "baseline": "library_services",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Please choose one destination."
+    },
+    "preview_status": "clarify"
+  },
+  {
+    "corpus": "additional",
+    "query": "Submit my application",
+    "expected_feature": null,
+    "category": "action",
+    "model": "municipal_applications",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "Change my language",
+    "expected_feature": null,
+    "category": "action",
+    "model": "language_settings",
+    "model_error": null,
+    "baseline": "language_settings",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "Call the city government",
+    "expected_feature": null,
+    "category": "action",
+    "model": "online_police",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "Activate the camera",
+    "expected_feature": null,
+    "category": "action",
+    "model": "qr_scan",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "Cancel my reservation",
+    "expected_feature": null,
+    "category": "action",
+    "model": "municipal_applications",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "Show my payment history and pay the bill",
+    "expected_feature": null,
+    "category": "action",
+    "model": "bills",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "查看票夾並付款",
+    "expected_feature": null,
+    "category": "action",
+    "model": "ticket_wallet",
+    "model_error": null,
+    "baseline": "ticket_wallet",
+    "hybrid": {
+      "feature_id": null,
+      "decision": "rejected",
+      "reason": "A real action was requested."
+    },
+    "preview_status": "rejected"
+  },
+  {
+    "corpus": "additional",
+    "query": "Where can I find account or language settings?",
+    "expected_feature": null,
+    "category": "ambiguous",
+    "model": "account",
+    "model_error": null,
+    "baseline": null,
+    "hybrid": {
+      "feature_id": null,
+      "decision": "clarify",
+      "reason": "Please choose one destination."
+    },
+    "preview_status": "clarify"
+  }
+]

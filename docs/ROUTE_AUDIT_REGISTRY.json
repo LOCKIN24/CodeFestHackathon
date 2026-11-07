@@ -1,0 +1,2124 @@
+{
+  "schema_version": "1.0",
+  "status": "incomplete",
+  "routes": [
+    {
+      "id": "flutter.main",
+      "framework": "flutter",
+      "name": "main",
+      "path": "/",
+      "parent_route_id": null,
+      "screen_id": "flutter.main",
+      "component_source": "TownPass/lib/page/main/main_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 64,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "GetMaterialApp.initialRoute in TownPass/lib/main.dart:71"
+      ],
+      "dependencies": [
+        "MainView and PinnedServiceWidgetController bindings; shared preferences home_index; initialized app services"
+      ],
+      "reachability": "Application startup source establishes entry; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:64",
+        "TownPass/lib/page/main/main_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.account",
+      "framework": "flutter",
+      "name": "account",
+      "path": "/account",
+      "parent_route_id": null,
+      "screen_id": "flutter.account",
+      "component_source": "TownPass/lib/page/account/account_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 73,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "home.account",
+        "services.account",
+        "perks.account",
+        "bills.account"
+      ],
+      "dependencies": [
+        "AccountViewController binding; AccountService mock account, DeviceService and PackageService"
+      ],
+      "reachability": "Four tab account icons provide source entries; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:73",
+        "TownPass/lib/page/account/account_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.basicInfo",
+      "framework": "flutter",
+      "name": "basicInfo",
+      "path": "/basic_info",
+      "parent_route_id": null,
+      "screen_id": "flutter.basicInfo",
+      "component_source": "TownPass/lib/page/basic_info/basic_info_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 80,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "settings.basic"
+      ],
+      "dependencies": [
+        "BasicInfoViewController binding; AccountService mock in-memory state"
+      ],
+      "reachability": "Settings basic-info tile provides source entry; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:80",
+        "TownPass/lib/page/basic_info/basic_info_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.basicInfoEdit",
+      "framework": "flutter",
+      "name": "basicInfoEdit",
+      "path": "/basic_info_edit",
+      "parent_route_id": null,
+      "screen_id": "flutter.basicInfoEdit",
+      "component_source": "TownPass/lib/page/basic_info_edit/basic_info_edit_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 87,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "BasicInfoEditArgument with title and currentValue; optional validator and keyboardType"
+      },
+      "known_entry_points": [
+        "basic.id",
+        "basic.birthday",
+        "basic.email",
+        "basic.phone",
+        "basic.address"
+      ],
+      "dependencies": [
+        "BasicInfoEditViewController reads Get.arguments; confirmation pops with text returned to caller"
+      ],
+      "reachability": "Five profile fields provide typed arguments; direct navigation unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:87",
+        "TownPass/lib/page/basic_info_edit/basic_info_edit_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.feedback",
+      "framework": "flutter",
+      "name": "feedback",
+      "path": "/feedback",
+      "parent_route_id": null,
+      "screen_id": "flutter.feedback",
+      "component_source": "TownPass/lib/page/feedback/feedback_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 94,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "account.feedback"
+      ],
+      "dependencies": [
+        "FeedbackViewController holds local text/category; send handler empty"
+      ],
+      "reachability": "Account feedback tile provides source entry; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:94",
+        "TownPass/lib/page/feedback/feedback_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.invoiceReceipt",
+      "framework": "flutter",
+      "name": "invoiceReceipt",
+      "path": "/invoice_receipt",
+      "parent_route_id": null,
+      "screen_id": "flutter.invoiceReceipt",
+      "component_source": "TownPass/lib/page/invoice_receipt/invoice_receipt_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 100,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "settings.invoice"
+      ],
+      "dependencies": [
+        "Displays placeholder privacy statement; no carrier form or binding in view"
+      ],
+      "reachability": "Source UI entry from settings; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:100",
+        "TownPass/lib/page/invoice_receipt/invoice_receipt_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.language",
+      "framework": "flutter",
+      "name": "language",
+      "path": "/language",
+      "parent_route_id": null,
+      "screen_id": "flutter.language",
+      "component_source": "TownPass/lib/page/language/language_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 104,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "settings.language"
+      ],
+      "dependencies": [
+        "Language enum lists two choices; selection callback empty"
+      ],
+      "reachability": "Source UI entry from settings; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:104",
+        "TownPass/lib/page/language/language_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.message",
+      "framework": "flutter",
+      "name": "message",
+      "path": "/message",
+      "parent_route_id": null,
+      "screen_id": "flutter.message",
+      "component_source": "TownPass/lib/page/message/message_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 111,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "account.message"
+      ],
+      "dependencies": [
+        "MessageViewController loads bundled mock message JSON; list empty state and trash stub"
+      ],
+      "reachability": "Source UI entry from account; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:111",
+        "TownPass/lib/page/message/message_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.messageDetail",
+      "framework": "flutter",
+      "name": "messageDetail",
+      "path": "/message_detail",
+      "parent_route_id": null,
+      "screen_id": "flutter.messageDetail",
+      "component_source": "TownPass/lib/page/message_detail/message_detail_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 118,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "MessageItem via Get.arguments"
+      },
+      "known_entry_points": [
+        "message.row"
+      ],
+      "dependencies": [
+        "Caller passes item; detail reads typed argument, optional network image and URL"
+      ],
+      "reachability": "Source UI entry with typed item; direct route unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:118",
+        "TownPass/lib/page/message_detail/message_detail_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.onlinePolice",
+      "framework": "flutter",
+      "name": "onlinePolice",
+      "path": "/online_police",
+      "parent_route_id": null,
+      "screen_id": "flutter.onlinePolice",
+      "component_source": "TownPass/lib/page/online_police/online_police_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 122,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "services.police"
+      ],
+      "dependencies": [
+        "Local scheme URL through openUri; hosted police pages and phone-handler availability"
+      ],
+      "reachability": "Services card attempts local://online_police; openUri passes unprefixed host online_police, whereas registered route is /online_police. Resolution and normal reachability unverified.",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:122",
+        "TownPass/lib/page/online_police/online_police_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.phoneCallUserAgreement",
+      "framework": "flutter",
+      "name": "phoneCallUserAgreement",
+      "path": "/phone_call_user_agreement",
+      "parent_route_id": null,
+      "screen_id": "flutter.phoneCallUserAgreement",
+      "component_source": "TownPass/lib/page/phone_call_user_agreement/phone_call_user_agreement_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 126,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "citizen.call1999.agreement"
+      ],
+      "dependencies": [
+        "Bridge checks phone availability and saved preference; agreement writes shared preference then pops"
+      ],
+      "reachability": "Conditional bridge entry when consent not stored; actual phone/bridge unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:126",
+        "TownPass/lib/page/phone_call_user_agreement/phone_call_user_agreement_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.portfolioAndAuth",
+      "framework": "flutter",
+      "name": "portfolioAndAuth",
+      "path": "/portfolio_and_auth",
+      "parent_route_id": null,
+      "screen_id": "flutter.portfolioAndAuth",
+      "component_source": "TownPass/lib/page/portfolioAndAuth/portfolio_auth_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 133,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "PortfolioAuthView toggles two label-only placeholder tabs; account and settings history tiles have empty/no callbacks"
+      ],
+      "reachability": "No normal UI entry established; registered route alone does not establish reachability",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:133",
+        "TownPass/lib/page/portfolioAndAuth/portfolio_auth_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.qrCodeScan",
+      "framework": "flutter",
+      "name": "qrCodeScan",
+      "path": "/qr_code_scan",
+      "parent_route_id": null,
+      "screen_id": "flutter.qrCodeScan",
+      "component_source": "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 137,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "fees.scan.open_flutter"
+      ],
+      "dependencies": [
+        "QRCodeScanController camera stream and image picker; camera/gallery permissions; result passed by pop"
+      ],
+      "reachability": "Conditional fee-scan bridge entry; scanner and permission runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:137",
+        "TownPass/lib/page/qr_code_scan/qr_code_scan_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.serviceEdit",
+      "framework": "flutter",
+      "name": "serviceEdit",
+      "path": "/service_edit",
+      "parent_route_id": null,
+      "screen_id": "flutter.serviceEdit",
+      "component_source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 144,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "services.more",
+        "services.add"
+      ],
+      "dependencies": [
+        "CityServiceEditViewController and shared pinned controller; in-memory snapshot and 12-item limit"
+      ],
+      "reachability": "Source UI entries from services; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:144",
+        "TownPass/lib/page/city_service_edit/city_service_edit_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.setting",
+      "framework": "flutter",
+      "name": "setting",
+      "path": "/setting",
+      "parent_route_id": null,
+      "screen_id": "flutter.setting",
+      "component_source": "TownPass/lib/page/setting/setting_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 151,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "account.name_settings",
+        "account.phone_settings"
+      ],
+      "dependencies": [
+        "SettingViewController; controls and uncontrolled local switches; last login is DateTime.now"
+      ],
+      "reachability": "Source UI entry from account icons; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:151",
+        "TownPass/lib/page/setting/setting_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.settingStartPage",
+      "framework": "flutter",
+      "name": "settingStartPage",
+      "path": "/setting_start_page",
+      "parent_route_id": null,
+      "screen_id": "flutter.settingStartPage",
+      "component_source": "TownPass/lib/page/app_home_page/app_home_page_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 158,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "settings.start"
+      ],
+      "dependencies": [
+        "SharedPreferences home_index controls current setting and is read by MainViewController"
+      ],
+      "reachability": "Source UI entry from settings; persistence not tested",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:158",
+        "TownPass/lib/page/app_home_page/app_home_page_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.subscription",
+      "framework": "flutter",
+      "name": "subscription",
+      "path": "/subscription",
+      "parent_route_id": null,
+      "screen_id": "flutter.subscription",
+      "component_source": "TownPass/lib/page/subscription/subscription_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 165,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "SubscriptionItem via Get.arguments"
+      },
+      "known_entry_points": [
+        "home.subscription_item"
+      ],
+      "dependencies": [
+        "Caller passes item from in-memory demo SubscriptionService; destination reads typed argument"
+      ],
+      "reachability": "Source UI entry requires item; direct navigation unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:165",
+        "TownPass/lib/page/subscription/subscription_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.suspendAccount",
+      "framework": "flutter",
+      "name": "suspendAccount",
+      "path": "/suspend_account",
+      "parent_route_id": null,
+      "screen_id": "flutter.suspendAccount",
+      "component_source": "TownPass/lib/page/suspend_account/suspend_account_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 169,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "None"
+      },
+      "known_entry_points": [
+        "settings.suspend"
+      ],
+      "dependencies": [
+        "SuspendAccountController reads mock AccountService; disable callback empty and mail launch conditional"
+      ],
+      "reachability": "Source UI entry from settings; account action is not implemented",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:169",
+        "TownPass/lib/page/suspend_account/suspend_account_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.webView",
+      "framework": "flutter",
+      "name": "webView",
+      "path": "/web_view",
+      "parent_route_id": null,
+      "screen_id": "flutter.webView",
+      "component_source": "TownPass/lib/util/tp_web_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 176,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "WebViewArgument optional; usable content needs URL and optional forceTitle"
+      },
+      "known_entry_points": [
+        "perks.wallet",
+        "bills.scan",
+        "bills.history",
+        "bills.popular_item",
+        "catalog.disaster.editor",
+        "catalog.counter.editor"
+      ],
+      "dependencies": [
+        "TPRoute.openUri constructs WebViewArgument for non-local parseable URI; history back and pop depend on state",
+        "WebView geolocation prompt callback allows origin in source; platform permissions and actual result unknown"
+      ],
+      "reachability": "Many source-backed URL entries; hosted content and direct navigation unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:176",
+        "TownPass/lib/util/tp_web_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.activityList",
+      "framework": "flutter",
+      "name": "activityList",
+      "path": "/activity_list",
+      "parent_route_id": null,
+      "screen_id": "flutter.activityList",
+      "component_source": "TownPass/lib/page/activity_list/activity_list_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 180,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "ActivityList via Get.arguments"
+      },
+      "known_entry_points": [
+        "activity.more"
+      ],
+      "dependencies": [
+        "Caller passes nullable controller.list while loading; destination expects typed list; bundled activity JSON"
+      ],
+      "reachability": "Source UI entry exists; early null and direct route behavior unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:180",
+        "TownPass/lib/page/activity_list/activity_list_view.dart"
+      ]
+    },
+    {
+      "id": "flutter.activityDetail",
+      "framework": "flutter",
+      "name": "activityDetail",
+      "path": "/activity_detail",
+      "parent_route_id": null,
+      "screen_id": "flutter.activityDetail",
+      "component_source": "TownPass/lib/page/activity_detail/activity_detail_view.dart",
+      "registration_source": "TownPass/lib/util/tp_route.dart",
+      "registration_line": 184,
+      "parameters": {
+        "path_required": [],
+        "get_arguments": "ActivityItem via Get.arguments"
+      },
+      "known_entry_points": [
+        "activity.list_item",
+        "activity.banner"
+      ],
+      "dependencies": [
+        "List passes item; loading banner placeholder may pass null; destination expects typed item and optional URL"
+      ],
+      "reachability": "Source UI entries exist; early null and direct route behavior unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass/lib/util/tp_route.dart:184",
+        "TownPass/lib/page/activity_detail/activity_detail_view.dart"
+      ]
+    },
+    {
+      "id": "vue.home",
+      "framework": "vue",
+      "name": "home",
+      "path": "/",
+      "parent_route_id": null,
+      "screen_id": "vue.HomeView",
+      "component_source": "TownPass-Services/src/views/HomeView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 56,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "Services pinned 申辦服務 opens hosted root through WebView"
+      ],
+      "dependencies": [
+        "Bundled service_list.json and case_progress.json; userinfo bridge; hosted network"
+      ],
+      "reachability": "source entry conditional on hosted deployment",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:56",
+        "TownPass-Services/src/views/HomeView.vue"
+      ]
+    },
+    {
+      "id": "vue.form",
+      "framework": "vue",
+      "name": "form",
+      "path": "/form/:id",
+      "parent_route_id": null,
+      "screen_id": "vue.FormView",
+      "component_source": "TownPass-Services/src/views/FormView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 64,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "application.form.item"
+      ],
+      "dependencies": [
+        "Form format uses mock form.json and user/form stores; preview submission is not established"
+      ],
+      "reachability": "source-linked route; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:64",
+        "TownPass-Services/src/views/FormView.vue"
+      ]
+    },
+    {
+      "id": "vue.surrounding-service",
+      "framework": "vue",
+      "name": "surrounding-service",
+      "path": "/surrounding-service",
+      "parent_route_id": null,
+      "screen_id": "vue.SurroundingServiceView",
+      "component_source": "TownPass-Services/src/views/SurroundingServiceView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 72,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "services.trending",
+        "pinned.item"
+      ],
+      "dependencies": [
+        "Google Maps loader has empty API key; geolocation and remote data requests depend on network and permission"
+      ],
+      "reachability": "catalog URL source-linked; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:72",
+        "TownPass-Services/src/views/SurroundingServiceView.vue"
+      ]
+    },
+    {
+      "id": "vue.top-qna-list",
+      "framework": "vue",
+      "name": "top-qna-list",
+      "path": "/qna",
+      "parent_route_id": null,
+      "screen_id": "vue.TopQnAListView",
+      "component_source": "TownPass-Services/src/views/TopQnAListView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 80,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Bundled qna_list.json"
+      ],
+      "reachability": "no normal incoming edge established",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:80",
+        "TownPass-Services/src/views/TopQnAListView.vue"
+      ]
+    },
+    {
+      "id": "vue.qna-list",
+      "framework": "vue",
+      "name": "qna-list",
+      "path": "/qna/categories",
+      "parent_route_id": null,
+      "screen_id": "vue.QnAListView",
+      "component_source": "TownPass-Services/src/views/QnAListView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 88,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "qna.categories"
+      ],
+      "dependencies": [
+        "Bundled qna_list.json"
+      ],
+      "reachability": "source-linked route; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:88",
+        "TownPass-Services/src/views/QnAListView.vue"
+      ]
+    },
+    {
+      "id": "vue.parent:/coupon",
+      "framework": "vue",
+      "name": null,
+      "path": "/coupon",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 96,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless grouping record; empty-path child renders coupon view"
+      ],
+      "reachability": "parent is structural, not standalone screen",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:96"
+      ]
+    },
+    {
+      "id": "vue.coupon",
+      "framework": "vue",
+      "name": "coupon",
+      "path": "/coupon/",
+      "parent_route_id": "vue.parent:/coupon",
+      "screen_id": "vue.CouponView",
+      "component_source": "TownPass-Services/src/views/CouponView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 102,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "perks.embedded_load"
+      ],
+      "dependencies": [
+        "Coupon root initializes Pinia lists from mock coupon_data.json; optional tab query"
+      ],
+      "reachability": "hosted URL load source-linked; deployment equivalence unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:102",
+        "TownPass-Services/src/views/CouponView.vue"
+      ]
+    },
+    {
+      "id": "vue.coupon-list",
+      "framework": "vue",
+      "name": "coupon-list",
+      "path": "/coupon/list",
+      "parent_route_id": "vue.parent:/coupon",
+      "screen_id": "vue.CouponListView",
+      "component_source": "TownPass-Services/src/views/CouponListView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 107,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "coupon.ticket.search_input",
+        "coupon.ticket.search_button",
+        "coupon.ticket.popular",
+        "coupon.ticket.hotspot",
+        "coupon.coupon.search_input",
+        "coupon.coupon.search_button",
+        "coupon.hot.more"
+      ],
+      "dependencies": [
+        "Coupon Pinia ticket/coupon data; optional tab, isSearch, isList, hotSpot, isFilter query"
+      ],
+      "reachability": "source-linked route; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:107",
+        "TownPass-Services/src/views/CouponListView.vue"
+      ]
+    },
+    {
+      "id": "vue.hotspot",
+      "framework": "vue",
+      "name": "hotspot",
+      "path": "/coupon/hotspot/:id",
+      "parent_route_id": "vue.parent:/coupon",
+      "screen_id": "vue.HotSpotView",
+      "component_source": "TownPass-Services/src/views/HotSpotView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 112,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "coupon.hotspot.item"
+      ],
+      "dependencies": [
+        "Hotspot store map must contain id; missing item triggers coupon redirect; map bridge"
+      ],
+      "reachability": "source-linked route conditional on store data",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:112",
+        "TownPass-Services/src/views/HotSpotView.vue"
+      ]
+    },
+    {
+      "id": "vue.ticket-detail",
+      "framework": "vue",
+      "name": "ticket-detail",
+      "path": "/coupon/ticket-detail/:id",
+      "parent_route_id": "vue.parent:/coupon",
+      "screen_id": "vue.TicketDetail",
+      "component_source": "TownPass-Services/src/views/TicketDetail.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 117,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "coupon.hot.item.ticket",
+        "coupon.result.item.ticket",
+        "coupon.result.item.hotspot_ticket"
+      ],
+      "dependencies": [
+        "Ticket store map must contain id; map bridge; external URL fallback"
+      ],
+      "reachability": "source-linked route conditional on store data",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:117",
+        "TownPass-Services/src/views/TicketDetail.vue"
+      ]
+    },
+    {
+      "id": "vue.coupon-detail",
+      "framework": "vue",
+      "name": "coupon-detail",
+      "path": "/coupon/coupon-detail/:id",
+      "parent_route_id": "vue.parent:/coupon",
+      "screen_id": "vue.CouponDetail",
+      "component_source": "TownPass-Services/src/views/CouponDetail.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 122,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "coupon.hot.item.coupon",
+        "coupon.result.item.coupon",
+        "wallet.coupon"
+      ],
+      "dependencies": [
+        "Coupon store map must contain id; optional tab, walletTab, needUse query; map bridge"
+      ],
+      "reachability": "source-linked route conditional on store data",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:122",
+        "TownPass-Services/src/views/CouponDetail.vue"
+      ]
+    },
+    {
+      "id": "vue.buy-ticket",
+      "framework": "vue",
+      "name": "buy-ticket",
+      "path": "/coupon/buy-ticket/:id",
+      "parent_route_id": "vue.parent:/coupon",
+      "screen_id": "vue.BuyTicketView",
+      "component_source": "TownPass-Services/src/views/BuyTicketView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 127,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "ticket.detail.buy"
+      ],
+      "dependencies": [
+        "Route path requires id; view uses hard-coded demo ticket and local counts/payment store"
+      ],
+      "reachability": "source-linked route; purchase behavior unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:127",
+        "TownPass-Services/src/views/BuyTicketView.vue"
+      ]
+    },
+    {
+      "id": "vue.ticket-payment",
+      "framework": "vue",
+      "name": "ticket-payment",
+      "path": "/coupon/ticket-payment",
+      "parent_route_id": "vue.parent:/coupon",
+      "screen_id": "vue.TicketPayment",
+      "component_source": "TownPass-Services/src/views/TicketPayment.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 132,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "buy.pay"
+      ],
+      "dependencies": [
+        "Payment store state; confirmation routes to completion UI without establishing payment"
+      ],
+      "reachability": "source-linked route; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:132",
+        "TownPass-Services/src/views/TicketPayment.vue"
+      ]
+    },
+    {
+      "id": "vue.payment-finished",
+      "framework": "vue",
+      "name": "payment-finished",
+      "path": "/coupon/payment-finished",
+      "parent_route_id": "vue.parent:/coupon",
+      "screen_id": "vue.PaymentFinishedView",
+      "component_source": "TownPass-Services/src/views/PaymentFinishedView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 137,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [
+        "ticket.payment.confirm"
+      ],
+      "dependencies": [
+        "Payment store state; wallet initialized from mock ticket_wallet.json"
+      ],
+      "reachability": "source-linked route; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:137",
+        "TownPass-Services/src/views/PaymentFinishedView.vue"
+      ]
+    },
+    {
+      "id": "vue.parent:/ticket-wallet",
+      "framework": "vue",
+      "name": null,
+      "path": "/ticket-wallet",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 144,
+      "parameters": {
+        "path_required": [],
+        "other": "Optional query and store state as described in dependencies"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless grouping record; empty-path child renders wallet"
+      ],
+      "reachability": "parent is structural, not standalone screen",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:144"
+      ]
+    },
+    {
+      "id": "vue.ticket-wallet",
+      "framework": "vue",
+      "name": "ticket-wallet",
+      "path": "/ticket-wallet/",
+      "parent_route_id": "vue.parent:/ticket-wallet",
+      "screen_id": "vue.TicketWallet",
+      "component_source": "TownPass-Services/src/views/TicketWallet.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 150,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "perks.wallet",
+        "coupon.back.wallet",
+        "coupon.saved.wallet",
+        "ticket.exchange.back",
+        "ticket.finished.wallet"
+      ],
+      "dependencies": [
+        "Initializes ticket, coupon and wallet data from bundled mock JSON; optional walletTab=2 selects coupons"
+      ],
+      "reachability": "Source link and hosted wallet URL; deployed version/runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:150",
+        "TownPass-Services/src/views/TicketWallet.vue"
+      ]
+    },
+    {
+      "id": "vue.ticket-exchange",
+      "framework": "vue",
+      "name": "ticket-exchange",
+      "path": "/ticket-wallet/exchange/:id",
+      "parent_route_id": "vue.parent:/ticket-wallet",
+      "screen_id": "vue.TicketExchange",
+      "component_source": "TownPass-Services/src/views/TicketExchange.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 155,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "wallet.ticket",
+        "ticket.finished.exchange"
+      ],
+      "dependencies": [
+        "Looks up id in walletData admission orders; expects previously initialized Pinia wallet"
+      ],
+      "reachability": "Source-linked route conditional on store data",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:155",
+        "TownPass-Services/src/views/TicketExchange.vue"
+      ]
+    },
+    {
+      "id": "vue.parent:/counter-calling",
+      "framework": "vue",
+      "name": null,
+      "path": "/counter-calling",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 162,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless parent; empty-path child supplies view"
+      ],
+      "reachability": "Structural grouping, not standalone screen",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:162"
+      ]
+    },
+    {
+      "id": "vue.counter-calling",
+      "framework": "vue",
+      "name": "counter-calling",
+      "path": "/counter-calling/",
+      "parent_route_id": "vue.parent:/counter-calling",
+      "screen_id": "vue.CounterCallingView",
+      "component_source": "TownPass-Services/src/views/CounterCallingView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 168,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "Services catalog 臨櫃叫號 opens hosted counter-calling URL"
+      ],
+      "dependencies": [
+        "Counter store initializes bundled mock counter_list.json; editing favorites changes Pinia state"
+      ],
+      "reachability": "Catalog URL source-linked; deployment equivalence unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:168",
+        "TownPass-Services/src/views/CounterCallingView.vue"
+      ]
+    },
+    {
+      "id": "vue.counter-calling-detail",
+      "framework": "vue",
+      "name": "counter-calling-detail",
+      "path": "/counter-calling/:id",
+      "parent_route_id": "vue.parent:/counter-calling",
+      "screen_id": "vue.CounterCallingDetailView",
+      "component_source": "TownPass-Services/src/views/CounterCallingDetailView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 173,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "counter.regular.item",
+        "counter.item",
+        "counter.fax"
+      ],
+      "dependencies": [
+        "Finds counter by id from mock Pinia store; optional subId query selects location; map and phone bridge"
+      ],
+      "reachability": "Source-linked route conditional on valid id",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:173",
+        "TownPass-Services/src/views/CounterCallingDetailView.vue"
+      ]
+    },
+    {
+      "id": "vue.parent:/citizen-report",
+      "framework": "vue",
+      "name": null,
+      "path": "/citizen-report",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 180,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless parent; empty-path child supplies view"
+      ],
+      "reachability": "Structural grouping, not standalone screen",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:180"
+      ]
+    },
+    {
+      "id": "vue.citizen-report",
+      "framework": "vue",
+      "name": "citizen-report",
+      "path": "/citizen-report/",
+      "parent_route_id": "vue.parent:/citizen-report",
+      "screen_id": "vue.CitizenReportView",
+      "component_source": "TownPass-Services/src/views/CitizenReportView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 186,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "services.citizen_report",
+        "citizen.form.done"
+      ],
+      "dependencies": [
+        "Initializes mock citizen-report and citizen-result stores; 1999agree bridge for voice action"
+      ],
+      "reachability": "Hosted source link; runtime and deployment unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:186",
+        "TownPass-Services/src/views/CitizenReportView.vue"
+      ]
+    },
+    {
+      "id": "vue.citizen-report-list",
+      "framework": "vue",
+      "name": "citizen-report-list",
+      "path": "/citizen-report/list",
+      "parent_route_id": "vue.parent:/citizen-report",
+      "screen_id": "vue.CitizenReportListView",
+      "component_source": "TownPass-Services/src/views/CitizenReportListView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 191,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "citizen.home.more"
+      ],
+      "dependencies": [
+        "Reads citizen report store initialized by root view; categories and search"
+      ],
+      "reachability": "Source-linked route conditional on initialized store",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:191",
+        "TownPass-Services/src/views/CitizenReportListView.vue"
+      ]
+    },
+    {
+      "id": "vue.citizen-report-form",
+      "framework": "vue",
+      "name": "citizen-report-form",
+      "path": "/citizen-report/form/:id",
+      "parent_route_id": "vue.parent:/citizen-report",
+      "screen_id": "vue.CitizenReportFormView",
+      "component_source": "TownPass-Services/src/views/CitizenReportFormView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 196,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "citizen.list.service",
+        "citizen.list.report",
+        "citizen.list.other",
+        "citizen.search.item",
+        "citizen.express"
+      ],
+      "dependencies": [
+        "R-99 special case or report item map from citizen report store; location modal; submit only opens dialog"
+      ],
+      "reachability": "Source-linked route conditional on store or R-99",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:196",
+        "TownPass-Services/src/views/CitizenReportFormView.vue"
+      ]
+    },
+    {
+      "id": "vue.citizen-report-search",
+      "framework": "vue",
+      "name": "citizen-report-search",
+      "path": "/citizen-report/search",
+      "parent_route_id": "vue.parent:/citizen-report",
+      "screen_id": "vue.CitizenReportSearchView",
+      "component_source": "TownPass-Services/src/views/CitizenReportSearchView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 201,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "citizen.list.search",
+        "citizen.home.search"
+      ],
+      "dependencies": [
+        "Searches concatData from citizen report store; direct load may have empty store"
+      ],
+      "reachability": "Source-linked route; store must be initialized for data",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:201",
+        "TownPass-Services/src/views/CitizenReportSearchView.vue"
+      ]
+    },
+    {
+      "id": "vue.citizen-report-search-detail",
+      "framework": "vue",
+      "name": "citizen-report-search-detail",
+      "path": "/citizen-report/search-detail/:id",
+      "parent_route_id": "vue.parent:/citizen-report",
+      "screen_id": "vue.CitizenReportSearchDetailView",
+      "component_source": "TownPass-Services/src/views/CitizenReportSearchDetailView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 206,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "citizen.result.item"
+      ],
+      "dependencies": [
+        "Logs id but displays same bundled citizen_search_detail.json instead of loading record by id"
+      ],
+      "reachability": "Source-linked route; displayed detail is mock",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:206",
+        "TownPass-Services/src/views/CitizenReportSearchDetailView.vue"
+      ]
+    },
+    {
+      "id": "vue.parent:/subscription",
+      "framework": "vue",
+      "name": null,
+      "path": "/subscription",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 213,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless parent; empty-path child supplies view"
+      ],
+      "reachability": "Structural grouping, not standalone screen",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:213"
+      ]
+    },
+    {
+      "id": "vue.subscription",
+      "framework": "vue",
+      "name": "subscription",
+      "path": "/subscription/",
+      "parent_route_id": "vue.parent:/subscription",
+      "screen_id": "vue.SubscriptionView",
+      "component_source": "TownPass-Services/src/views/SubscriptionView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 219,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "subscription.list.settings",
+        "home.subscription_settings",
+        "home.subscription_empty_settings"
+      ],
+      "dependencies": [
+        "Mock subscription list or localStorage; toggle saves locally and posts notify bridge; API example commented"
+      ],
+      "reachability": "Hosted URL and Vue source link; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:219",
+        "TownPass-Services/src/views/SubscriptionView.vue"
+      ]
+    },
+    {
+      "id": "vue.item-list",
+      "framework": "vue",
+      "name": "item-list",
+      "path": "/subscription/item-list",
+      "parent_route_id": "vue.parent:/subscription",
+      "screen_id": "vue.SubscriptionItemListView",
+      "component_source": "TownPass-Services/src/views/SubscriptionItemListView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 224,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "home.subscription_more"
+      ],
+      "dependencies": [
+        "Imports bundled subscription_item_list.json; click marks item read locally"
+      ],
+      "reachability": "Hosted URL source-linked; deployment equivalence unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:224",
+        "TownPass-Services/src/views/SubscriptionItemListView.vue"
+      ]
+    },
+    {
+      "id": "vue.item-detail",
+      "framework": "vue",
+      "name": "item-detail",
+      "path": "/subscription/item-detail/:id",
+      "parent_route_id": "vue.parent:/subscription",
+      "screen_id": "vue.SubscriptionItemDetailView",
+      "component_source": "TownPass-Services/src/views/SubscriptionItemDetailView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 229,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and state"
+      },
+      "known_entry_points": [
+        "subscription.list.item"
+      ],
+      "dependencies": [
+        "Finds matching item in bundled subscription_item_list.json; missing match may fail rendering"
+      ],
+      "reachability": "Source-linked route conditional on matching id",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:229",
+        "TownPass-Services/src/views/SubscriptionItemDetailView.vue"
+      ]
+    },
+    {
+      "id": "vue.parent:/disaster-report",
+      "framework": "vue",
+      "name": null,
+      "path": "/disaster-report",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 236,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless parent with empty-path child"
+      ],
+      "reachability": "Structural grouping only",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:236"
+      ]
+    },
+    {
+      "id": "vue.disaster-report",
+      "framework": "vue",
+      "name": "disaster-report",
+      "path": "/disaster-report/",
+      "parent_route_id": "vue.parent:/disaster-report",
+      "screen_id": "vue.DisasterReportView",
+      "component_source": "TownPass-Services/src/views/DisasterReportView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 242,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "serviceedit.item",
+        "pinned.item"
+      ],
+      "dependencies": [
+        "Initializes disaster store from bundled disaster_reporting.json"
+      ],
+      "reachability": "Catalog hosted URL conditional on deployed content",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:242",
+        "TownPass-Services/src/views/DisasterReportView.vue"
+      ]
+    },
+    {
+      "id": "vue.disaster-report-form",
+      "framework": "vue",
+      "name": "disaster-report-form",
+      "path": "/disaster-report/form/:id",
+      "parent_route_id": "vue.parent:/disaster-report",
+      "screen_id": "vue.DisasterReportFormView",
+      "component_source": "TownPass-Services/src/views/DisasterReportFormView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 247,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "disaster.option"
+      ],
+      "dependencies": [
+        "Uses option id in disaster store map initialized by root; location modal and local form"
+      ],
+      "reachability": "Source-linked if store and id available",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:247",
+        "TownPass-Services/src/views/DisasterReportFormView.vue"
+      ]
+    },
+    {
+      "id": "vue.parent:/police-report",
+      "framework": "vue",
+      "name": null,
+      "path": "/police-report",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 254,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless parent with empty-path child"
+      ],
+      "reachability": "Structural grouping only",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:254"
+      ]
+    },
+    {
+      "id": "vue.police-report",
+      "framework": "vue",
+      "name": "police-report",
+      "path": "/police-report/",
+      "parent_route_id": "vue.parent:/police-report",
+      "screen_id": "vue.PoliceReportView",
+      "component_source": "TownPass-Services/src/views/PoliceReportView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 260,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "police.report"
+      ],
+      "dependencies": [
+        "Agreement checkbox gates transition to report form"
+      ],
+      "reachability": "Hosted police URL linked by Flutter; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:260",
+        "TownPass-Services/src/views/PoliceReportView.vue"
+      ]
+    },
+    {
+      "id": "vue.police-report-form",
+      "framework": "vue",
+      "name": "police-report-form",
+      "path": "/police-report/form",
+      "parent_route_id": "vue.parent:/police-report",
+      "screen_id": "vue.PoliceReportFormView",
+      "component_source": "TownPass-Services/src/views/PoliceReportFormView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 265,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "police.agree"
+      ],
+      "dependencies": [
+        "General and detail components use local validation; handler logs detail and shows success dialog"
+      ],
+      "reachability": "Source-linked; actual reporting not established",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:265",
+        "TownPass-Services/src/views/PoliceReportFormView.vue"
+      ]
+    },
+    {
+      "id": "vue.police-report-record",
+      "framework": "vue",
+      "name": "police-report-record",
+      "path": "/police-report/record",
+      "parent_route_id": "vue.parent:/police-report",
+      "screen_id": "vue.PoliceReportRecordView",
+      "component_source": "TownPass-Services/src/views/PoliceReportRecordView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 270,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "police.records"
+      ],
+      "dependencies": [
+        "Initializes police report store from bundled police_report_record.json"
+      ],
+      "reachability": "Hosted record URL linked by Flutter; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:270",
+        "TownPass-Services/src/views/PoliceReportRecordView.vue"
+      ]
+    },
+    {
+      "id": "vue.police-report-record-detail",
+      "framework": "vue",
+      "name": "police-report-record-detail",
+      "path": "/police-report/record/:id",
+      "parent_route_id": "vue.parent:/police-report",
+      "screen_id": "vue.PoliceReportRecordDetailView",
+      "component_source": "TownPass-Services/src/views/PoliceReportRecordDetailView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 275,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "police.records.row"
+      ],
+      "dependencies": [
+        "Looks up id in policeRecordMap populated by record list; direct entry may lack data"
+      ],
+      "reachability": "Source-linked with initialized store",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:275",
+        "TownPass-Services/src/views/PoliceReportRecordDetailView.vue"
+      ]
+    },
+    {
+      "id": "vue.parent:/library-service",
+      "framework": "vue",
+      "name": null,
+      "path": "/library-service",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 282,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless parent with empty-path child"
+      ],
+      "reachability": "Structural grouping only",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:282"
+      ]
+    },
+    {
+      "id": "vue.library-service",
+      "framework": "vue",
+      "name": "library-service",
+      "path": "/library-service/",
+      "parent_route_id": "vue.parent:/library-service",
+      "screen_id": "vue.LibraryServiceView",
+      "component_source": "TownPass-Services/src/views/LibraryServiceView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 285,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "serviceedit.item",
+        "pinned.item",
+        "library.success.home",
+        "library.success.list"
+      ],
+      "dependencies": [
+        "Three tabs; optional type query chooses tab; library store and map state"
+      ],
+      "reachability": "Catalog hosted URL or Vue edge, runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:285",
+        "TownPass-Services/src/views/LibraryServiceView.vue"
+      ]
+    },
+    {
+      "id": "vue.library-keyword-search",
+      "framework": "vue",
+      "name": "library-keyword-search",
+      "path": "/library-service/keyword-search",
+      "parent_route_id": "vue.parent:/library-service",
+      "screen_id": "vue.LibraryKeywordSearchView",
+      "component_source": "TownPass-Services/src/views/LibraryKeywordSearchView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 293,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "library.home.search"
+      ],
+      "dependencies": [
+        "Searches mock library store; localStorage history; optional search and type query"
+      ],
+      "reachability": "Source-linked; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:293",
+        "TownPass-Services/src/views/LibraryKeywordSearchView.vue"
+      ]
+    },
+    {
+      "id": "vue.library-ranking-list",
+      "framework": "vue",
+      "name": "library-ranking-list",
+      "path": "/library-service/ranking-list",
+      "parent_route_id": "vue.parent:/library-service",
+      "screen_id": "vue.LibraryRankingListView",
+      "component_source": "TownPass-Services/src/views/LibraryRankingListView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 301,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "library.home.ranking"
+      ],
+      "dependencies": [
+        "Ranks mock library store by click count"
+      ],
+      "reachability": "Source-linked; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:301",
+        "TownPass-Services/src/views/LibraryRankingListView.vue"
+      ]
+    },
+    {
+      "id": "vue.library-book-detail",
+      "framework": "vue",
+      "name": "library-book-detail",
+      "path": "/library-service/book-detail/:id",
+      "parent_route_id": "vue.parent:/library-service",
+      "screen_id": "vue.LibraryBookDetailView",
+      "component_source": "TownPass-Services/src/views/LibraryBookDetailView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 309,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "library.home.new_book",
+        "library.home.ranking_book",
+        "library.search.book",
+        "library.ranking.book",
+        "library.records.book",
+        "library.records.renew"
+      ],
+      "dependencies": [
+        "Finds book by id in mock store; reservations update local storage, not a proven live API"
+      ],
+      "reachability": "Source-linked with valid book id",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:309",
+        "TownPass-Services/src/views/LibraryBookDetailView.vue"
+      ]
+    },
+    {
+      "id": "vue.library-notice-list",
+      "framework": "vue",
+      "name": "library-notice-list",
+      "path": "/library-service/notice-list",
+      "parent_route_id": "vue.parent:/library-service",
+      "screen_id": "vue.LibraryNoticeListView",
+      "component_source": "TownPass-Services/src/views/LibraryNoticeListView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 317,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "library.home.notices"
+      ],
+      "dependencies": [
+        "Reads mock library notices; external-link notices open URL"
+      ],
+      "reachability": "Source-linked; runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:317",
+        "TownPass-Services/src/views/LibraryNoticeListView.vue"
+      ]
+    },
+    {
+      "id": "vue.library-notice-detail",
+      "framework": "vue",
+      "name": "library-notice-detail",
+      "path": "/library-service/notice-detail/:id",
+      "parent_route_id": "vue.parent:/library-service",
+      "screen_id": "vue.LibraryNoticeDetailView",
+      "component_source": "TownPass-Services/src/views/LibraryNoticeDetailView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 325,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for optional queries and application state"
+      },
+      "known_entry_points": [
+        "library.home.notice",
+        "library.notice.item"
+      ],
+      "dependencies": [
+        "Finds notice by id in mock store; missing item can fail rendering"
+      ],
+      "reachability": "Source-linked with valid notice id",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:325",
+        "TownPass-Services/src/views/LibraryNoticeDetailView.vue"
+      ]
+    },
+    {
+      "id": "vue.fee-payment",
+      "framework": "vue",
+      "name": "fee-payment",
+      "path": "/fee-payment",
+      "parent_route_id": null,
+      "screen_id": null,
+      "component_source": null,
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 335,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [],
+      "dependencies": [
+        "Componentless named parent without empty-path child in router"
+      ],
+      "reachability": "Structural grouping only; no standalone screen or empty-path child",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:335"
+      ]
+    },
+    {
+      "id": "vue.fee-payment-others",
+      "framework": "vue",
+      "name": "fee-payment-others",
+      "path": "/fee-payment/others",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentOthersView",
+      "component_source": "TownPass-Services/src/views/FeePaymentOthersView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 339,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "bills.popular_item",
+        "fees.result.empty_return",
+        "fees.finished.return"
+      ],
+      "dependencies": [
+        "Fee store uses bundled mock fee_payment_list.json"
+      ],
+      "reachability": "Flutter popular 其他 URL and Vue links are source-backed; hosted runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:339",
+        "TownPass-Services/src/views/FeePaymentOthersView.vue"
+      ]
+    },
+    {
+      "id": "vue.fee-payment-detail",
+      "framework": "vue",
+      "name": "fee-payment-detail",
+      "path": "/fee-payment/detail/:id",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentDetailView",
+      "component_source": "TownPass-Services/src/views/FeePaymentDetailView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 347,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "bills.popular_item",
+        "fees.others.item",
+        "fees.search.item"
+      ],
+      "dependencies": [
+        "Fee item selected by id in mock store; active scan-type tab can navigate to scanner"
+      ],
+      "reachability": "URL or router link; valid fee id required for data",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:347",
+        "TownPass-Services/src/views/FeePaymentDetailView.vue"
+      ]
+    },
+    {
+      "id": "vue.fee-payment-result",
+      "framework": "vue",
+      "name": "fee-payment-result",
+      "path": "/fee-payment/result/:id",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentResultView",
+      "component_source": "TownPass-Services/src/views/FeePaymentResultView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 355,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "fees.form.search",
+        "fees.scan.result"
+      ],
+      "dependencies": [
+        "Selects mock fee and associated billList records; optional empty state"
+      ],
+      "reachability": "Source-linked with valid fee id",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:355",
+        "TownPass-Services/src/views/FeePaymentResultView.vue"
+      ]
+    },
+    {
+      "id": "vue.payment",
+      "framework": "vue",
+      "name": "payment",
+      "path": "/fee-payment/payment/:id/:bill_id",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentStepView",
+      "component_source": "TownPass-Services/src/views/FeePaymentStepView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 363,
+      "parameters": {
+        "path_required": [
+          "id",
+          "bill_id"
+        ],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "fees.result.pay"
+      ],
+      "dependencies": [
+        "Uses fee id and comma-separated bill_id list to select mock bills; sets local paymentInfo"
+      ],
+      "reachability": "Source-linked after bill selection; not proof of payment",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:363",
+        "TownPass-Services/src/views/FeePaymentStepView.vue"
+      ]
+    },
+    {
+      "id": "vue.fee-payment-finished",
+      "framework": "vue",
+      "name": "fee-payment-finished",
+      "path": "/fee-payment/fee-payment-finished/:id",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentFinishedView",
+      "component_source": "TownPass-Services/src/views/FeePaymentFinishedView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 368,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "fees.step.confirm"
+      ],
+      "dependencies": [
+        "Displays local paymentInfo and mock fee item by id"
+      ],
+      "reachability": "Confirmation routes here; payment-provider transaction not established",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:368",
+        "TownPass-Services/src/views/FeePaymentFinishedView.vue"
+      ]
+    },
+    {
+      "id": "vue.fee-payment-search",
+      "framework": "vue",
+      "name": "fee-payment-search",
+      "path": "/fee-payment/search",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentSearchView",
+      "component_source": "TownPass-Services/src/views/FeePaymentSearchView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 373,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "fee.others.search"
+      ],
+      "dependencies": [
+        "Searches bundled fee store; stores up to 10 search history entries in localStorage"
+      ],
+      "reachability": "Source-linked from other-fees view",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:373",
+        "TownPass-Services/src/views/FeePaymentSearchView.vue"
+      ]
+    },
+    {
+      "id": "vue.fee-payment-history",
+      "framework": "vue",
+      "name": "fee-payment-history",
+      "path": "/fee-payment/history",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentHistoryView",
+      "component_source": "TownPass-Services/src/views/FeePaymentHistoryView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 381,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "bills.history"
+      ],
+      "dependencies": [
+        "Filters and groups mock payment history from fee store"
+      ],
+      "reachability": "Flutter history WebView URL source-linked; hosted runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:381",
+        "TownPass-Services/src/views/FeePaymentHistoryView.vue"
+      ]
+    },
+    {
+      "id": "vue.fee-payment-history-detail",
+      "framework": "vue",
+      "name": "fee-payment-history-detail",
+      "path": "/fee-payment/history/:id",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentHistoryDetailView",
+      "component_source": "TownPass-Services/src/views/FeePaymentHistoryDetailView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 389,
+      "parameters": {
+        "path_required": [
+          "id"
+        ],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "fees.history.item"
+      ],
+      "dependencies": [
+        "Finds history record by id from bundled fee store; missing id can fail rendering"
+      ],
+      "reachability": "Source-linked with valid record id",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:389",
+        "TownPass-Services/src/views/FeePaymentHistoryDetailView.vue"
+      ]
+    },
+    {
+      "id": "vue.fee-payment-scan",
+      "framework": "vue",
+      "name": "fee-payment-scan",
+      "path": "/fee-payment/scan",
+      "parent_route_id": "vue.fee-payment",
+      "screen_id": "vue.FeePaymentScanView",
+      "component_source": "TownPass-Services/src/views/FeePaymentScanView.vue",
+      "registration_source": "TownPass-Services/src/router/index.ts",
+      "registration_line": 397,
+      "parameters": {
+        "path_required": [],
+        "other": "See dependencies for application state"
+      },
+      "known_entry_points": [
+        "bills.scan",
+        "fees.detail.scan"
+      ],
+      "dependencies": [
+        "Requests qr_code_scan bridge; decodes Base64 JSON result and matches fee id"
+      ],
+      "reachability": "Hosted Flutter URL or Vue scan-tab redirect; bridge runtime unverified",
+      "audit_status": "source_reviewed",
+      "audit_evidence": [
+        "TownPass-Services/src/router/index.ts:397",
+        "TownPass-Services/src/views/FeePaymentScanView.vue"
+      ]
+    }
+  ]
+}

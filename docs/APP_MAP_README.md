@@ -1,0 +1,16 @@
+# Using the TownPass application map
+
+The bounded source-level map audit is **complete**. It describes behavior found in source, not proof that a route is reachable, that a backend transaction succeeds, or that an action was tested on a device. Start with `APP_MAP_COVERAGE.md` for current totals and `MAP_PROGRESS.md` for remaining work.
+
+1. Find a feature by its name, ID, or aliases in `APP_FEATURE_REGISTRY.json`. Its `screen_id` is the primary indexed screen; `related_screen_ids` and `related_control_ids`, where present, are partial source-backed relationships.
+2. Look up a screen ID in `SCREEN_INVENTORY.md` for its route, source file, and known arguments. A registered route alone does not establish a normal UI entry point.
+3. Find the feature's controls in `UI_CONTROL_REGISTRY.json`, filtering `parent_screen_id` or the feature's `related_control_ids`. Labels can be dynamic; the behavior and preconditions describe what the callback actually does. Shared control implementations can appear in several contexts.
+4. Trace paths in `APP_NAVIGATION.md` and `NAVIGATION_EDGES.json`. Match an edge's `trigger_control_id` to a control and inspect its source, destination, `required_parameters`, and `prerequisites`. A history-back, navigator-pop, conditional, or external destination is not a fixed screen. All feature and route entries have source-audit records; recorded edges have semantic review metadata; shared-component and bounded missing-control reviews are complete; cross-module runtime behavior remains unverified.
+5. Consult `SCREEN_STATE_REGISTRY.json` for semantically classified dialogs and non-route states, `UI_ELEMENTS.md` for context, and `APP_DEPENDENCIES.md` for mock data, network, permissions, external links and limitations. Source paths are relative to the workspace root; line numbers refer to the checked-out source and can drift.
+6. Use `MAP_AUDIT_QUEUE.json` and the source indexes to understand candidate review coverage. Zero pending candidates and reviewed route/feature records do not prove that a mechanical scan found all controls or that the navigation graph is exhaustive. Run `python3 docs/validate_map.py` for structural checks; it cannot verify runtime behavior.
+
+The five physical-iPhone flows in `NAVIGATION_TEST_PLAN.md` are owner-reported, with device, OS, revision and date unspecified. They are separate from source review; programmatic navigation, other devices, permissions, external services and transaction outcomes are not thereby verified. No AI actions are approved by these files.
+
+For final feature-audit progress, see the 27-row table in `APP_MAP_COVERAGE.md`. Audited feature records may include `source_audit_status`, `normal_entry_path`, `related_edge_ids`, `source_dependencies`, `known_limitations`, and `source_audit_evidence`. Missing fields on other entries do not indicate a completed audit.
+
+The structured route matrix is `ROUTE_AUDIT_REGISTRY.json`. Filter `audit_status` for reviewed versus pending records; parent records without components are router structure rather than screens. `known_entry_points` are source evidence and `reachability` explicitly distinguishes conditional or unestablished entry from runtime verification.

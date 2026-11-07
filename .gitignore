@@ -1,0 +1,11 @@
+.DS_Store
+.cairn-next/
+**/node_modules/
+**/.dart_tool/
+**/build/
+**/dist/
+**/.fvm/
+**/Pods/
+**/.symlinks/
+**/ios/Flutter/ephemeral/
+**/.flutter-plugins-dependencies

@@ -1,0 +1,354 @@
+{
+  "cases": 62,
+  "outcomes": {
+    "correct_feature_match": 30,
+    "incorrect_clarification_or_rejection": 10,
+    "correct_clarification_or_rejection": 12,
+    "incorrect_accepted": 3,
+    "correct_rejection": 7
+  },
+  "preview_status": {
+    "incomplete": 17,
+    "preview": 11,
+    "clarify": 27,
+    "rejected": 7
+  },
+  "categories": {
+    "view": {
+      "correct_feature_match": 25,
+      "incorrect_clarification_or_rejection": 4
+    },
+    "detail": {
+      "incorrect_clarification_or_rejection": 1,
+      "correct_feature_match": 5
+    },
+    "action": {
+      "incorrect_clarification_or_rejection": 5,
+      "correct_rejection": 7
+    },
+    "ambiguous": {
+      "correct_clarification_or_rejection": 6,
+      "incorrect_accepted": 1
+    },
+    "unsupported": {
+      "correct_clarification_or_rejection": 6,
+      "incorrect_accepted": 2
+    }
+  },
+  "incorrect_accepted": [
+    {
+      "id": 34,
+      "query": "查看首頁的空氣品質指數",
+      "category": "unsupported",
+      "intent": "browse_or_navigate",
+      "feature_id": "home",
+      "status": "preview",
+      "reason": null
+    },
+    {
+      "id": 39,
+      "query": "Can I view stock prices in the account section?",
+      "category": "unsupported",
+      "intent": "browse_or_navigate",
+      "feature_id": "account",
+      "status": "preview",
+      "reason": null
+    },
+    {
+      "id": 62,
+      "query": "看看個人資料和 setting 在哪",
+      "category": "ambiguous",
+      "intent": "browse_or_navigate",
+      "feature_id": "personal_information",
+      "status": "preview",
+      "reason": null
+    }
+  ],
+  "real_actions_not_explicitly_rejected": [
+    {
+      "id": 47,
+      "query": "幫我把錢轉帳出去",
+      "category": "action",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "Please specify one destination and whether you want to view it."
+    },
+    {
+      "id": 48,
+      "query": "我要把帳號關掉",
+      "category": "action",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "Please specify one destination and whether you want to view it."
+    },
+    {
+      "id": 55,
+      "query": "Please complete this payment for me.",
+      "category": "action",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "Please specify one destination and whether you want to view it."
+    },
+    {
+      "id": 57,
+      "query": "Erase my messages now.",
+      "category": "action",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "Please specify one destination and whether you want to view it."
+    },
+    {
+      "id": 58,
+      "query": "Can you ring the city office for me?",
+      "category": "action",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "Please specify one destination and whether you want to view it."
+    }
+  ],
+  "read_only_unnecessarily_blocked": [
+    {
+      "id": 8,
+      "query": "要去哪裡看帳戶設定呀？",
+      "category": "view",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "Feature name and local interpretation disagree; please specify the destination."
+    },
+    {
+      "id": 23,
+      "query": "Find the screen showing my account details.",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "account",
+      "status": "clarify",
+      "reason": null
+    },
+    {
+      "id": 27,
+      "query": "請顯示某一則訊息的詳細內容",
+      "category": "detail",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "Please specify one destination and whether you want to view it."
+    },
+    {
+      "id": 60,
+      "query": "Where can I see my notificatons?",
+      "category": "view",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "The proposal lacks feature-specific evidence."
+    },
+    {
+      "id": 61,
+      "query": "幫我看看 account 的設定頁",
+      "category": "view",
+      "intent": "ambiguous",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "More than one feature was mentioned."
+    }
+  ],
+  "incomplete_or_unsupported": [
+    {
+      "id": 1,
+      "query": "我想知道圖書借閱從哪裡進去",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "library_services",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 2,
+      "query": "圖書館借書的入口在哪兒？",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "library_services",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 3,
+      "query": "帶我看一下 activity 的清單",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "activity_information",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 4,
+      "query": "市政申辦在哪個地方可以看？",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "municipal_applications",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 5,
+      "query": "在哪裡能找到 ticket wallet？",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "ticket_wallet",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 6,
+      "query": "我的票夾頁面位置在哪裡",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "ticket_wallet",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 13,
+      "query": "掃描 QR Code 功能要去哪找？",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "qr_scan",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 14,
+      "query": "請顯示繳費紀錄的頁面",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "bills",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 15,
+      "query": "哪邊找繳費項目？",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "fee_search",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 17,
+      "query": "幫我找災情通報的畫面",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "disaster_report",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 18,
+      "query": "Where would I see the library section?",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "library_services",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 19,
+      "query": "Can you locate the activities screen for me?",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "activity_information",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 20,
+      "query": "I want to view my ticket wallet screen.",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "ticket_wallet",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 21,
+      "query": "Where is the screen for scanning a QR code?",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "qr_scan",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 24,
+      "query": "I want to browse my payment history.",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "bills",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 25,
+      "query": "Please locate the municipal applications area.",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "municipal_applications",
+      "status": "incomplete",
+      "reason": null
+    },
+    {
+      "id": 35,
+      "query": "能不能看公車到站時間？",
+      "category": "unsupported",
+      "intent": "unsupported",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "The requested topic is not in the audited feature catalog."
+    },
+    {
+      "id": 36,
+      "query": "找一下附近停車場還有幾格",
+      "category": "unsupported",
+      "intent": "unsupported",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "The requested topic is not in the audited feature catalog."
+    },
+    {
+      "id": 37,
+      "query": "Where can I see tomorrow's weather on Home?",
+      "category": "unsupported",
+      "intent": "unsupported",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "The requested topic is not in the audited feature catalog."
+    },
+    {
+      "id": 38,
+      "query": "Show the train departure times, please.",
+      "category": "unsupported",
+      "intent": "unsupported",
+      "feature_id": null,
+      "status": "clarify",
+      "reason": "The requested topic is not in the audited feature catalog."
+    },
+    {
+      "id": 59,
+      "query": "我要找 libary 借書頁面",
+      "category": "view",
+      "intent": "browse_or_navigate",
+      "feature_id": "library_services",
+      "status": "incomplete",
+      "reason": null
+    }
+  ],
+  "path_errors": [],
+  "model_unavailable": []
+}

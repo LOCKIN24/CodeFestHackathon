@@ -1,0 +1,4200 @@
+{
+  "rule_sha256": {
+    "matching.py": "e08c5d588da20f9151f7ec053fe5c233688e1531ebf19dfcec3635a9be56d1bb",
+    "simulator.py": "c27b0508f6d3e4f1fc6583e7f00aa9748e39cbd52b6ba5c63221f2d152048318",
+    "ollama_client.py": "13707a9de57d4e4cd4ab5025845e65ec964d4a9bb8d4d0f745215bae175195b3"
+  },
+  "corpus": "holdout_cases.json",
+  "results": [
+    {
+      "id": 1,
+      "query": "我想知道圖書借閱從哪裡進去",
+      "expected_feature": "library_services",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "library_services",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "library_services",
+        "feature_name": "圖書借閱",
+        "screen_id": "vue.LibraryServiceView",
+        "feature_route": "/library-service",
+        "entry_evidence": "服務 → 我的服務 → 更多 → 圖書借閱 (or pinned library) → hosted WebView",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for hosted page; map needs configured Google Maps key; location permission for location use; authentication unknown"
+        ],
+        "limitations": [
+          "Local reservation success does not prove a live library transaction",
+          "Geolocation, map configuration, empty or invalid IDs and deployment behavior need runtime verification",
+          "Nested record links may propagate to parent router link"
+        ],
+        "dependencies": [
+          "Library store uses mock book, notice, record and branch JSON",
+          "Optional type query selects tab; book and notice details require id",
+          "Map loader has empty API key; geolocation needs device/browser permission",
+          "Reservations and cancellations use local state/localStorage; hosted network required"
+        ],
+        "related_controls": [
+          "serviceedit.item",
+          "pinned.item",
+          "library.main.tabs",
+          "library.home.search",
+          "library.home.new_book",
+          "library.home.ranking",
+          "library.home.notices",
+          "library.search.button",
+          "library.search.book",
+          "library.pick_library",
+          "library.pick_limit",
+          "library.reserve",
+          "library.map.gps",
+          "library.records.cancel",
+          "library.records.extend",
+          "library.records.renew",
+          "library.open_external_alert",
+          "library.external_confirm",
+          "library.success.home",
+          "library.success.list",
+          "library.error.home",
+          "library.error.list",
+          "library.series_checkbox",
+          "library.ranking.book",
+          "library.search.clear",
+          "library.search.history",
+          "library.search.hot",
+          "library.notice.site",
+          "library.notice.empty_site",
+          "library.selector.close",
+          "library.notice.item",
+          "library.selector.tabs",
+          "library.map.spot",
+          "library.map.list",
+          "library.map.geo_close",
+          "library.records.expand",
+          "library.records.map",
+          "library.records.sort",
+          "library.detail.back",
+          "library.detail.map",
+          "library.detail.call",
+          "library.list.item",
+          "library.list.map",
+          "library.list.top",
+          "library.home.ranking_book",
+          "library.home.notice",
+          "library.records.book",
+          "library.search.initial_query",
+          "shared.flutter_appbar.implied_back",
+          "library.selector.library",
+          "library.selector.district",
+          "library.records.list_select",
+          "library.home.notice_external",
+          "library.notice.external"
+        ],
+        "screen_states": [
+          {
+            "id": "library.map.geo_dialog",
+            "condition": "Geolocation error code 1"
+          },
+          {
+            "id": "library.records.map_dialog",
+            "condition": "Pickup-library address tapped"
+          },
+          {
+            "id": "library.records.extend_dialog",
+            "condition": "延長兩日 tapped on eligible record"
+          },
+          {
+            "id": "library.records.extend_success",
+            "condition": "Local extension succeeds"
+          },
+          {
+            "id": "library.records.cancel_dialog",
+            "condition": "取消預約 tapped on ordering record"
+          },
+          {
+            "id": "library.detail.map_dialog",
+            "condition": "Library detail address tapped"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "vue.library-service",
+            "path": "/library-service/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and application state"
+            },
+            "reachability": "Catalog hosted URL or Vue edge, runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "serviceedit.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "serviceedit.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "item.destinationUrl"
+              }
+            ],
+            "prerequisites": [
+              "Item selected; in edit mode changes pins; outside edit mode nonempty destination required for navigation"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:116"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services"
+            ],
+            "edge_id": "pinned.item",
+            "source_screen_id": "flutter.services_tab",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "Services-tab item has no edit-mode override",
+              "Nonempty destination for default navigation"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_item_widget.dart:24"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "pinned.editor.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "In edit mode remove pinned item; otherwise nonempty destination is required"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_widget.dart:47"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "shared.flutter_appbar.back.serviceEdit",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "shared.flutter_appbar.implied_back",
+            "destination_screen_id": null,
+            "required_parameters": [],
+            "prerequisites": [
+              "No explicit leading or overriding drawer; enclosing route implies app-bar dismissal",
+              "Navigator and route pop disposition permit dismissal"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:29"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 2,
+      "query": "圖書館借書的入口在哪兒？",
+      "expected_feature": "library_services",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "library_services",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "library_services",
+        "feature_name": "圖書借閱",
+        "screen_id": "vue.LibraryServiceView",
+        "feature_route": "/library-service",
+        "entry_evidence": "服務 → 我的服務 → 更多 → 圖書借閱 (or pinned library) → hosted WebView",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for hosted page; map needs configured Google Maps key; location permission for location use; authentication unknown"
+        ],
+        "limitations": [
+          "Local reservation success does not prove a live library transaction",
+          "Geolocation, map configuration, empty or invalid IDs and deployment behavior need runtime verification",
+          "Nested record links may propagate to parent router link"
+        ],
+        "dependencies": [
+          "Library store uses mock book, notice, record and branch JSON",
+          "Optional type query selects tab; book and notice details require id",
+          "Map loader has empty API key; geolocation needs device/browser permission",
+          "Reservations and cancellations use local state/localStorage; hosted network required"
+        ],
+        "related_controls": [
+          "serviceedit.item",
+          "pinned.item",
+          "library.main.tabs",
+          "library.home.search",
+          "library.home.new_book",
+          "library.home.ranking",
+          "library.home.notices",
+          "library.search.button",
+          "library.search.book",
+          "library.pick_library",
+          "library.pick_limit",
+          "library.reserve",
+          "library.map.gps",
+          "library.records.cancel",
+          "library.records.extend",
+          "library.records.renew",
+          "library.open_external_alert",
+          "library.external_confirm",
+          "library.success.home",
+          "library.success.list",
+          "library.error.home",
+          "library.error.list",
+          "library.series_checkbox",
+          "library.ranking.book",
+          "library.search.clear",
+          "library.search.history",
+          "library.search.hot",
+          "library.notice.site",
+          "library.notice.empty_site",
+          "library.selector.close",
+          "library.notice.item",
+          "library.selector.tabs",
+          "library.map.spot",
+          "library.map.list",
+          "library.map.geo_close",
+          "library.records.expand",
+          "library.records.map",
+          "library.records.sort",
+          "library.detail.back",
+          "library.detail.map",
+          "library.detail.call",
+          "library.list.item",
+          "library.list.map",
+          "library.list.top",
+          "library.home.ranking_book",
+          "library.home.notice",
+          "library.records.book",
+          "library.search.initial_query",
+          "shared.flutter_appbar.implied_back",
+          "library.selector.library",
+          "library.selector.district",
+          "library.records.list_select",
+          "library.home.notice_external",
+          "library.notice.external"
+        ],
+        "screen_states": [
+          {
+            "id": "library.map.geo_dialog",
+            "condition": "Geolocation error code 1"
+          },
+          {
+            "id": "library.records.map_dialog",
+            "condition": "Pickup-library address tapped"
+          },
+          {
+            "id": "library.records.extend_dialog",
+            "condition": "延長兩日 tapped on eligible record"
+          },
+          {
+            "id": "library.records.extend_success",
+            "condition": "Local extension succeeds"
+          },
+          {
+            "id": "library.records.cancel_dialog",
+            "condition": "取消預約 tapped on ordering record"
+          },
+          {
+            "id": "library.detail.map_dialog",
+            "condition": "Library detail address tapped"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "vue.library-service",
+            "path": "/library-service/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and application state"
+            },
+            "reachability": "Catalog hosted URL or Vue edge, runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "serviceedit.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "serviceedit.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "item.destinationUrl"
+              }
+            ],
+            "prerequisites": [
+              "Item selected; in edit mode changes pins; outside edit mode nonempty destination required for navigation"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:116"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services"
+            ],
+            "edge_id": "pinned.item",
+            "source_screen_id": "flutter.services_tab",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "Services-tab item has no edit-mode override",
+              "Nonempty destination for default navigation"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_item_widget.dart:24"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "pinned.editor.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "In edit mode remove pinned item; otherwise nonempty destination is required"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_widget.dart:47"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "shared.flutter_appbar.back.serviceEdit",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "shared.flutter_appbar.implied_back",
+            "destination_screen_id": null,
+            "required_parameters": [],
+            "prerequisites": [
+              "No explicit leading or overriding drawer; enclosing route implies app-bar dismissal",
+              "Navigator and route pop disposition permit dismissal"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:29"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 3,
+      "query": "帶我看一下 activity 的清單",
+      "expected_feature": "activity_information",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "activity_information",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "activity_information",
+        "feature_name": "活動訊息",
+        "screen_id": "flutter.activityList",
+        "feature_route": "/activity_list",
+        "entry_evidence": "首頁 → 活動訊息 → 更多 → activity row, or select an activity banner",
+        "feature_required_parameters": [
+          {
+            "name": "arguments",
+            "type": "ActivityList",
+            "required": true
+          }
+        ],
+        "feature_prerequisites": [
+          "Home activity controller must have loaded its list; detail requires ActivityItem"
+        ],
+        "limitations": [
+          "More and loading-placeholder banner callbacks can pass null while destinations expect typed values",
+          "Failure and image/network behavior require runtime verification"
+        ],
+        "dependencies": [
+          "Activity controller loads bundled mock activity JSON after timer; images and remote URLs may need network",
+          "Activity list expects ActivityList argument and detail expects ActivityItem",
+          "Authentication requirements unknown"
+        ],
+        "related_controls": [
+          "activity.more",
+          "activity.banner",
+          "activity.list_item",
+          "activity.url",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.activityList",
+            "path": "/activity_list",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "ActivityList via Get.arguments"
+            },
+            "reachability": "Source UI entry exists; early null and direct route behavior unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_home",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.home_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 1
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "activity.more",
+            "from": "flutter.home_tab",
+            "control_id": "activity.more",
+            "control_label": "更多",
+            "to": "flutter.activityList",
+            "required_parameters": [
+              {
+                "name": "arguments",
+                "value": "ActivityList controller.list; may be null during loading"
+              }
+            ],
+            "prerequisites": [
+              "Valid typed argument"
+            ],
+            "source": "TownPass/lib/page/home/widget/activity_info/activity_info_widget.dart:36"
+          }
+        ],
+        "missing": [
+          "Runtime argument required: {'name': 'arguments', 'value': 'ActivityList controller.list; may be null during loading'}",
+          "Required feature parameter: {'name': 'arguments', 'type': 'ActivityList', 'required': True}"
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "Home activity controller must have loaded its list; detail requires ActivityItem",
+          "MainViewController initialized",
+          "Valid typed argument"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 4,
+      "query": "市政申辦在哪個地方可以看？",
+      "expected_feature": "municipal_applications",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "municipal_applications",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "municipal_applications",
+        "feature_name": "申辦服務",
+        "screen_id": "vue.HomeView",
+        "feature_route": "/",
+        "entry_evidence": "服務 → pinned 申辦服務 → hosted WebView → Vue application home → service item",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for hosted page; form requires valid id; userinfo bridge requested; real authentication unknown"
+        ],
+        "limitations": [
+          "Form preview submit logs data and shows completion dialog; fetch example is commented",
+          "Bridge user identity and real submission are unverified"
+        ],
+        "dependencies": [
+          "Catalog points to hosted root; local Vue version may differ from deployed site",
+          "Vue home uses mock service list and case progress and requests userinfo over bridge",
+          "Form route requires path id; form format is bundled mock JSON",
+          "Network required for hosted page; authentication unknown"
+        ],
+        "related_controls": [
+          "pinned.item",
+          "application.tabs",
+          "application.search",
+          "application.category",
+          "application.form.item",
+          "application.next",
+          "application.previous",
+          "application.preview.modify",
+          "application.preview.submit",
+          "application.preview.view",
+          "application.preview.confirm",
+          "application.in_progress",
+          "application.closed",
+          "application.form.expand",
+          "application.form.multiple_change",
+          "application.general.expand",
+          "application.multiselect.open",
+          "application.multiselect.confirm",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "vue.home",
+            "path": "/",
+            "parameters": {
+              "path_required": [],
+              "other": "Optional query and store state as described in dependencies"
+            },
+            "reachability": "source entry conditional on hosted deployment"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_services"
+            ],
+            "edge_id": "pinned.item",
+            "source_screen_id": "flutter.services_tab",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "Services-tab item has no edit-mode override",
+              "Nonempty destination for default navigation"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_item_widget.dart:24"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "pinned.editor.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "In edit mode remove pinned item; otherwise nonempty destination is required"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_widget.dart:47"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "shared.flutter_appbar.back.serviceEdit",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "shared.flutter_appbar.implied_back",
+            "destination_screen_id": null,
+            "required_parameters": [],
+            "prerequisites": [
+              "No explicit leading or overriding drawer; enclosing route implies app-bar dismissal",
+              "Navigator and route pop disposition permit dismissal"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:29"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 5,
+      "query": "在哪裡能找到 ticket wallet？",
+      "expected_feature": "ticket_wallet",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "ticket_wallet",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "ticket_wallet",
+        "feature_name": "票夾",
+        "screen_id": "vue.TicketWallet",
+        "feature_route": "/ticket-wallet",
+        "entry_evidence": "優惠 → 票夾 → separate hosted WebView → ticket or coupon item",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Displayed QR code and mock wallet are not evidence of real issuance or redemption",
+          "Missing exchange item causes no activeData view; direct navigation/runtime not verified"
+        ],
+        "dependencies": [
+          "Wallet view initializes Pinia ticket and wallet data from bundled mock JSON",
+          "walletTab=2 selects coupon tab; exchange route requires id and a populated wallet order map",
+          "Hosted WebView requires network; deployment and account linkage unknown"
+        ],
+        "related_controls": [
+          "perks.wallet",
+          "wallet.back",
+          "wallet.ticket",
+          "wallet.coupon",
+          "wallet.empty.coupon",
+          "wallet.empty.coupon_alt",
+          "ticket.exchange.back",
+          "coupon.saved.wallet",
+          "application.tabs"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "vue.ticket-wallet",
+            "path": "/ticket-wallet/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and state"
+            },
+            "reachability": "Source link and hosted wallet URL; deployed version/runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_perks"
+            ],
+            "edge_id": "perks.wallet",
+            "source_screen_id": "flutter.perks_tab",
+            "control_id": "perks.wallet",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/ticket-wallet"
+              }
+            ],
+            "prerequisites": [
+              "Network for remote content"
+            ],
+            "source": "TownPass/lib/page/perk/perk_view.dart:31"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 6,
+      "query": "我的票夾頁面位置在哪裡",
+      "expected_feature": "ticket_wallet",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "ticket_wallet",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "ticket_wallet",
+        "feature_name": "票夾",
+        "screen_id": "vue.TicketWallet",
+        "feature_route": "/ticket-wallet",
+        "entry_evidence": "優惠 → 票夾 → separate hosted WebView → ticket or coupon item",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Displayed QR code and mock wallet are not evidence of real issuance or redemption",
+          "Missing exchange item causes no activeData view; direct navigation/runtime not verified"
+        ],
+        "dependencies": [
+          "Wallet view initializes Pinia ticket and wallet data from bundled mock JSON",
+          "walletTab=2 selects coupon tab; exchange route requires id and a populated wallet order map",
+          "Hosted WebView requires network; deployment and account linkage unknown"
+        ],
+        "related_controls": [
+          "perks.wallet",
+          "wallet.back",
+          "wallet.ticket",
+          "wallet.coupon",
+          "wallet.empty.coupon",
+          "wallet.empty.coupon_alt",
+          "ticket.exchange.back",
+          "coupon.saved.wallet",
+          "application.tabs"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "vue.ticket-wallet",
+            "path": "/ticket-wallet/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and state"
+            },
+            "reachability": "Source link and hosted wallet URL; deployed version/runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_perks"
+            ],
+            "edge_id": "perks.wallet",
+            "source_screen_id": "flutter.perks_tab",
+            "control_id": "perks.wallet",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/ticket-wallet"
+              }
+            ],
+            "prerequisites": [
+              "Network for remote content"
+            ],
+            "source": "TownPass/lib/page/perk/perk_view.dart:31"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 7,
+      "query": "我想看看語言設定畫面",
+      "expected_feature": "language_settings",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "language_settings",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "language_settings",
+        "feature_name": "語言",
+        "screen_id": "flutter.language",
+        "feature_route": "/language",
+        "entry_evidence": "首頁 → 帳戶 → 設定 → 語言",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Open via account settings; actual locale change unavailable in current callback"
+        ],
+        "limitations": [
+          "Selection callback is empty; locale and preference are not changed",
+          "Runtime and accessibility remain unverified"
+        ],
+        "dependencies": [
+          "Controller-backed language enum; no confirmed authentication requirement"
+        ],
+        "related_controls": [
+          "language.select",
+          "settings.language",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.language",
+            "path": "/language",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Source UI entry from settings; runtime unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_services",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.services_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 0
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "services.account",
+            "from": "flutter.services_tab",
+            "control_id": "services.account",
+            "control_label": "帳戶",
+            "to": "flutter.account",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/city_service/city_service_view.dart:27"
+          },
+          {
+            "edge_id": "account.name_settings",
+            "from": "flutter.account",
+            "control_id": "account.name_settings",
+            "control_label": "設定 (name)",
+            "to": "flutter.setting",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/account/account_view.dart:40"
+          },
+          {
+            "edge_id": "settings.language",
+            "from": "flutter.setting",
+            "control_id": "settings.language",
+            "control_label": "語言",
+            "to": "flutter.language",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/setting/setting_view.dart:33"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "Open via account settings; actual locale change unavailable in current callback",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 8,
+      "query": "要去哪裡看帳戶設定呀？",
+      "expected_feature": "settings",
+      "category": "view",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Feature name and local interpretation disagree; please specify the destination."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Feature name and local interpretation disagree; please specify the destination."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 9,
+      "query": "請問首頁的入口在哪？",
+      "expected_feature": "home",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "home",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "home",
+        "feature_name": "首頁",
+        "screen_id": "flutter.home_tab",
+        "feature_route": null,
+        "entry_evidence": "App startup → 首頁 tab (or select 首頁 from main bottom bar)",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "MainView initialized"
+        ],
+        "limitations": [
+          "City news callback is empty",
+          "Activity list or banner arguments can be null during loading despite typed destination requirements",
+          "Direct navigation and device behavior unverified"
+        ],
+        "dependencies": [
+          "Main IndexedStack selected index defaults to 1 and may be overridden by saved home_index",
+          "Home activity and news banner controllers load bundled mock JSON; images and external links may require network",
+          "Home subscription list is in-memory and initialized empty",
+          "Activity list and detail require ActivityList and ActivityItem arguments"
+        ],
+        "related_controls": [
+          "main.tab_select",
+          "home.account",
+          "activity.banner",
+          "activity.more",
+          "activity.list_item",
+          "activity.url",
+          "home.city_news",
+          "home.call1999",
+          "home.subscription_item",
+          "home.subscription_settings",
+          "home.subscription_more",
+          "home.subscription_empty_settings",
+          "home.news_banner",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [],
+        "steps": [
+          {
+            "edge_id": "main.select_home",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.home_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 1
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "MainView initialized",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 10,
+      "query": "找我的帳戶畫面",
+      "expected_feature": "account",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "account",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "account",
+        "feature_name": "帳戶",
+        "screen_id": "flutter.account",
+        "feature_route": "/account",
+        "entry_evidence": "Any main tab → 帳戶 icon",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "AccountService loads bundled mock account; production authentication unknown"
+        ],
+        "limitations": [
+          "Account history/authorization and subscription callbacks are empty",
+          "Account data is mock; no real login established",
+          "Phone masking, accessibility and links unverified on device"
+        ],
+        "dependencies": [
+          "AccountService initializes account from bundled mock JSON",
+          "Mail link uses device, OS and app-version metadata and requires a mail handler",
+          "Hosted FAQ and privacy links require network",
+          "Authentication requirements unknown"
+        ],
+        "related_controls": [
+          "account.name_settings",
+          "account.phone_settings",
+          "account.message",
+          "account.auth_history",
+          "account.subscription",
+          "account.tutorial",
+          "account.feedback",
+          "account.close",
+          "account.privacy",
+          "account.contact",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.account",
+            "path": "/account",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Four tab account icons provide source entries; runtime unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_services",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.services_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 0
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "services.account",
+            "from": "flutter.services_tab",
+            "control_id": "services.account",
+            "control_label": "帳戶",
+            "to": "flutter.account",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/city_service/city_service_view.dart:27"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "AccountService loads bundled mock account; production authentication unknown",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 11,
+      "query": "我的基本資料頁在哪裡？",
+      "expected_feature": "personal_information",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "personal_information",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "personal_information",
+        "feature_name": "基本資料",
+        "screen_id": "flutter.basicInfo",
+        "feature_route": "/basic_info",
+        "entry_evidence": "首頁 → 帳戶 → 設定 → 基本資料 → selected field",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Updates are local mock account changes; no remote update in inspected service",
+          "Editor return uses navigator pop; runtime validation and persistence unverified"
+        ],
+        "dependencies": [
+          "AccountService initializes bundled mock account and keeps updates in memory",
+          "Editor requires BasicInfoEditArgument with title and currentValue; caller supplies field validator",
+          "Authentication and persistence beyond process are unknown"
+        ],
+        "related_controls": [
+          "basic.id",
+          "basic.birthday",
+          "basic.email",
+          "basic.phone",
+          "basic.address",
+          "basic.edit_text",
+          "basic.edit_confirm",
+          "settings.basic",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.basicInfo",
+            "path": "/basic_info",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Settings basic-info tile provides source entry; runtime unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_services",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.services_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 0
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "services.account",
+            "from": "flutter.services_tab",
+            "control_id": "services.account",
+            "control_label": "帳戶",
+            "to": "flutter.account",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/city_service/city_service_view.dart:27"
+          },
+          {
+            "edge_id": "account.name_settings",
+            "from": "flutter.account",
+            "control_id": "account.name_settings",
+            "control_label": "設定 (name)",
+            "to": "flutter.setting",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/account/account_view.dart:40"
+          },
+          {
+            "edge_id": "settings.basic",
+            "from": "flutter.setting",
+            "control_id": "settings.basic",
+            "control_label": "基本資料",
+            "to": "flutter.basicInfo",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/setting/setting_view.dart:28"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 12,
+      "query": "哪個地方可以查看收到的訊息？",
+      "expected_feature": "messages",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "messages",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "messages",
+        "feature_name": "訊息",
+        "screen_id": "flutter.message",
+        "feature_route": "/message",
+        "entry_evidence": "首頁 → 帳戶 → 訊息 → selected message",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Trash callback empty",
+          "全部已讀 is display text with unread count, no tap handler in list source",
+          "Loading failure and runtime behavior unverified"
+        ],
+        "dependencies": [
+          "Bundled mock message JSON via MessageViewController",
+          "MessageDetail requires MessageItem Get.arguments",
+          "Optional remote image and rich-text URL require network for remote content",
+          "Authentication requirements unknown"
+        ],
+        "related_controls": [
+          "message.tabs",
+          "message.row",
+          "message.trash",
+          "message.detail_link",
+          "account.message",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [
+          {
+            "id": "message.empty",
+            "condition": "Loading is false and filtered list for selected message type is empty"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "flutter.message",
+            "path": "/message",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Source UI entry from account; runtime unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_services",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.services_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 0
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "services.account",
+            "from": "flutter.services_tab",
+            "control_id": "services.account",
+            "control_label": "帳戶",
+            "to": "flutter.account",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/city_service/city_service_view.dart:27"
+          },
+          {
+            "edge_id": "account.message",
+            "from": "flutter.account",
+            "control_id": "account.message",
+            "control_label": "訊息",
+            "to": "flutter.message",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/account/account_view.dart:68"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 13,
+      "query": "掃描 QR Code 功能要去哪找？",
+      "expected_feature": "qr_scan",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "qr_scan",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "qr_scan",
+        "feature_name": "掃描 QR Code",
+        "screen_id": "flutter.qrCodeScan",
+        "feature_route": "/qr_code_scan",
+        "entry_evidence": "帳務 → 掃描 → hosted fee-scan page → qr_code_scan bridge → Flutter scanner",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Null or cancelled image selection shows recognition error; stack pop destination depends on navigator",
+          "No real scan or permission prompt tested in this review",
+          "QR bridge handling and camera/barcode data require device verification"
+        ],
+        "dependencies": [
+          "Flutter bridge handler opens GetX scanner and returns result",
+          "Camera scanner and gallery picker require applicable device permissions",
+          "Vue handler expects nonempty Base64 JSON containing fee id and matching fee store item",
+          "Hosted page and bridge availability are unverified"
+        ],
+        "related_controls": [
+          "bills.scan",
+          "fees.scan.bridge_request",
+          "qr.close",
+          "qr.photo",
+          "qr.help",
+          "qr.camera_capture",
+          "fees.scan.result",
+          "fees.result.bill_checkbox"
+        ],
+        "screen_states": [
+          {
+            "id": "qr.image_error",
+            "condition": "Image analysis returns null, picker cancelled, or caught error"
+          },
+          {
+            "id": "qr.help_dialog",
+            "condition": "Tap 掃描說明"
+          },
+          {
+            "id": "qr.scanner_error",
+            "condition": "MobileScanner errorBuilder receives error"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "flutter.qrCodeScan",
+            "path": "/qr_code_scan",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Conditional fee-scan bridge entry; scanner and permission runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_bills"
+            ],
+            "edge_id": "bills.scan",
+            "source_screen_id": "flutter.bills_tab",
+            "control_id": "bills.scan",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/fee-payment/scan/"
+              }
+            ],
+            "prerequisites": [
+              "Network for remote content"
+            ],
+            "source": "TownPass/lib/page/bill/widget/bill_app_bar.dart:79"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 14,
+      "query": "請顯示繳費紀錄的頁面",
+      "expected_feature": "bills",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "bills",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "bills",
+        "feature_name": "帳務",
+        "screen_id": "flutter.bills_tab",
+        "feature_route": null,
+        "entry_evidence": "Main bottom bar → 帳務 → hosted fee item, 掃描 or 紀錄 via separate WebView",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for linked fee pages"
+        ],
+        "limitations": [
+          "設定 and 新增綁定 callbacks are empty; 發票 and 收據 have no callbacks",
+          "Reviewed fee payment confirmation only routes to a completion UI; no real transaction established",
+          "Scanner, backend and device behavior unverified"
+        ],
+        "dependencies": [
+          "Hosted fee pages require network and local Vue route parameters id and, for payment step, bill_id",
+          "Fee store supplies mock payment and bill data; QR scan uses Flutter bridge and camera capability",
+          "Authentication and deployed service integration unknown"
+        ],
+        "related_controls": [
+          "main.tab_select",
+          "bills.account",
+          "bills.scan",
+          "bills.history",
+          "bills.invoice",
+          "bills.receipt",
+          "bills.settings",
+          "bills.bind",
+          "bills.popular_item",
+          "fees.others.item",
+          "fees.result.pay",
+          "fees.result.empty_return",
+          "fees.step.confirm",
+          "fees.finished.return",
+          "fees.others.expand",
+          "fees.result.select_all",
+          "fees.step.back",
+          "fees.step.card_favorite",
+          "fees.step.easycard",
+          "fees.step.card",
+          "fees.step.smart",
+          "fees.scan.result",
+          "fees.history.item",
+          "fees.detail.scan",
+          "fees.form.search",
+          "fees.form.date",
+          "fees.detail.tabs",
+          "fees.result.bill_checkbox",
+          "fees.history.filters",
+          "fees.form.fields"
+        ],
+        "screen_states": [],
+        "route_audit": [],
+        "steps": [],
+        "missing": [
+          "History is a recorded WebView boundary; the hosted destination and runtime state are not validated."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "edge_id": "bills.history",
+            "source_screen_id": "flutter.bills_tab",
+            "control_id": "bills.history",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/fee-payment/history/"
+              }
+            ],
+            "prerequisites": [
+              "Network for remote content"
+            ],
+            "source": "TownPass/lib/page/bill/widget/bill_app_bar.dart:86"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 15,
+      "query": "哪邊找繳費項目？",
+      "expected_feature": "fee_search",
+      "category": "view",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Feature name and local interpretation disagree; please specify the destination."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Feature name and local interpretation disagree; please specify the destination."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 16,
+      "query": "有地方可以查看意見回饋嗎？",
+      "expected_feature": "feedback",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "feedback",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "feedback",
+        "feature_name": "意見回饋",
+        "screen_id": "flutter.feedback",
+        "feature_route": "/feedback",
+        "entry_evidence": "首頁 → 帳戶 → 意見回饋",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "sendFeedback is empty",
+          "有話要說 tap recognizer is empty",
+          "Phone launch result and runtime permission handling unverified"
+        ],
+        "dependencies": [
+          "Feedback category and text are held in controller memory",
+          "Phone action needs a capable telephone handler",
+          "Authentication requirement unknown"
+        ],
+        "related_controls": [
+          "feedback.dropdown",
+          "feedback.select",
+          "feedback.text",
+          "feedback.citizen_link",
+          "feedback.phone",
+          "feedback.send",
+          "account.feedback",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [
+          {
+            "id": "feedback.category_overlay",
+            "condition": "Feedback category control toggled open"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "flutter.feedback",
+            "path": "/feedback",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Account feedback tile provides source entry; runtime unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_services",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.services_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 0
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "services.account",
+            "from": "flutter.services_tab",
+            "control_id": "services.account",
+            "control_label": "帳戶",
+            "to": "flutter.account",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/city_service/city_service_view.dart:27"
+          },
+          {
+            "edge_id": "account.feedback",
+            "from": "flutter.account",
+            "control_id": "account.feedback",
+            "control_label": "意見回饋",
+            "to": "flutter.feedback",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/account/account_view.dart:91"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 17,
+      "query": "幫我找災情通報的畫面",
+      "expected_feature": "disaster_report",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "disaster_report",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "disaster_report",
+        "feature_name": "災情通報",
+        "screen_id": "vue.DisasterReportView",
+        "feature_route": "/disaster-report",
+        "entry_evidence": "服務 → 我的服務 → 更多 → 災情通報 (or pinned item) → hosted WebView",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Submit validates local fields, logs the form and opens success dialog; no real submission established",
+          "Direct form entry can lack initialized store data",
+          "Device, map and deployment outcomes unverified"
+        ],
+        "dependencies": [
+          "Root initializes disaster store from bundled mock disaster_reporting.json",
+          "Form route requires option id and uses format from store",
+          "Location modal bridge/geocoding has empty API key; hosted network and location permission may be needed"
+        ],
+        "related_controls": [
+          "serviceedit.item",
+          "pinned.item",
+          "disaster.search",
+          "disaster.option",
+          "disaster.location",
+          "disaster.submit",
+          "disaster.form.done",
+          "shared.upload.choose",
+          "shared.flutter_appbar.implied_back",
+          "disaster.search_text",
+          "citizen.category",
+          "disaster.form.fields",
+          "disaster.form.consent"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "vue.disaster-report",
+            "path": "/disaster-report/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and application state"
+            },
+            "reachability": "Catalog hosted URL conditional on deployed content"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "serviceedit.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "serviceedit.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "item.destinationUrl"
+              }
+            ],
+            "prerequisites": [
+              "Item selected; in edit mode changes pins; outside edit mode nonempty destination required for navigation"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:116"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services"
+            ],
+            "edge_id": "pinned.item",
+            "source_screen_id": "flutter.services_tab",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "Services-tab item has no edit-mode override",
+              "Nonempty destination for default navigation"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_item_widget.dart:24"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "pinned.editor.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "In edit mode remove pinned item; otherwise nonempty destination is required"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_widget.dart:47"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "catalog.disaster.editor",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "serviceedit.item",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/disaster-report"
+              }
+            ],
+            "prerequisites": [
+              "Selected item is 災情通報",
+              "Editor not in edit mode",
+              "Network and hosted deployment"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:133"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services"
+            ],
+            "edge_id": "catalog.disaster.pinned",
+            "source_screen_id": "flutter.services_tab",
+            "control_id": "pinned.item",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/disaster-report"
+              }
+            ],
+            "prerequisites": [
+              "Selected item is 災情通報",
+              "Item is pinned and no override callback supplied",
+              "Network and hosted deployment"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_item_widget.dart:26"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "shared.flutter_appbar.back.serviceEdit",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "shared.flutter_appbar.implied_back",
+            "destination_screen_id": null,
+            "required_parameters": [],
+            "prerequisites": [
+              "No explicit leading or overriding drawer; enclosing route implies app-bar dismissal",
+              "Navigator and route pop disposition permit dismissal"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:29"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 18,
+      "query": "Where would I see the library section?",
+      "expected_feature": "library_services",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "library_services",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "library_services",
+        "feature_name": "圖書借閱",
+        "screen_id": "vue.LibraryServiceView",
+        "feature_route": "/library-service",
+        "entry_evidence": "服務 → 我的服務 → 更多 → 圖書借閱 (or pinned library) → hosted WebView",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for hosted page; map needs configured Google Maps key; location permission for location use; authentication unknown"
+        ],
+        "limitations": [
+          "Local reservation success does not prove a live library transaction",
+          "Geolocation, map configuration, empty or invalid IDs and deployment behavior need runtime verification",
+          "Nested record links may propagate to parent router link"
+        ],
+        "dependencies": [
+          "Library store uses mock book, notice, record and branch JSON",
+          "Optional type query selects tab; book and notice details require id",
+          "Map loader has empty API key; geolocation needs device/browser permission",
+          "Reservations and cancellations use local state/localStorage; hosted network required"
+        ],
+        "related_controls": [
+          "serviceedit.item",
+          "pinned.item",
+          "library.main.tabs",
+          "library.home.search",
+          "library.home.new_book",
+          "library.home.ranking",
+          "library.home.notices",
+          "library.search.button",
+          "library.search.book",
+          "library.pick_library",
+          "library.pick_limit",
+          "library.reserve",
+          "library.map.gps",
+          "library.records.cancel",
+          "library.records.extend",
+          "library.records.renew",
+          "library.open_external_alert",
+          "library.external_confirm",
+          "library.success.home",
+          "library.success.list",
+          "library.error.home",
+          "library.error.list",
+          "library.series_checkbox",
+          "library.ranking.book",
+          "library.search.clear",
+          "library.search.history",
+          "library.search.hot",
+          "library.notice.site",
+          "library.notice.empty_site",
+          "library.selector.close",
+          "library.notice.item",
+          "library.selector.tabs",
+          "library.map.spot",
+          "library.map.list",
+          "library.map.geo_close",
+          "library.records.expand",
+          "library.records.map",
+          "library.records.sort",
+          "library.detail.back",
+          "library.detail.map",
+          "library.detail.call",
+          "library.list.item",
+          "library.list.map",
+          "library.list.top",
+          "library.home.ranking_book",
+          "library.home.notice",
+          "library.records.book",
+          "library.search.initial_query",
+          "shared.flutter_appbar.implied_back",
+          "library.selector.library",
+          "library.selector.district",
+          "library.records.list_select",
+          "library.home.notice_external",
+          "library.notice.external"
+        ],
+        "screen_states": [
+          {
+            "id": "library.map.geo_dialog",
+            "condition": "Geolocation error code 1"
+          },
+          {
+            "id": "library.records.map_dialog",
+            "condition": "Pickup-library address tapped"
+          },
+          {
+            "id": "library.records.extend_dialog",
+            "condition": "延長兩日 tapped on eligible record"
+          },
+          {
+            "id": "library.records.extend_success",
+            "condition": "Local extension succeeds"
+          },
+          {
+            "id": "library.records.cancel_dialog",
+            "condition": "取消預約 tapped on ordering record"
+          },
+          {
+            "id": "library.detail.map_dialog",
+            "condition": "Library detail address tapped"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "vue.library-service",
+            "path": "/library-service/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and application state"
+            },
+            "reachability": "Catalog hosted URL or Vue edge, runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "serviceedit.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "serviceedit.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "item.destinationUrl"
+              }
+            ],
+            "prerequisites": [
+              "Item selected; in edit mode changes pins; outside edit mode nonempty destination required for navigation"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:116"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services"
+            ],
+            "edge_id": "pinned.item",
+            "source_screen_id": "flutter.services_tab",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "Services-tab item has no edit-mode override",
+              "Nonempty destination for default navigation"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_item_widget.dart:24"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "pinned.editor.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "In edit mode remove pinned item; otherwise nonempty destination is required"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_widget.dart:47"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "shared.flutter_appbar.back.serviceEdit",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "shared.flutter_appbar.implied_back",
+            "destination_screen_id": null,
+            "required_parameters": [],
+            "prerequisites": [
+              "No explicit leading or overriding drawer; enclosing route implies app-bar dismissal",
+              "Navigator and route pop disposition permit dismissal"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:29"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 19,
+      "query": "Can you locate the activities screen for me?",
+      "expected_feature": "activity_information",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "activity_information",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "activity_information",
+        "feature_name": "活動訊息",
+        "screen_id": "flutter.activityList",
+        "feature_route": "/activity_list",
+        "entry_evidence": "首頁 → 活動訊息 → 更多 → activity row, or select an activity banner",
+        "feature_required_parameters": [
+          {
+            "name": "arguments",
+            "type": "ActivityList",
+            "required": true
+          }
+        ],
+        "feature_prerequisites": [
+          "Home activity controller must have loaded its list; detail requires ActivityItem"
+        ],
+        "limitations": [
+          "More and loading-placeholder banner callbacks can pass null while destinations expect typed values",
+          "Failure and image/network behavior require runtime verification"
+        ],
+        "dependencies": [
+          "Activity controller loads bundled mock activity JSON after timer; images and remote URLs may need network",
+          "Activity list expects ActivityList argument and detail expects ActivityItem",
+          "Authentication requirements unknown"
+        ],
+        "related_controls": [
+          "activity.more",
+          "activity.banner",
+          "activity.list_item",
+          "activity.url",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.activityList",
+            "path": "/activity_list",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "ActivityList via Get.arguments"
+            },
+            "reachability": "Source UI entry exists; early null and direct route behavior unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_home",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.home_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 1
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "activity.more",
+            "from": "flutter.home_tab",
+            "control_id": "activity.more",
+            "control_label": "更多",
+            "to": "flutter.activityList",
+            "required_parameters": [
+              {
+                "name": "arguments",
+                "value": "ActivityList controller.list; may be null during loading"
+              }
+            ],
+            "prerequisites": [
+              "Valid typed argument"
+            ],
+            "source": "TownPass/lib/page/home/widget/activity_info/activity_info_widget.dart:36"
+          }
+        ],
+        "missing": [
+          "Runtime argument required: {'name': 'arguments', 'value': 'ActivityList controller.list; may be null during loading'}",
+          "Required feature parameter: {'name': 'arguments', 'type': 'ActivityList', 'required': True}"
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "Home activity controller must have loaded its list; detail requires ActivityItem",
+          "MainViewController initialized",
+          "Valid typed argument"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 20,
+      "query": "I want to view my ticket wallet screen.",
+      "expected_feature": "ticket_wallet",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "ticket_wallet",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "ticket_wallet",
+        "feature_name": "票夾",
+        "screen_id": "vue.TicketWallet",
+        "feature_route": "/ticket-wallet",
+        "entry_evidence": "優惠 → 票夾 → separate hosted WebView → ticket or coupon item",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Displayed QR code and mock wallet are not evidence of real issuance or redemption",
+          "Missing exchange item causes no activeData view; direct navigation/runtime not verified"
+        ],
+        "dependencies": [
+          "Wallet view initializes Pinia ticket and wallet data from bundled mock JSON",
+          "walletTab=2 selects coupon tab; exchange route requires id and a populated wallet order map",
+          "Hosted WebView requires network; deployment and account linkage unknown"
+        ],
+        "related_controls": [
+          "perks.wallet",
+          "wallet.back",
+          "wallet.ticket",
+          "wallet.coupon",
+          "wallet.empty.coupon",
+          "wallet.empty.coupon_alt",
+          "ticket.exchange.back",
+          "coupon.saved.wallet",
+          "application.tabs"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "vue.ticket-wallet",
+            "path": "/ticket-wallet/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and state"
+            },
+            "reachability": "Source link and hosted wallet URL; deployed version/runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_perks"
+            ],
+            "edge_id": "perks.wallet",
+            "source_screen_id": "flutter.perks_tab",
+            "control_id": "perks.wallet",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/ticket-wallet"
+              }
+            ],
+            "prerequisites": [
+              "Network for remote content"
+            ],
+            "source": "TownPass/lib/page/perk/perk_view.dart:31"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 21,
+      "query": "Where is the screen for scanning a QR code?",
+      "expected_feature": "qr_scan",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "qr_scan",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "qr_scan",
+        "feature_name": "掃描 QR Code",
+        "screen_id": "flutter.qrCodeScan",
+        "feature_route": "/qr_code_scan",
+        "entry_evidence": "帳務 → 掃描 → hosted fee-scan page → qr_code_scan bridge → Flutter scanner",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Null or cancelled image selection shows recognition error; stack pop destination depends on navigator",
+          "No real scan or permission prompt tested in this review",
+          "QR bridge handling and camera/barcode data require device verification"
+        ],
+        "dependencies": [
+          "Flutter bridge handler opens GetX scanner and returns result",
+          "Camera scanner and gallery picker require applicable device permissions",
+          "Vue handler expects nonempty Base64 JSON containing fee id and matching fee store item",
+          "Hosted page and bridge availability are unverified"
+        ],
+        "related_controls": [
+          "bills.scan",
+          "fees.scan.bridge_request",
+          "qr.close",
+          "qr.photo",
+          "qr.help",
+          "qr.camera_capture",
+          "fees.scan.result",
+          "fees.result.bill_checkbox"
+        ],
+        "screen_states": [
+          {
+            "id": "qr.image_error",
+            "condition": "Image analysis returns null, picker cancelled, or caught error"
+          },
+          {
+            "id": "qr.help_dialog",
+            "condition": "Tap 掃描說明"
+          },
+          {
+            "id": "qr.scanner_error",
+            "condition": "MobileScanner errorBuilder receives error"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "flutter.qrCodeScan",
+            "path": "/qr_code_scan",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Conditional fee-scan bridge entry; scanner and permission runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_bills"
+            ],
+            "edge_id": "bills.scan",
+            "source_screen_id": "flutter.bills_tab",
+            "control_id": "bills.scan",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/fee-payment/scan/"
+              }
+            ],
+            "prerequisites": [
+              "Network for remote content"
+            ],
+            "source": "TownPass/lib/page/bill/widget/bill_app_bar.dart:79"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 22,
+      "query": "How can I see the language settings screen?",
+      "expected_feature": "language_settings",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "language_settings",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "language_settings",
+        "feature_name": "語言",
+        "screen_id": "flutter.language",
+        "feature_route": "/language",
+        "entry_evidence": "首頁 → 帳戶 → 設定 → 語言",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Open via account settings; actual locale change unavailable in current callback"
+        ],
+        "limitations": [
+          "Selection callback is empty; locale and preference are not changed",
+          "Runtime and accessibility remain unverified"
+        ],
+        "dependencies": [
+          "Controller-backed language enum; no confirmed authentication requirement"
+        ],
+        "related_controls": [
+          "language.select",
+          "settings.language",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.language",
+            "path": "/language",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Source UI entry from settings; runtime unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_services",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.services_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 0
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "services.account",
+            "from": "flutter.services_tab",
+            "control_id": "services.account",
+            "control_label": "帳戶",
+            "to": "flutter.account",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/city_service/city_service_view.dart:27"
+          },
+          {
+            "edge_id": "account.name_settings",
+            "from": "flutter.account",
+            "control_id": "account.name_settings",
+            "control_label": "設定 (name)",
+            "to": "flutter.setting",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/account/account_view.dart:40"
+          },
+          {
+            "edge_id": "settings.language",
+            "from": "flutter.setting",
+            "control_id": "settings.language",
+            "control_label": "語言",
+            "to": "flutter.language",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/setting/setting_view.dart:33"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "Open via account settings; actual locale change unavailable in current callback",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 23,
+      "query": "Find the screen showing my account details.",
+      "expected_feature": "account",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "account",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "clarify",
+        "feature_id": "account",
+        "feature_name": "帳戶",
+        "screen_id": "flutter.account",
+        "feature_route": "/account",
+        "entry_evidence": "Any main tab → 帳戶 icon",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "AccountService loads bundled mock account; production authentication unknown"
+        ],
+        "limitations": [
+          "Account history/authorization and subscription callbacks are empty",
+          "Account data is mock; no real login established",
+          "Phone masking, accessibility and links unverified on device"
+        ],
+        "dependencies": [
+          "AccountService initializes account from bundled mock JSON",
+          "Mail link uses device, OS and app-version metadata and requires a mail handler",
+          "Hosted FAQ and privacy links require network",
+          "Authentication requirements unknown"
+        ],
+        "related_controls": [
+          "account.name_settings",
+          "account.phone_settings",
+          "account.message",
+          "account.auth_history",
+          "account.subscription",
+          "account.tutorial",
+          "account.feedback",
+          "account.close",
+          "account.privacy",
+          "account.contact",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.account",
+            "path": "/account",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Four tab account icons provide source entries; runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "The requested specific item and its audited item/route parameters are not supplied or validated."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 24,
+      "query": "I want to browse my payment history.",
+      "expected_feature": "bills",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "bills",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "bills",
+        "feature_name": "帳務",
+        "screen_id": "flutter.bills_tab",
+        "feature_route": null,
+        "entry_evidence": "Main bottom bar → 帳務 → hosted fee item, 掃描 or 紀錄 via separate WebView",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for linked fee pages"
+        ],
+        "limitations": [
+          "設定 and 新增綁定 callbacks are empty; 發票 and 收據 have no callbacks",
+          "Reviewed fee payment confirmation only routes to a completion UI; no real transaction established",
+          "Scanner, backend and device behavior unverified"
+        ],
+        "dependencies": [
+          "Hosted fee pages require network and local Vue route parameters id and, for payment step, bill_id",
+          "Fee store supplies mock payment and bill data; QR scan uses Flutter bridge and camera capability",
+          "Authentication and deployed service integration unknown"
+        ],
+        "related_controls": [
+          "main.tab_select",
+          "bills.account",
+          "bills.scan",
+          "bills.history",
+          "bills.invoice",
+          "bills.receipt",
+          "bills.settings",
+          "bills.bind",
+          "bills.popular_item",
+          "fees.others.item",
+          "fees.result.pay",
+          "fees.result.empty_return",
+          "fees.step.confirm",
+          "fees.finished.return",
+          "fees.others.expand",
+          "fees.result.select_all",
+          "fees.step.back",
+          "fees.step.card_favorite",
+          "fees.step.easycard",
+          "fees.step.card",
+          "fees.step.smart",
+          "fees.scan.result",
+          "fees.history.item",
+          "fees.detail.scan",
+          "fees.form.search",
+          "fees.form.date",
+          "fees.detail.tabs",
+          "fees.result.bill_checkbox",
+          "fees.history.filters",
+          "fees.form.fields"
+        ],
+        "screen_states": [],
+        "route_audit": [],
+        "steps": [],
+        "missing": [
+          "History is a recorded WebView boundary; the hosted destination and runtime state are not validated."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "edge_id": "bills.history",
+            "source_screen_id": "flutter.bills_tab",
+            "control_id": "bills.history",
+            "destination_screen_id": "flutter.webView",
+            "required_parameters": [
+              {
+                "name": "url",
+                "value": "https://taipei-pass-service.vercel.app/fee-payment/history/"
+              }
+            ],
+            "prerequisites": [
+              "Network for remote content"
+            ],
+            "source": "TownPass/lib/page/bill/widget/bill_app_bar.dart:86"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 25,
+      "query": "Please locate the municipal applications area.",
+      "expected_feature": "municipal_applications",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "municipal_applications",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "municipal_applications",
+        "feature_name": "申辦服務",
+        "screen_id": "vue.HomeView",
+        "feature_route": "/",
+        "entry_evidence": "服務 → pinned 申辦服務 → hosted WebView → Vue application home → service item",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for hosted page; form requires valid id; userinfo bridge requested; real authentication unknown"
+        ],
+        "limitations": [
+          "Form preview submit logs data and shows completion dialog; fetch example is commented",
+          "Bridge user identity and real submission are unverified"
+        ],
+        "dependencies": [
+          "Catalog points to hosted root; local Vue version may differ from deployed site",
+          "Vue home uses mock service list and case progress and requests userinfo over bridge",
+          "Form route requires path id; form format is bundled mock JSON",
+          "Network required for hosted page; authentication unknown"
+        ],
+        "related_controls": [
+          "pinned.item",
+          "application.tabs",
+          "application.search",
+          "application.category",
+          "application.form.item",
+          "application.next",
+          "application.previous",
+          "application.preview.modify",
+          "application.preview.submit",
+          "application.preview.view",
+          "application.preview.confirm",
+          "application.in_progress",
+          "application.closed",
+          "application.form.expand",
+          "application.form.multiple_change",
+          "application.general.expand",
+          "application.multiselect.open",
+          "application.multiselect.confirm",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "vue.home",
+            "path": "/",
+            "parameters": {
+              "path_required": [],
+              "other": "Optional query and store state as described in dependencies"
+            },
+            "reachability": "source entry conditional on hosted deployment"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_services"
+            ],
+            "edge_id": "pinned.item",
+            "source_screen_id": "flutter.services_tab",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "Services-tab item has no edit-mode override",
+              "Nonempty destination for default navigation"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_item_widget.dart:24"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "pinned.editor.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "In edit mode remove pinned item; otherwise nonempty destination is required"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_widget.dart:47"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "shared.flutter_appbar.back.serviceEdit",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "shared.flutter_appbar.implied_back",
+            "destination_screen_id": null,
+            "required_parameters": [],
+            "prerequisites": [
+              "No explicit leading or overriding drawer; enclosing route implies app-bar dismissal",
+              "Navigator and route pop disposition permit dismissal"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:29"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 26,
+      "query": "Where do I view service catalog entries?",
+      "expected_feature": "service_catalog",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "service_catalog",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "service_catalog",
+        "feature_name": "我的服務",
+        "screen_id": "flutter.serviceEdit",
+        "feature_route": "/service_edit",
+        "entry_evidence": "服務 → 我的服務 → 更多 or 新增 → 我的服務 editor",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Save toggles editing off but no durable persistence is established; cancel restores recorded snapshot where possible",
+          "Several catalog items have empty destinations",
+          "Host and device behavior remain unverified"
+        ],
+        "dependencies": [
+          "Static MyServiceItemId catalog supplies names, categories and URLs",
+          "PinnedServiceWidgetController holds reactive in-memory list with 12-item limit",
+          "Nonempty remote URLs open WebView; empty destination does nothing; hosted content needs network",
+          "Authentication and deployment state unknown"
+        ],
+        "related_controls": [
+          "services.more",
+          "services.add",
+          "pinned.item",
+          "serviceedit.cancel",
+          "serviceedit.save",
+          "serviceedit.edit",
+          "serviceedit.item",
+          "serviceedit.add",
+          "pinned.remove",
+          "services.trending",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.serviceEdit",
+            "path": "/service_edit",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Source UI entries from services; runtime unverified"
+          }
+        ],
+        "steps": [
+          {
+            "edge_id": "main.select_services",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.services_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 0
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          },
+          {
+            "edge_id": "services.more",
+            "from": "flutter.services_tab",
+            "control_id": "services.more",
+            "control_label": "更多",
+            "to": "flutter.serviceEdit",
+            "required_parameters": [],
+            "prerequisites": [],
+            "source": "TownPass/lib/page/city_service/city_service_view.dart:63"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 27,
+      "query": "請顯示某一則訊息的詳細內容",
+      "expected_feature": "messages",
+      "category": "detail",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 28,
+      "query": "查看活動列表中某個活動的詳情",
+      "expected_feature": "activity_information",
+      "category": "detail",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "activity_information",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "clarify",
+        "feature_id": "activity_information",
+        "feature_name": "活動訊息",
+        "screen_id": "flutter.activityList",
+        "feature_route": "/activity_list",
+        "entry_evidence": "首頁 → 活動訊息 → 更多 → activity row, or select an activity banner",
+        "feature_required_parameters": [
+          {
+            "name": "arguments",
+            "type": "ActivityList",
+            "required": true
+          }
+        ],
+        "feature_prerequisites": [
+          "Home activity controller must have loaded its list; detail requires ActivityItem"
+        ],
+        "limitations": [
+          "More and loading-placeholder banner callbacks can pass null while destinations expect typed values",
+          "Failure and image/network behavior require runtime verification"
+        ],
+        "dependencies": [
+          "Activity controller loads bundled mock activity JSON after timer; images and remote URLs may need network",
+          "Activity list expects ActivityList argument and detail expects ActivityItem",
+          "Authentication requirements unknown"
+        ],
+        "related_controls": [
+          "activity.more",
+          "activity.banner",
+          "activity.list_item",
+          "activity.url",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.activityList",
+            "path": "/activity_list",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "ActivityList via Get.arguments"
+            },
+            "reachability": "Source UI entry exists; early null and direct route behavior unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "The requested specific item and its audited item/route parameters are not supplied or validated.",
+          "ActivityList is required for the list; an ActivityItem is required for activity detail and cannot be fabricated."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification."
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 29,
+      "query": "想看圖書館的一本特定書的詳情",
+      "expected_feature": "library_services",
+      "category": "detail",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "library_services",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "clarify",
+        "feature_id": "library_services",
+        "feature_name": "圖書借閱",
+        "screen_id": "vue.LibraryServiceView",
+        "feature_route": "/library-service",
+        "entry_evidence": "服務 → 我的服務 → 更多 → 圖書借閱 (or pinned library) → hosted WebView",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for hosted page; map needs configured Google Maps key; location permission for location use; authentication unknown"
+        ],
+        "limitations": [
+          "Local reservation success does not prove a live library transaction",
+          "Geolocation, map configuration, empty or invalid IDs and deployment behavior need runtime verification",
+          "Nested record links may propagate to parent router link"
+        ],
+        "dependencies": [
+          "Library store uses mock book, notice, record and branch JSON",
+          "Optional type query selects tab; book and notice details require id",
+          "Map loader has empty API key; geolocation needs device/browser permission",
+          "Reservations and cancellations use local state/localStorage; hosted network required"
+        ],
+        "related_controls": [
+          "serviceedit.item",
+          "pinned.item",
+          "library.main.tabs",
+          "library.home.search",
+          "library.home.new_book",
+          "library.home.ranking",
+          "library.home.notices",
+          "library.search.button",
+          "library.search.book",
+          "library.pick_library",
+          "library.pick_limit",
+          "library.reserve",
+          "library.map.gps",
+          "library.records.cancel",
+          "library.records.extend",
+          "library.records.renew",
+          "library.open_external_alert",
+          "library.external_confirm",
+          "library.success.home",
+          "library.success.list",
+          "library.error.home",
+          "library.error.list",
+          "library.series_checkbox",
+          "library.ranking.book",
+          "library.search.clear",
+          "library.search.history",
+          "library.search.hot",
+          "library.notice.site",
+          "library.notice.empty_site",
+          "library.selector.close",
+          "library.notice.item",
+          "library.selector.tabs",
+          "library.map.spot",
+          "library.map.list",
+          "library.map.geo_close",
+          "library.records.expand",
+          "library.records.map",
+          "library.records.sort",
+          "library.detail.back",
+          "library.detail.map",
+          "library.detail.call",
+          "library.list.item",
+          "library.list.map",
+          "library.list.top",
+          "library.home.ranking_book",
+          "library.home.notice",
+          "library.records.book",
+          "library.search.initial_query",
+          "shared.flutter_appbar.implied_back",
+          "library.selector.library",
+          "library.selector.district",
+          "library.records.list_select",
+          "library.home.notice_external",
+          "library.notice.external"
+        ],
+        "screen_states": [
+          {
+            "id": "library.map.geo_dialog",
+            "condition": "Geolocation error code 1"
+          },
+          {
+            "id": "library.records.map_dialog",
+            "condition": "Pickup-library address tapped"
+          },
+          {
+            "id": "library.records.extend_dialog",
+            "condition": "延長兩日 tapped on eligible record"
+          },
+          {
+            "id": "library.records.extend_success",
+            "condition": "Local extension succeeds"
+          },
+          {
+            "id": "library.records.cancel_dialog",
+            "condition": "取消預約 tapped on ordering record"
+          },
+          {
+            "id": "library.detail.map_dialog",
+            "condition": "Library detail address tapped"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "vue.library-service",
+            "path": "/library-service/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and application state"
+            },
+            "reachability": "Catalog hosted URL or Vue edge, runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "The requested specific item and its audited item/route parameters are not supplied or validated."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification."
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 30,
+      "query": "Find details of a particular ticket in my wallet.",
+      "expected_feature": "ticket_wallet",
+      "category": "detail",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "ticket_wallet",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "clarify",
+        "feature_id": "ticket_wallet",
+        "feature_name": "票夾",
+        "screen_id": "vue.TicketWallet",
+        "feature_route": "/ticket-wallet",
+        "entry_evidence": "優惠 → 票夾 → separate hosted WebView → ticket or coupon item",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Displayed QR code and mock wallet are not evidence of real issuance or redemption",
+          "Missing exchange item causes no activeData view; direct navigation/runtime not verified"
+        ],
+        "dependencies": [
+          "Wallet view initializes Pinia ticket and wallet data from bundled mock JSON",
+          "walletTab=2 selects coupon tab; exchange route requires id and a populated wallet order map",
+          "Hosted WebView requires network; deployment and account linkage unknown"
+        ],
+        "related_controls": [
+          "perks.wallet",
+          "wallet.back",
+          "wallet.ticket",
+          "wallet.coupon",
+          "wallet.empty.coupon",
+          "wallet.empty.coupon_alt",
+          "ticket.exchange.back",
+          "coupon.saved.wallet",
+          "application.tabs"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "vue.ticket-wallet",
+            "path": "/ticket-wallet/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and state"
+            },
+            "reachability": "Source link and hosted wallet URL; deployed version/runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "The requested specific item and its audited item/route parameters are not supplied or validated."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification."
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 31,
+      "query": "Show one particular message in detail.",
+      "expected_feature": "messages",
+      "category": "detail",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "messages",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "clarify",
+        "feature_id": "messages",
+        "feature_name": "訊息",
+        "screen_id": "flutter.message",
+        "feature_route": "/message",
+        "entry_evidence": "首頁 → 帳戶 → 訊息 → selected message",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Authentication, permissions and deeper state dependencies require review"
+        ],
+        "limitations": [
+          "Trash callback empty",
+          "全部已讀 is display text with unread count, no tap handler in list source",
+          "Loading failure and runtime behavior unverified"
+        ],
+        "dependencies": [
+          "Bundled mock message JSON via MessageViewController",
+          "MessageDetail requires MessageItem Get.arguments",
+          "Optional remote image and rich-text URL require network for remote content",
+          "Authentication requirements unknown"
+        ],
+        "related_controls": [
+          "message.tabs",
+          "message.row",
+          "message.trash",
+          "message.detail_link",
+          "account.message",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [
+          {
+            "id": "message.empty",
+            "condition": "Loading is false and filtered list for selected message type is empty"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "flutter.message",
+            "path": "/message",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "None"
+            },
+            "reachability": "Source UI entry from account; runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "The requested specific item and its audited item/route parameters are not supplied or validated.",
+          "A MessageItem is required for message detail and cannot be fabricated."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification."
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 32,
+      "query": "Show me one particular activity's details.",
+      "expected_feature": "activity_information",
+      "category": "detail",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "activity_information",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "model_with_evidence"
+      },
+      "preview": {
+        "status": "clarify",
+        "feature_id": "activity_information",
+        "feature_name": "活動訊息",
+        "screen_id": "flutter.activityList",
+        "feature_route": "/activity_list",
+        "entry_evidence": "首頁 → 活動訊息 → 更多 → activity row, or select an activity banner",
+        "feature_required_parameters": [
+          {
+            "name": "arguments",
+            "type": "ActivityList",
+            "required": true
+          }
+        ],
+        "feature_prerequisites": [
+          "Home activity controller must have loaded its list; detail requires ActivityItem"
+        ],
+        "limitations": [
+          "More and loading-placeholder banner callbacks can pass null while destinations expect typed values",
+          "Failure and image/network behavior require runtime verification"
+        ],
+        "dependencies": [
+          "Activity controller loads bundled mock activity JSON after timer; images and remote URLs may need network",
+          "Activity list expects ActivityList argument and detail expects ActivityItem",
+          "Authentication requirements unknown"
+        ],
+        "related_controls": [
+          "activity.more",
+          "activity.banner",
+          "activity.list_item",
+          "activity.url",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [
+          {
+            "id": "flutter.activityList",
+            "path": "/activity_list",
+            "parameters": {
+              "path_required": [],
+              "get_arguments": "ActivityList via Get.arguments"
+            },
+            "reachability": "Source UI entry exists; early null and direct route behavior unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "The requested specific item and its audited item/route parameters are not supplied or validated.",
+          "ActivityList is required for the list; an ActivityItem is required for activity detail and cannot be fabricated."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification."
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 33,
+      "query": "我想知道主頁上的氣溫",
+      "expected_feature": "home",
+      "category": "unsupported",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 34,
+      "query": "查看首頁的空氣品質指數",
+      "expected_feature": null,
+      "category": "unsupported",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "home",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "preview",
+        "feature_id": "home",
+        "feature_name": "首頁",
+        "screen_id": "flutter.home_tab",
+        "feature_route": null,
+        "entry_evidence": "App startup → 首頁 tab (or select 首頁 from main bottom bar)",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "MainView initialized"
+        ],
+        "limitations": [
+          "City news callback is empty",
+          "Activity list or banner arguments can be null during loading despite typed destination requirements",
+          "Direct navigation and device behavior unverified"
+        ],
+        "dependencies": [
+          "Main IndexedStack selected index defaults to 1 and may be overridden by saved home_index",
+          "Home activity and news banner controllers load bundled mock JSON; images and external links may require network",
+          "Home subscription list is in-memory and initialized empty",
+          "Activity list and detail require ActivityList and ActivityItem arguments"
+        ],
+        "related_controls": [
+          "main.tab_select",
+          "home.account",
+          "activity.banner",
+          "activity.more",
+          "activity.list_item",
+          "activity.url",
+          "home.city_news",
+          "home.call1999",
+          "home.subscription_item",
+          "home.subscription_settings",
+          "home.subscription_more",
+          "home.subscription_empty_settings",
+          "home.news_banner",
+          "shared.flutter_appbar.implied_back"
+        ],
+        "screen_states": [],
+        "route_audit": [],
+        "steps": [
+          {
+            "edge_id": "main.select_home",
+            "from": "flutter.main",
+            "control_id": "main.tab_select",
+            "control_label": "服務 / 首頁 / 優惠 / 帳務",
+            "to": "flutter.home_tab",
+            "required_parameters": [
+              {
+                "name": "index",
+                "value": 1
+              }
+            ],
+            "prerequisites": [
+              "MainViewController initialized"
+            ],
+            "source": "TownPass/lib/page/main/main_view.dart:47"
+          }
+        ],
+        "missing": [],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "unverified_prerequisites": [
+          "MainView initialized",
+          "MainViewController initialized"
+        ]
+      },
+      "outcome": "incorrect_accepted",
+      "path_errors": []
+    },
+    {
+      "id": 35,
+      "query": "能不能看公車到站時間？",
+      "expected_feature": null,
+      "category": "unsupported",
+      "choice": {
+        "intent": "unsupported",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unsupported",
+        "action_allowed": false,
+        "reason": "The requested topic is not in the audited feature catalog."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "The requested topic is not in the audited feature catalog."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 36,
+      "query": "找一下附近停車場還有幾格",
+      "expected_feature": null,
+      "category": "unsupported",
+      "choice": {
+        "intent": "unsupported",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unsupported",
+        "action_allowed": false,
+        "reason": "The requested topic is not in the audited feature catalog."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "The requested topic is not in the audited feature catalog."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 37,
+      "query": "Where can I see tomorrow's weather on Home?",
+      "expected_feature": null,
+      "category": "unsupported",
+      "choice": {
+        "intent": "unsupported",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unsupported",
+        "action_allowed": false,
+        "reason": "The requested topic is not in the audited feature catalog."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "The requested topic is not in the audited feature catalog."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 38,
+      "query": "Show the train departure times, please.",
+      "expected_feature": null,
+      "category": "unsupported",
+      "choice": {
+        "intent": "unsupported",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unsupported",
+        "action_allowed": false,
+        "reason": "The requested topic is not in the audited feature catalog."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "The requested topic is not in the audited feature catalog."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 39,
+      "query": "Can I view stock prices in the account section?",
+      "expected_feature": null,
+      "category": "unsupported",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Feature name and local interpretation disagree; please specify the destination."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Feature name and local interpretation disagree; please specify the destination."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 40,
+      "query": "Open the map of current road closures.",
+      "expected_feature": null,
+      "category": "unsupported",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "The proposal lacks feature-specific evidence."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "The proposal lacks feature-specific evidence."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 41,
+      "query": "票夾跟圖書館我都想看",
+      "expected_feature": null,
+      "category": "ambiguous",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 42,
+      "query": "我不知道該找帳戶還是設定",
+      "expected_feature": null,
+      "category": "ambiguous",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Feature name and local interpretation disagree; please specify the destination."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Feature name and local interpretation disagree; please specify the destination."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 43,
+      "query": "Show either the language page or the library.",
+      "expected_feature": null,
+      "category": "ambiguous",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 44,
+      "query": "Find my messages and my activities.",
+      "expected_feature": null,
+      "category": "ambiguous",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 45,
+      "query": "我的資料在哪裡看？",
+      "expected_feature": null,
+      "category": "ambiguous",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "The proposal lacks feature-specific evidence."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "The proposal lacks feature-specific evidence."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 46,
+      "query": "Which page do I need?",
+      "expected_feature": null,
+      "category": "ambiguous",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 47,
+      "query": "幫我把錢轉帳出去",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 48,
+      "query": "我要把帳號關掉",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 49,
+      "query": "麻煩幫我送出這個表單",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "perform_real_action",
+        "feature_id": null,
+        "decision": "rejected",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "preview": {
+        "status": "rejected",
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "outcome": "correct_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 50,
+      "query": "幫我報名這場活動",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "perform_real_action",
+        "feature_id": null,
+        "decision": "rejected",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "preview": {
+        "status": "rejected",
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "outcome": "correct_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 51,
+      "query": "先打開票夾然後幫我買票",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "mixed_browse_and_action",
+        "feature_id": null,
+        "decision": "rejected",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "preview": {
+        "status": "rejected",
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "outcome": "correct_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 52,
+      "query": "查完訊息後把它刪掉",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "perform_real_action",
+        "feature_id": null,
+        "decision": "rejected",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "preview": {
+        "status": "rejected",
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "outcome": "correct_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 53,
+      "query": "用我的信用卡支付這筆費用",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "perform_real_action",
+        "feature_id": null,
+        "decision": "rejected",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "preview": {
+        "status": "rejected",
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "outcome": "correct_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 54,
+      "query": "把這本借閱書續借一次",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "perform_real_action",
+        "feature_id": null,
+        "decision": "rejected",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "preview": {
+        "status": "rejected",
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "outcome": "correct_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 55,
+      "query": "Please complete this payment for me.",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 56,
+      "query": "View my profile and then update my phone number.",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "mixed_browse_and_action",
+        "feature_id": null,
+        "decision": "rejected",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "preview": {
+        "status": "rejected",
+        "reason": "Real actions cannot be performed in this read-only lab."
+      },
+      "outcome": "correct_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 57,
+      "query": "Erase my messages now.",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 58,
+      "query": "Can you ring the city office for me?",
+      "expected_feature": null,
+      "category": "action",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "Please specify one destination and whether you want to view it."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 59,
+      "query": "我要找 libary 借書頁面",
+      "expected_feature": "library_services",
+      "category": "view",
+      "choice": {
+        "intent": "browse_or_navigate",
+        "feature_id": "library_services",
+        "decision": "matched",
+        "support": "catalog_feature",
+        "action_allowed": false,
+        "source": "name_or_alias"
+      },
+      "preview": {
+        "status": "incomplete",
+        "feature_id": "library_services",
+        "feature_name": "圖書借閱",
+        "screen_id": "vue.LibraryServiceView",
+        "feature_route": "/library-service",
+        "entry_evidence": "服務 → 我的服務 → 更多 → 圖書借閱 (or pinned library) → hosted WebView",
+        "feature_required_parameters": [],
+        "feature_prerequisites": [
+          "Network for hosted page; map needs configured Google Maps key; location permission for location use; authentication unknown"
+        ],
+        "limitations": [
+          "Local reservation success does not prove a live library transaction",
+          "Geolocation, map configuration, empty or invalid IDs and deployment behavior need runtime verification",
+          "Nested record links may propagate to parent router link"
+        ],
+        "dependencies": [
+          "Library store uses mock book, notice, record and branch JSON",
+          "Optional type query selects tab; book and notice details require id",
+          "Map loader has empty API key; geolocation needs device/browser permission",
+          "Reservations and cancellations use local state/localStorage; hosted network required"
+        ],
+        "related_controls": [
+          "serviceedit.item",
+          "pinned.item",
+          "library.main.tabs",
+          "library.home.search",
+          "library.home.new_book",
+          "library.home.ranking",
+          "library.home.notices",
+          "library.search.button",
+          "library.search.book",
+          "library.pick_library",
+          "library.pick_limit",
+          "library.reserve",
+          "library.map.gps",
+          "library.records.cancel",
+          "library.records.extend",
+          "library.records.renew",
+          "library.open_external_alert",
+          "library.external_confirm",
+          "library.success.home",
+          "library.success.list",
+          "library.error.home",
+          "library.error.list",
+          "library.series_checkbox",
+          "library.ranking.book",
+          "library.search.clear",
+          "library.search.history",
+          "library.search.hot",
+          "library.notice.site",
+          "library.notice.empty_site",
+          "library.selector.close",
+          "library.notice.item",
+          "library.selector.tabs",
+          "library.map.spot",
+          "library.map.list",
+          "library.map.geo_close",
+          "library.records.expand",
+          "library.records.map",
+          "library.records.sort",
+          "library.detail.back",
+          "library.detail.map",
+          "library.detail.call",
+          "library.list.item",
+          "library.list.map",
+          "library.list.top",
+          "library.home.ranking_book",
+          "library.home.notice",
+          "library.records.book",
+          "library.search.initial_query",
+          "shared.flutter_appbar.implied_back",
+          "library.selector.library",
+          "library.selector.district",
+          "library.records.list_select",
+          "library.home.notice_external",
+          "library.notice.external"
+        ],
+        "screen_states": [
+          {
+            "id": "library.map.geo_dialog",
+            "condition": "Geolocation error code 1"
+          },
+          {
+            "id": "library.records.map_dialog",
+            "condition": "Pickup-library address tapped"
+          },
+          {
+            "id": "library.records.extend_dialog",
+            "condition": "延長兩日 tapped on eligible record"
+          },
+          {
+            "id": "library.records.extend_success",
+            "condition": "Local extension succeeds"
+          },
+          {
+            "id": "library.records.cancel_dialog",
+            "condition": "取消預約 tapped on ordering record"
+          },
+          {
+            "id": "library.detail.map_dialog",
+            "condition": "Library detail address tapped"
+          }
+        ],
+        "route_audit": [
+          {
+            "id": "vue.library-service",
+            "path": "/library-service/",
+            "parameters": {
+              "path_required": [],
+              "other": "See dependencies for optional queries and application state"
+            },
+            "reachability": "Catalog hosted URL or Vue edge, runtime unverified"
+          }
+        ],
+        "steps": [],
+        "missing": [
+          "No complete recorded screen-to-screen path from flutter.main; entry evidence is not an executable edge."
+        ],
+        "simulation": "No app navigation or action performed; source review is not runtime verification.",
+        "recorded_boundary_edges": [
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "serviceedit.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "serviceedit.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "item.destinationUrl"
+              }
+            ],
+            "prerequisites": [
+              "Item selected; in edit mode changes pins; outside edit mode nonempty destination required for navigation"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:116"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services"
+            ],
+            "edge_id": "pinned.item",
+            "source_screen_id": "flutter.services_tab",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "Services-tab item has no edit-mode override",
+              "Nonempty destination for default navigation"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_item_widget.dart:24"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "pinned.editor.item",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "pinned.item",
+            "destination_screen_id": null,
+            "required_parameters": [
+              {
+                "name": "argument",
+                "value": "service.destinationUrl; optional forceTitle"
+              }
+            ],
+            "prerequisites": [
+              "In edit mode remove pinned item; otherwise nonempty destination is required"
+            ],
+            "source": "TownPass/lib/page/city_service/widget/pinned_service_widget.dart:47"
+          },
+          {
+            "prefix_edge_ids": [
+              "main.select_services",
+              "services.more"
+            ],
+            "edge_id": "shared.flutter_appbar.back.serviceEdit",
+            "source_screen_id": "flutter.serviceEdit",
+            "control_id": "shared.flutter_appbar.implied_back",
+            "destination_screen_id": null,
+            "required_parameters": [],
+            "prerequisites": [
+              "No explicit leading or overriding drawer; enclosing route implies app-bar dismissal",
+              "Navigator and route pop disposition permit dismissal"
+            ],
+            "source": "TownPass/lib/page/city_service_edit/city_service_edit_view.dart:29"
+          }
+        ]
+      },
+      "outcome": "correct_feature_match",
+      "path_errors": []
+    },
+    {
+      "id": 60,
+      "query": "Where can I see my notificatons?",
+      "expected_feature": "messages",
+      "category": "view",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "The proposal lacks feature-specific evidence."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "The proposal lacks feature-specific evidence."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 61,
+      "query": "幫我看看 account 的設定頁",
+      "expected_feature": "settings",
+      "category": "view",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "More than one feature was mentioned."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "More than one feature was mentioned."
+      },
+      "outcome": "incorrect_clarification_or_rejection",
+      "path_errors": []
+    },
+    {
+      "id": 62,
+      "query": "看看個人資料和 setting 在哪",
+      "expected_feature": null,
+      "category": "ambiguous",
+      "choice": {
+        "intent": "ambiguous",
+        "feature_id": null,
+        "decision": "clarify",
+        "support": "unknown",
+        "action_allowed": false,
+        "reason": "The proposal lacks feature-specific evidence."
+      },
+      "preview": {
+        "status": "clarify",
+        "reason": "The proposal lacks feature-specific evidence."
+      },
+      "outcome": "correct_clarification_or_rejection",
+      "path_errors": []
+    }
+  ]
+}

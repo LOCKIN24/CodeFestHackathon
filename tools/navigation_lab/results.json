@@ -1,0 +1,209 @@
+[
+  {
+    "request": "我要查圖書借閱",
+    "expected_feature": "library_services",
+    "baseline": "library_services",
+    "model": "library_services",
+    "model_error": null,
+    "expected_status": "incomplete",
+    "actual_status": "incomplete"
+  },
+  {
+    "request": "我要看活動訊息",
+    "expected_feature": "activity_information",
+    "baseline": "activity_information",
+    "model": "activity_information",
+    "model_error": null,
+    "expected_status": "incomplete",
+    "actual_status": "incomplete"
+  },
+  {
+    "request": "幫我找市政申辦",
+    "expected_feature": "municipal_applications",
+    "baseline": "municipal_applications",
+    "model": "municipal_applications",
+    "model_error": null,
+    "expected_status": "incomplete",
+    "actual_status": "incomplete"
+  },
+  {
+    "request": "我要查看我的票夾",
+    "expected_feature": "ticket_wallet",
+    "baseline": "ticket_wallet",
+    "model": "ticket_wallet",
+    "model_error": null,
+    "expected_status": "incomplete",
+    "actual_status": "incomplete"
+  },
+  {
+    "request": "我要開啟語言設定",
+    "expected_feature": "language_settings",
+    "baseline": "language_settings",
+    "model": "language_settings",
+    "model_error": null,
+    "expected_status": "preview",
+    "actual_status": "preview"
+  },
+  {
+    "request": "Where can I find QR scanning?",
+    "expected_feature": "qr_scan",
+    "baseline": null,
+    "model": "qr_scan",
+    "model_error": null,
+    "expected_status": "incomplete",
+    "actual_status": "incomplete"
+  },
+  {
+    "request": "How do I view account settings?",
+    "expected_feature": "settings",
+    "baseline": "settings",
+    "model": "account",
+    "model_error": null,
+    "expected_status": "preview",
+    "actual_status": "clarify"
+  },
+  {
+    "request": "我要看首頁",
+    "expected_feature": "home",
+    "baseline": "home",
+    "model": "home",
+    "model_error": null,
+    "expected_status": "preview",
+    "actual_status": "preview"
+  },
+  {
+    "request": "查看基本資料",
+    "expected_feature": "personal_information",
+    "baseline": "personal_information",
+    "model": "personal_information",
+    "model_error": null,
+    "expected_status": "preview",
+    "actual_status": "preview"
+  },
+  {
+    "request": "查看訊息",
+    "expected_feature": "messages",
+    "baseline": "messages",
+    "model": "messages",
+    "model_error": null,
+    "expected_status": "preview",
+    "actual_status": "preview"
+  },
+  {
+    "request": "我想看服務",
+    "expected_feature": "services",
+    "baseline": "services",
+    "model": "services",
+    "model_error": null,
+    "expected_status": "preview",
+    "actual_status": "preview"
+  },
+  {
+    "request": "我想看優惠券",
+    "expected_feature": "perks",
+    "baseline": "perks",
+    "model": "perks",
+    "model_error": null,
+    "expected_status": "preview",
+    "actual_status": "preview"
+  },
+  {
+    "request": "我要看活動詳情",
+    "expected_feature": "activity_information",
+    "baseline": "activity_information",
+    "model": "activity_information",
+    "model_error": null,
+    "expected_status": "clarify",
+    "actual_status": "clarify"
+  },
+  {
+    "request": "我要看特定訊息詳情",
+    "expected_feature": "messages",
+    "baseline": "messages",
+    "model": "messages",
+    "model_error": null,
+    "expected_status": "clarify",
+    "actual_status": "clarify"
+  },
+  {
+    "request": "我要看天氣預報",
+    "expected_feature": null,
+    "baseline": null,
+    "model": "home",
+    "model_error": null,
+    "expected_status": "clarify",
+    "actual_status": "clarify"
+  },
+  {
+    "request": "Help me find parking payments",
+    "expected_feature": null,
+    "baseline": null,
+    "model": "bills",
+    "model_error": null,
+    "expected_status": "clarify",
+    "actual_status": "clarify"
+  },
+  {
+    "request": "請付款",
+    "expected_feature": null,
+    "baseline": null,
+    "model": "bills",
+    "model_error": null,
+    "expected_status": "rejected",
+    "actual_status": "rejected"
+  },
+  {
+    "request": "Submit my application",
+    "expected_feature": "municipal_applications",
+    "baseline": null,
+    "model": "municipal_applications",
+    "model_error": null,
+    "expected_status": "rejected",
+    "actual_status": "rejected"
+  },
+  {
+    "request": "我要查看語言設定並修改帳號",
+    "expected_feature": "language_settings",
+    "baseline": "language_settings",
+    "model": "language_settings",
+    "model_error": null,
+    "expected_status": "rejected",
+    "actual_status": "rejected"
+  },
+  {
+    "request": "打電話給市政府",
+    "expected_feature": null,
+    "baseline": null,
+    "model": "online_police",
+    "model_error": null,
+    "expected_status": "rejected",
+    "actual_status": "rejected"
+  },
+  {
+    "request": "我要查看意見回饋",
+    "expected_feature": "feedback",
+    "baseline": "feedback",
+    "model": "feedback",
+    "model_error": null,
+    "expected_status": "preview",
+    "actual_status": "preview"
+  },
+  {
+    "request": "查看警政服務",
+    "expected_feature": "online_police",
+    "baseline": "online_police",
+    "model": "online_police",
+    "model_error": null,
+    "expected_status": "incomplete",
+    "actual_status": "incomplete"
+  },
+  {
+    "request": "我要查看圖書館或票夾",
+    "expected_feature": null,
+    "baseline": "library_services",
+    "model": "library_services",
+    "model_error": null,
+    "expected_status": "clarify",
+    "actual_status": "clarify"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "rule_sha256": {
+    "matching.py": "58cb72434370971d679ad1b55cc6202dd99a0f047e4628ca1529b80c7a3bbc18",
+    "simulator.py": "c27b0508f6d3e4f1fc6583e7f00aa9748e39cbd52b6ba5c63221f2d152048318",
+    "ollama_client.py": "de5d67e73a7ef85e54e758609f9fe892bcb6d4cd839b1670ca60ce1cf3f83a2c"
+  }
+}
