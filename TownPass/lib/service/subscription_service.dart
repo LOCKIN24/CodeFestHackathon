@@ -8,18 +8,18 @@ class SubscriptionService extends GetxService {
     return this;
   }
 
-  /// 新增訂閱項目，預設產生兩筆測試用的模擬資料
+  /// 新增訂閱後的服務資訊與提醒。
   void addSubscription({required String title}) {
     final now = DateTime.now();
     itemList.addAll([
       SubscriptionItem(
         title: title,
-        content: '$title內容 ' * 20,
+        content: '你已訂閱$title，可在這裡查看相關服務資訊與提醒。',
         datetime: now,
       ),
       SubscriptionItem(
         title: title,
-        content: '$title內容2 ' * 20,
+        content: '你可以隨時從訂閱設定調整$title的通知偏好。',
         datetime: now,
       ),
     ]);

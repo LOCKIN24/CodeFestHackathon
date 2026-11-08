@@ -1,3 +1,4 @@
+import 'package:town_pass/util/tp_route.dart';
 import 'package:flutter/material.dart';
 import 'package:town_pass/gen/assets.gen.dart';
 import 'package:town_pass/gen/fonts.gen.dart';
@@ -19,7 +20,10 @@ class CityNewsWidget extends StatelessWidget {
             child: _Button(
               icon: Assets.svg.iconPoster.svg(),
               text: '市政新聞',
-              onTap: () {},
+              onTap: () => TPRoute.openUri(
+                uri: 'https://www.gov.taipei/News.aspx?n=F0DDAF49B89E9413',
+                forceTitle: '市政新聞',
+              ),
             ),
           ),
           const SizedBox(width: 12),
@@ -31,7 +35,7 @@ class CityNewsWidget extends StatelessWidget {
                 launchUrlString('tel://1999');
               },
             ),
-          )
+          ),
         ],
       ),
     );
@@ -43,11 +47,7 @@ class _Button extends StatelessWidget {
   final String text;
   final GestureTapCallback? onTap;
 
-  const _Button({
-    required this.icon,
-    required this.text,
-    this.onTap,
-  });
+  const _Button({required this.icon, required this.text, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class _Button extends StatelessWidget {
               blurRadius: 8,
               offset: Offset(0, 1),
               spreadRadius: 0,
-            )
+            ),
           ],
         ),
         child: Row(

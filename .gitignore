@@ -9,3 +9,10 @@
 **/.symlinks/
 **/ios/Flutter/ephemeral/
 **/.flutter-plugins-dependencies
+
+# Local validation output and caches
+**/__pycache__/
+**/DerivedData/
+/screenshots/
+*.log
+**/.playwright-cli/

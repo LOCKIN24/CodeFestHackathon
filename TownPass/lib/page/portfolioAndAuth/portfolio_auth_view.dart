@@ -1,59 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:town_pass/page/portfolioAndAuth/portfolio_auth_view_controller.dart';
+import 'package:town_pass/page/local_service/local_service_view.dart';
 import 'package:town_pass/util/tp_app_bar.dart';
 import 'package:town_pass/util/tp_colors.dart';
-import 'package:town_pass/util/tp_text.dart';
-
-extension on ToggleTab {
-  String get label {
-    return switch (this) {
-      ToggleTab.portfolio => '使用紀錄',
-      ToggleTab.auth => '授權管理',
-    };
-  }
-
-  Widget get contentWidget {
-    return Center(child: TPText(label));
-  }
-}
 
 class PortfolioAndAuthView extends StatelessWidget {
   const PortfolioAndAuthView({super.key});
-
   @override
-  Widget build(BuildContext context) {
-    final double toggleButtonWidth = (Get.width - 32) / 2;
-    return GetBuilder(
-        init: Get.put<PortfolioAuthViewController>(PortfolioAuthViewController()),
-        builder: (controller) {
-          return Scaffold(
-            appBar: TPAppBar(
-              title: '歷程與授權管理',
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(kToolbarHeight),
-                child: ToggleButtons(
-                  color: Colors.cyan,
-                  borderColor: Colors.cyan,
-                  fillColor: Colors.cyan,
-                  selectedColor: TPColors.white,
-                  isSelected: ToggleTab.values.map((tab) => tab.index == controller.selectIndex).toList(),
-                  borderRadius: const BorderRadius.all(Radius.circular(8)),
-                  constraints: BoxConstraints(minWidth: toggleButtonWidth, minHeight: kToolbarHeight / 1.5),
-                  onPressed: (index) {
-                    if (index != controller.selectIndex) {
-                      controller.selectIndex = index;
-                    }
-                  },
-                  children: ToggleTab.values.map<Widget>((tab) => TPText(tab.label)).toList(),
-                ),
-              ),
+  Widget build(BuildContext context) => DefaultTabController(
+    length: 2,
+    child: Scaffold(
+      appBar: const TPAppBar(
+        title: '歷程與授權管理',
+        bottom: TabBar(
+          labelColor: TPColors.primary700,
+          indicatorColor: TPColors.primary700,
+          tabs: [
+            Tab(text: '使用紀錄'),
+            Tab(text: '授權管理'),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        children: [
+          FutureBuilder<List<Map<String, dynamic>>>(
+            future: LocalServiceStore.load(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Center(child: Text('無法讀取使用紀錄，請稍後重新開啟。'));
+              }
+              if (!snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              final records = snapshot.data!;
+              if (records.isEmpty) {
+                return const Center(child: Text('使用服務後，紀錄會顯示在這裡。'));
+              }
+              return ListView(
+                children: [
+                  for (final record in records)
+                    ListTile(
+                      leading: const Icon(
+                        Icons.check_circle_outline,
+                        color: TPColors.primary700,
+                      ),
+                      title: Text('${record['service']}'),
+                      subtitle: Text(
+                        '${record['choice']}\n${record['savedAt'].toString().substring(0, 10)}',
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+          const Center(
+            child: Padding(
+              padding: EdgeInsets.all(24),
+              child: Text('目前沒有第三方授權。你授權的服務會顯示在這裡。'),
             ),
-            body: IndexedStack(
-              index: controller.selectIndex,
-              children: ToggleTab.values.map<Widget>((tab) => tab.contentWidget).toList(),
-            ),
-          );
-        });
-  }
+          ),
+        ],
+      ),
+    ),
+  );
 }

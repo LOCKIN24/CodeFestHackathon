@@ -38,15 +38,79 @@ class MessageView extends GetView<MessageViewController> {
         appBar: TPAppBar(
           title: '訊息',
           actions: [
-            IconButton(
-              icon: Assets.svg.iconTrashClose.svg(),
-              onPressed: () {},
+            Builder(
+              builder: (context) => IconButton(
+                tooltip: '清除本分類訊息',
+                icon: Assets.svg.iconTrashClose.svg(),
+                onPressed: () async {
+                  final messageController = controller;
+                  final type =
+                      controller.tabTypeList[DefaultTabController.of(context)
+                          .index];
+                  final yes = await showDialog<bool>(
+                    context: context,
+                    builder: (dialog) => AlertDialog(
+                      backgroundColor: TPColors.white,
+                      title: const Text('清除此分類訊息？'),
+                      content: const Text('清除後可立即按「復原」還原訊息。'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(dialog, false),
+                          child: const Text('取消'),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.pop(dialog, true),
+                          child: const Text('清除'),
+                        ),
+                      ],
+                    ),
+                  );
+                  if (yes != true) return;
+                  List<MessageItem> removed;
+                  try {
+                    removed = await messageController.removeType(type);
+                  } catch (_) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('訊息未能清除，請稍後重試。')),
+                      );
+                    }
+                    return;
+                  }
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text('訊息已清除'),
+                        action: SnackBarAction(
+                          label: '復原',
+                          onPressed: () async {
+                            try {
+                              await messageController.restore(removed);
+                            } catch (_) {
+                              if (context.mounted)
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('訊息未能復原，請稍後重試。'),
+                                  ),
+                                );
+                            }
+                          },
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),
         body: TPTabView(
-          titles: controller.tabTypeList.map<String>((type) => type.string).toList(),
-          children: controller.tabTypeList.map<Widget>((type) => MessageListView(messageType: type)).toList(),
+          titles: controller.tabTypeList
+              .map<String>((type) => type.string)
+              .toList(),
+          children: controller.tabTypeList
+              .map<Widget>((type) => MessageListView(messageType: type))
+              .toList(),
         ),
       ),
     );

@@ -1,8 +1,8 @@
+import 'package:town_pass/page/local_service/local_service_view.dart';
 import 'package:flutter/material.dart';
 import 'package:town_pass/gen/assets.gen.dart';
 import 'package:town_pass/page/city_service/model/my_service_model.dart';
 import 'package:town_pass/util/tp_colors.dart';
-import 'package:town_pass/util/tp_route.dart';
 import 'package:town_pass/util/tp_text.dart';
 
 class PinnedServiceItemWidget extends StatelessWidget {
@@ -21,14 +21,7 @@ class PinnedServiceItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: onTap?.call ??
-          switch (service.destinationUrl.isNotEmpty) {
-            true => () async => await TPRoute.openUri(
-                  uri: service.destinationUrl,
-                  forceTitle: service.forceWebViewTitle,
-                ),
-            false => null,
-          },
+      onTap: onTap ?? () => openCatalogService(context, service),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -60,7 +53,7 @@ class PinnedServiceItemWidget extends StatelessWidget {
                       blurRadius: 8,
                       offset: Offset(0, 1),
                       spreadRadius: 0,
-                    )
+                    ),
                   ],
                 ),
                 child: Assets.svg.iconRemove.svg(),

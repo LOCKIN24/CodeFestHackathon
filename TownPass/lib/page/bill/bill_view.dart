@@ -1,3 +1,5 @@
+import 'package:town_pass/service/local_persistence.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:town_pass/gen/assets.gen.dart';
@@ -20,8 +22,159 @@ class _PopularBillItem {
   });
 }
 
-class BillView extends StatelessWidget {
+class BillView extends StatefulWidget {
   const BillView({super.key});
+  @override
+  State<BillView> createState() => _BillViewState();
+}
+
+class _BillViewState extends State<BillView> {
+  List<String> bindings = [];
+  static const _bindingsKey = 'local_bill_bindings_v1';
+  @override
+  void initState() {
+    super.initState();
+    _loadBindings();
+  }
+
+  Future<void> _loadBindings() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (mounted) {
+      setState(() => bindings = prefs.getStringList(_bindingsKey) ?? []);
+    }
+  }
+
+  Future<void> _bindingSettings() async {
+    String selected = '水費';
+    final name = TextEditingController();
+    final result = await showDialog<String>(
+      context: context,
+      builder: (dialog) => StatefulBuilder(
+        builder: (context, refresh) => AlertDialog(
+          backgroundColor: TPColors.white,
+          title: const Text('新增帳單綁定'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DropdownButtonFormField<String>(
+                  initialValue: selected,
+                  decoration: const InputDecoration(labelText: '帳單類型'),
+                  items: const ['水費', '停車費', '地方稅', '學雜費']
+                      .map(
+                        (value) =>
+                            DropdownMenuItem(value: value, child: Text(value)),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    if (value != null) refresh(() => selected = value);
+                  },
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: name,
+                  maxLength: 30,
+                  decoration: const InputDecoration(
+                    labelText: '帳單名稱（選填）',
+                    hintText: '例如：家裡的水費',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialog),
+              child: const Text('取消'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(
+                dialog,
+                name.text.trim().isEmpty ? selected : name.text.trim(),
+              ),
+              child: const Text('新增綁定'),
+            ),
+          ],
+        ),
+      ),
+    );
+    await Future<void>.delayed(const Duration(milliseconds: 250));
+    name.dispose();
+    if (result == null || !mounted) return;
+    final updated = {...bindings, result}.toList();
+    final prefs = await SharedPreferences.getInstance();
+    try {
+      await LocalPersistence.checked(
+        prefs,
+        prefs.setStringList(_bindingsKey, updated),
+      );
+      if (mounted) {
+        setState(() => bindings = updated);
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('儲存失敗，請稍後重試。')));
+      }
+    }
+  }
+
+  Future<void> _manageBindings() async {
+    final removed = await showModalBottomSheet<String>(
+      context: context,
+      backgroundColor: TPColors.white,
+      builder: (sheet) => SafeArea(
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(20),
+          children: [
+            const Text(
+              '我的帳單設定',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+            ),
+            if (bindings.isEmpty)
+              const Padding(
+                padding: EdgeInsets.all(16),
+                child: Text('尚未綁定帳單，新增後可在這裡管理。'),
+              ),
+            for (final binding in bindings)
+              ListTile(
+                title: Text(binding),
+                trailing: TextButton(
+                  onPressed: () => Navigator.pop(sheet, binding),
+                  child: const Text('解除綁定'),
+                ),
+              ),
+            OutlinedButton(
+              onPressed: () => Navigator.pop(sheet, '__add__'),
+              child: const Text('新增綁定'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (removed == null) return;
+    if (removed == '__add__') {
+      await _bindingSettings();
+      return;
+    }
+    final prefs = await SharedPreferences.getInstance();
+    final updated = bindings.where((value) => value != removed).toList();
+    try {
+      await LocalPersistence.checked(
+        prefs,
+        prefs.setStringList(_bindingsKey, updated),
+      );
+      if (mounted) {
+        setState(() => bindings = updated);
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('儲存失敗，請稍後重試。')));
+      }
+    }
+  }
 
   // 熱門繳費項目列表。icon 是執行期建立的 widget，所以不能用 const
   static final List<_PopularBillItem> _popularBillItems = [
@@ -91,7 +244,7 @@ class BillView extends StatelessWidget {
                 const Spacer(),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () {},
+                  onTap: _manageBindings,
                   child: Row(
                     children: [
                       Assets.svg.iconSettings.svg(
@@ -119,12 +272,25 @@ class BillView extends StatelessWidget {
             height: 120,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: 1,
+              itemCount: bindings.length + 1,
               separatorBuilder: (_, __) => const SizedBox(width: 12.0),
               itemBuilder: (_, index) {
+                if (index > 0) {
+                  return Card(
+                    color: TPColors.white,
+                    child: SizedBox(
+                      width: 120 * goldenRatio,
+                      child: ListTile(
+                        title: Text(bindings[index - 1]),
+                        subtitle: const Text('已綁定'),
+                        onTap: _manageBindings,
+                      ),
+                    ),
+                  );
+                }
                 return GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () {},
+                  onTap: _bindingSettings,
                   child: SizedBox(
                     width: 120 * goldenRatio,
                     child: DottedBorder(
@@ -163,13 +329,15 @@ class BillView extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           // 使用 map 函式根據 _popularBillItems 列表來動態生成 _BillType 小部件
-          ..._popularBillItems.map(
-            (item) => _BillType(
-              icon: item.icon,
-              name: item.name,
-              onTap: () async => await TPRoute.openUri(uri: item.uri),
-            ),
-          ).toList(),
+          ..._popularBillItems
+              .map(
+                (item) => _BillType(
+                  icon: item.icon,
+                  name: item.name,
+                  onTap: () async => await TPRoute.openUri(uri: item.uri),
+                ),
+              )
+              .toList(),
         ],
       ),
     );
@@ -181,11 +349,7 @@ class _BillType extends StatelessWidget {
   final String name;
   final GestureTapCallback? onTap;
 
-  const _BillType({
-    required this.icon,
-    required this.name,
-    this.onTap,
-  });
+  const _BillType({required this.icon, required this.name, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -198,10 +362,7 @@ class _BillType extends StatelessWidget {
           children: [
             icon,
             const SizedBox(width: 8),
-            TPText(
-              name,
-              style: TPTextStyles.h3Regular,
-            ),
+            TPText(name, style: TPTextStyles.h3Regular),
           ],
         ),
       ),

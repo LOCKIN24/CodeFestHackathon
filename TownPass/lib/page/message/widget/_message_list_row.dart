@@ -9,7 +9,17 @@ class _MessageListRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => Get.toNamed(TPRoute.messageDetail, arguments: item),
+      onTap: () async {
+        try {
+          await Get.find<MessageViewController>().markRead(item);
+          Get.toNamed(TPRoute.messageDetail, arguments: item);
+        } catch (_) {
+          if (context.mounted) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('無法更新訊息，請稍後重試。')));
+          }
+        }
+      },
       child: Column(
         children: [
           Padding(

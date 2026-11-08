@@ -1,3 +1,5 @@
+import 'package:town_pass/page/local_service/local_service_view.dart';
+import 'package:town_pass/page/city_service/model/my_service_model.dart';
 import 'package:flutter/material.dart';
 import 'package:town_pass/gen/assets.gen.dart';
 import 'package:town_pass/page/city_service/widget/official_service_card/official_service_card.dart';
@@ -33,39 +35,58 @@ class _Health extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () async {
-        // TODO: add link
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Row(
-          children: [
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TPText(
-                    '防疫醫療',
-                    style: TPTextStyles.h3SemiBold,
-                    color: TPColors.primary500,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  TPText(
-                    'Health',
-                    style: TPTextStyles.caption,
-                    color: TPColors.grayscale700,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+    return Semantics(
+      button: true,
+      label: '防疫醫療',
+      excludeSemantics: true,
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const LocalServiceCatalogView(
+            category: MyServiceCategory.healthCare,
+          ),
+        ),
+      ),
+      child: GestureDetector(
+        excludeFromSemantics: true,
+        behavior: HitTestBehavior.opaque,
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const LocalServiceCatalogView(
+              category: MyServiceCategory.healthCare,
+            ),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Row(
+            children: [
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TPText(
+                      '防疫醫療',
+                      style: TPTextStyles.h3SemiBold,
+                      color: TPColors.primary500,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    TPText(
+                      'Health',
+                      style: TPTextStyles.caption,
+                      color: TPColors.grayscale700,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox.fromSize(
-              size: const Size.square(48),
-              child: Assets.svg.iconCovidMedical.svg(),
-            ),
-          ],
+              SizedBox.fromSize(
+                size: const Size.square(48),
+                child: Assets.svg.iconCovidMedical.svg(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -77,39 +98,50 @@ class _GovernmentApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () async {
-        // TODO: add link
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Row(
-          children: [
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TPText(
-                    '市政APP',
-                    style: TPTextStyles.h3SemiBold,
-                    color: TPColors.primary500,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  TPText(
-                    'More',
-                    style: TPTextStyles.caption,
-                    color: TPColors.grayscale700,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+    return Semantics(
+      button: true,
+      label: '市政APP',
+      excludeSemantics: true,
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const LocalServiceCatalogView()),
+      ),
+      child: GestureDetector(
+        excludeFromSemantics: true,
+        behavior: HitTestBehavior.opaque,
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const LocalServiceCatalogView()),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Row(
+            children: [
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TPText(
+                      '市政APP',
+                      style: TPTextStyles.h3SemiBold,
+                      color: TPColors.primary500,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    TPText(
+                      'More',
+                      style: TPTextStyles.caption,
+                      color: TPColors.grayscale700,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox.fromSize(
-              size: const Size.square(48),
-              child: Assets.svg.iconMore.svg(),
-            ),
-          ],
+              SizedBox.fromSize(
+                size: const Size.square(48),
+                child: Assets.svg.iconMore.svg(),
+              ),
+            ],
+          ),
         ),
       ),
     );

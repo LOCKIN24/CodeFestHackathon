@@ -1,3 +1,4 @@
+import 'package:town_pass/page/local_service/local_service_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -18,10 +19,7 @@ class SuspendAccountView extends GetView<SuspendAccountController> {
   /// 此方法將郵件連結的建構與錯誤處理邏輯封裝起來，避免在 Widget tree 中直接寫入。
   /// 如果無法開啟郵件應用程式，則會顯示一個 Toast 提示。
   Future<void> _launchCustomerServiceMail() async {
-    final Uri uri = Uri(
-      scheme: tpLaunchMailScheme,
-      path: tpMailAddress,
-    );
+    final Uri uri = Uri(scheme: tpLaunchMailScheme, path: tpMailAddress);
 
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
@@ -33,9 +31,7 @@ class SuspendAccountView extends GetView<SuspendAccountController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TPAppBar(
-        title: '停用帳號',
-      ),
+      appBar: TPAppBar(title: '停用帳號'),
       body: TPSettingList(
         children: [
           TPSettingListTile.header(title: '目前登入帳號'),
@@ -62,14 +58,40 @@ class SuspendAccountView extends GetView<SuspendAccountController> {
             child: Column(
               children: [
                 const TPText(
-                  '提用帳號即無法再登入城市通，並無法再以城市通帳號登入其他系統。相關的資料仍會保存於對應雲端平台。',
+                  '提出停用申請後，可在使用紀錄查看申請內容。處理完成前，你仍可使用目前的帳號。',
                   style: TPTextStyles.bodyRegular,
                   color: TPColors.black,
                 ),
                 const SizedBox(height: 16),
                 TPButton.primary(
-                  text: '停用帳號',
-                  onPressed: () {},
+                  text: '提出停用申請',
+                  onPressed: () async {
+                    final confirmed = await showDialog<bool>(
+                      context: context,
+                      builder: (dialog) => AlertDialog(
+                        backgroundColor: TPColors.white,
+                        title: const Text('提出停用申請？'),
+                        content: const Text('確認後會儲存這筆申請，現有資料不會立即刪除。'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(dialog, false),
+                            child: const Text('取消'),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(dialog, true),
+                            child: const Text('確認申請'),
+                          ),
+                        ],
+                      ),
+                    );
+                    if (confirmed != true) return;
+                    await LocalServiceStore.save('帳號停用', '停用申請已儲存');
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('停用申請已儲存，可在使用紀錄查看。')),
+                      );
+                    }
+                  },
                 ),
               ],
             ),

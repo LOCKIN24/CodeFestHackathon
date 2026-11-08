@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:town_pass/service/milk_showcase_profile.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:town_pass/gen/assets.gen.dart';
@@ -11,6 +13,7 @@ import 'package:town_pass/service/shared_preferences_service.dart';
 import 'package:town_pass/service/subscription_service.dart';
 import 'package:town_pass/util/tp_colors.dart';
 import 'package:town_pass/util/tp_route.dart';
+import 'package:town_pass/page/main/milk_reminder_link_host.dart';
 
 const _transparentStatusBar = SystemUiOverlayStyle(
   statusBarColor: Colors.transparent,
@@ -23,6 +26,7 @@ void main() async {
   // );
 
   await initServices();
+  await MilkShowcaseProfile.initialize();
 
   SystemChrome.setSystemUIOverlayStyle(_transparentStatusBar);
 
@@ -33,9 +37,15 @@ Future<void> initServices() async {
   await Get.putAsync<AccountService>(() async => await AccountService().init());
   await Get.putAsync<DeviceService>(() async => await DeviceService().init());
   await Get.putAsync<PackageService>(() async => await PackageService().init());
-  await Get.putAsync<SharedPreferencesService>(() async => await SharedPreferencesService().init());
-  await Get.putAsync<GeoLocatorService>(() async => await GeoLocatorService().init());
-  await Get.putAsync<NotificationService>(() async => await NotificationService().init());
+  await Get.putAsync<SharedPreferencesService>(
+    () async => await SharedPreferencesService().init(),
+  );
+  await Get.putAsync<GeoLocatorService>(
+    () async => await GeoLocatorService().init(),
+  );
+  await Get.putAsync<NotificationService>(
+    () async => await NotificationService().init(),
+  );
 
   Get.put<SubscriptionService>(SubscriptionService());
 }
@@ -47,6 +57,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Town Pass',
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: const [Locale('zh', 'TW'), Locale('en', 'US')],
+      locale: Locale(
+        Get.find<SharedPreferencesService>().instance.getString(
+                  'preferred_language',
+                ) ==
+                'en'
+            ? 'en'
+            : 'zh',
+        Get.find<SharedPreferencesService>().instance.getString(
+                  'preferred_language',
+                ) ==
+                'en'
+            ? 'US'
+            : 'TW',
+      ),
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: TPColors.grayscale50,
@@ -68,6 +94,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
+      builder: (context, child) => MilkReminderLinkHost(child: child!),
       initialRoute: TPRoute.main,
       onInit: () {
         NotificationService.requestPermission();

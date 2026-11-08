@@ -75,8 +75,15 @@
 			<key>LocationTemporaryUsageKey</key>
 			<string>TownPass 需要精確定位權限才可正常使用</string>
 		</dict>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsLocalNetworking</key>
+			<true/>
+		</dict>
+		<key>NSLocalNetworkUsageDescription</key>
+		<string>連接同一 Wi-Fi 的家庭服務，讓家長與孩子同步領取狀態。</string>
 		<key>NSCameraUsageDescription</key>
-        <string>This app needs camera access to scan QR codes</string>
+        <string>使用相機拍攝學生證以辨識卡號，或掃描家長的家庭邀請 QR Code。</string>
         <key>NSPhotoLibraryUsageDescription</key>
         <string>This app needs photos access to get QR code from photo library</string>
 		<key>UIStatusBarHidden</key>

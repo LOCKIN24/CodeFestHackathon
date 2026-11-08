@@ -1,3 +1,5 @@
+import 'package:town_pass/page/local_service/local_service_view.dart';
+import 'package:town_pass/page/city_service/model/my_service_model.dart';
 import 'package:flutter/material.dart';
 import 'package:town_pass/gen/assets.gen.dart';
 import 'package:town_pass/page/city_service/widget/official_service_card/official_service_card.dart';
@@ -13,58 +15,74 @@ class OfficialServiceCardTopLeft extends OfficialServiceCard {
     final double cardHeight = constraint.maxWidth / goldenRatio;
     final double illustrationSize = constraint.maxWidth * 0.67;
 
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () async {
-        // TODO: add url
-      },
-      child: Container(
-        height: cardHeight,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.0),
-          gradient: const LinearGradient(
-            begin: Alignment(0.71, 0.71),
-            end: Alignment(-0.71, -0.71),
-            colors: [
-              Color(0xB344B6C7),
-              Color(0xFF44B6C7),
-            ],
+    return Semantics(
+      button: true,
+      label: '市政服務',
+      excludeSemantics: true,
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const LocalServiceCatalogView(
+            category: MyServiceCategory.cityService,
           ),
         ),
-        child: Stack(
-          fit: StackFit.passthrough,
-          children: [
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: SizedBox.square(
-                dimension: illustrationSize,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Assets.svg.illustrationsGov.svg(),
+      ),
+      child: GestureDetector(
+        excludeFromSemantics: true,
+        behavior: HitTestBehavior.opaque,
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const LocalServiceCatalogView(
+              category: MyServiceCategory.cityService,
+            ),
+          ),
+        ),
+        child: Container(
+          height: cardHeight,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6.0),
+            gradient: const LinearGradient(
+              begin: Alignment(0.71, 0.71),
+              end: Alignment(-0.71, -0.71),
+              colors: [Color(0xB344B6C7), Color(0xFF44B6C7)],
+            ),
+          ),
+          child: Stack(
+            fit: StackFit.passthrough,
+            children: [
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: SizedBox.square(
+                  dimension: illustrationSize,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Assets.svg.illustrationsGov.svg(),
+                  ),
                 ),
               ),
-            ),
-            const Positioned.fill(
-              right: 9.0,
-              top: 17.0,
-              child: Column(
-                spacing: 2.0,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TPText(
-                    '市政服務',
-                    style: TPTextStyles.h3SemiBold,
-                    color: TPColors.white,
-                  ),
-                  TPText(
-                    'Service',
-                    style: TPTextStyles.bodyRegular,
-                    color: TPColors.white,
-                  ),
-                ],
+              const Positioned.fill(
+                right: 9.0,
+                top: 17.0,
+                child: Column(
+                  spacing: 2.0,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TPText(
+                      '市政服務',
+                      style: TPTextStyles.h3SemiBold,
+                      color: TPColors.white,
+                    ),
+                    TPText(
+                      'Service',
+                      style: TPTextStyles.bodyRegular,
+                      color: TPColors.white,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

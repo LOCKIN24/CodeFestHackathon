@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'" />
+  <meta name="theme-color" content="#f1f3f4" />
+  <title>牛奶護照</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='10' y='4' width='44' height='56' rx='6' fill='%231c3045'/%3E%3Cpath d='M25 21h14v5l4 7v15H21V33l4-7z' fill='none' stroke='%23c6a777' stroke-width='3'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <main id="main" class="app-shell host-shell" aria-label="我的鮮奶護照">
+    <section class="passport-preview" aria-label="你的牛奶護照">
+      <div id="stage" class="stage"><canvas id="passport-canvas" aria-label="立體牛奶護照" role="img"></canvas></div>
+    </section>
+    <div class="host-controls"><button id="open-passport" class="browse-open" disabled>打開護照</button><button id="replay" class="browse-open" disabled>重播最近一枚</button></div>
+    <label class="motion-option"><input type="checkbox" id="reduce-motion"><span>減少動態</span></label>
+  </main>
+  <dialog id="passport-browser" class="passport-browser" aria-labelledby="browse-title" aria-describedby="browse-hint">
+    <div id="browse-stage-mount" class="browse-stage-mount"></div>
+    <div id="stamp-hotspots" class="stamp-hotspots"></div>
+    <header class="browse-header"><h2 id="browse-title">你的牛奶護照</h2><button id="close-passport" class="close-control" autofocus><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>關閉護照</button></header>
+    <footer class="browse-footer"><nav class="browse-navigation" aria-label="集章頁導覽"><button id="previous-spread" aria-label="上一個集章跨頁"><span aria-hidden="true">←</span></button><span id="spread-status" role="status" aria-live="polite"></span><button id="next-spread" aria-label="下一個集章跨頁"><span aria-hidden="true">→</span></button></nav><p id="browse-hint">左右滑動翻頁・輕點印章查看收藏</p></footer>
+  </dialog>
+  <dialog id="stamp-details" class="stamp-details" aria-labelledby="stamp-drink" aria-describedby="stamp-date">
+    <div class="sheet-handle" aria-hidden="true"></div><button id="close-stamp-details" class="sheet-close" aria-label="關閉印章詳情"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
+    <div class="stamp-detail-content"><div id="detail-art" class="detail-art" aria-hidden="true"></div><div><h2 id="stamp-drink"></h2><p id="stamp-date"></p></div></div><button id="return-to-passport" class="return-to-passport">返回護照</button>
+  </dialog>
+  <div id="live-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

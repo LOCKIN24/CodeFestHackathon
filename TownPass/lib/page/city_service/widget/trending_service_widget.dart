@@ -1,6 +1,7 @@
+import 'package:town_pass/page/local_service/local_service_view.dart';
 import 'package:flutter/material.dart';
 import 'package:town_pass/page/city_service/model/trending_service_model.dart';
-import 'package:town_pass/util/extension/list.dart'; // 雖然不再直接使用，但仍保留匯入
+import 'package:town_pass/page/city_service/milk_service_view.dart';
 import 'package:town_pass/util/tp_colors.dart';
 import 'package:town_pass/util/tp_route.dart';
 import 'package:town_pass/util/tp_text.dart';
@@ -28,7 +29,10 @@ class TrendingServiceWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 7.0),
-          Table(children: _tableRowList),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Table(children: _tableRowList(context)),
+          ),
         ],
       ),
     );
@@ -38,18 +42,39 @@ class TrendingServiceWidget extends StatelessWidget {
   ///
   /// list of all trending-service's buttons; The order on screen is
   /// left-to-right, top-to-bottom.
-  static List<_ServiceButton> get _list => TrendingServiceModel.serviceList
-      .map<_ServiceButton>(
-        (item) => _ServiceButton(
-          icon: item.icon,
-          title: item.title,
-          onTap: () async => await TPRoute.openUri(
-            uri: item.url,
-            forceTitle: item.forceWebViewTitle,
-          ),
-        ),
-      )
-      .toList();
+  static List<_ServiceButton> _list(BuildContext context) => [
+    _ServiceButton(
+      icon: const CircleAvatar(
+        backgroundColor: TPColors.primary500,
+        child: Icon(Icons.local_drink_outlined, color: Colors.white, size: 28),
+      ),
+      title: '生生喝鮮乳',
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const MilkServiceView()),
+      ),
+    ),
+    ...TrendingServiceModel.serviceList.map(
+      (item) => _ServiceButton(
+        icon: item.icon,
+        title: item.title,
+        onTap: item.url.isEmpty
+            ? () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => LocalServiceView(
+                    title: item.title,
+                    description: '查看服務資訊與常用選項。',
+                  ),
+                ),
+              )
+            : () => TPRoute.openUri(
+                uri: item.url,
+                forceTitle: item.forceWebViewTitle,
+              ),
+      ),
+    ),
+  ];
 
   /// [Table] 直行內各按鈕間距(Space Around)。
   ///
@@ -62,9 +87,7 @@ class TrendingServiceWidget extends StatelessWidget {
   ///
   /// Spacer between each [Table]'s row.
   static TableRow get _rowSpacer {
-    return const TableRow(
-      children: [SizedBox(height: 16.0)],
-    );
+    return const TableRow(children: [SizedBox(height: 16.0)]);
   }
 
   // 倘若每橫列按鈕數量更改(當前為 2)，底下邏輯也須作調整。
@@ -75,16 +98,17 @@ class TrendingServiceWidget extends StatelessWidget {
   /// 由 [_list] 產生 [Table] 的所有橫列。
   ///
   /// Generate [Table.children] from [_list].
-  static List<TableRow> get _tableRowList {
+  static List<TableRow> _tableRowList(BuildContext context) {
+    final list = _list(context);
     final List<TableRow> rows = [];
-    for (int i = 0; i < _list.length; i += 2) {
+    for (int i = 0; i < list.length; i += 2) {
       final List<Widget> rowChildren = [];
-      rowChildren.add(Expanded(child: _list[i])); // 第一個按鈕
+      rowChildren.add(Expanded(child: list[i])); // 第一個按鈕
 
       // 檢查是否有第二個按鈕
-      if (i + 1 < _list.length) {
+      if (i + 1 < list.length) {
         rowChildren.add(_columnSpacer); // 加入欄間距
-        rowChildren.add(Expanded(child: _list[i + 1])); // 第二個按鈕
+        rowChildren.add(Expanded(child: list[i + 1])); // 第二個按鈕
       } else {
         // 如果只有一個按鈕，則在第二個位置加入一個空的Expanded以保持佈局一致性
         rowChildren.add(_columnSpacer); // 仍需加入欄間距
@@ -92,17 +116,19 @@ class TrendingServiceWidget extends StatelessWidget {
       }
 
       // 將處理好的橫列內容加入到 TableRow
-      rows.add(TableRow(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: rowChildren,
-          ),
-        ],
-      ));
+      rows.add(
+        TableRow(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: rowChildren,
+            ),
+          ],
+        ),
+      );
 
       // 如果還有下一組按鈕，則在當前行之後加入行間距
-      if (i + 2 < _list.length) {
+      if (i + 2 < list.length) {
         rows.add(_rowSpacer);
       }
     }
@@ -132,11 +158,7 @@ class _ServiceButton extends StatelessWidget {
   /// 熱門服務按鈕。
   ///
   /// Trending-service button.
-  const _ServiceButton({
-    required this.icon,
-    required this.title,
-    this.onTap,
-  });
+  const _ServiceButton({required this.icon, required this.title, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -145,10 +167,7 @@ class _ServiceButton extends StatelessWidget {
       onTap: () => onTap?.call(),
       child: Row(
         children: [
-          SizedBox.square(
-            dimension: 48,
-            child: icon,
-          ),
+          SizedBox.square(dimension: 48, child: icon),
           const SizedBox(width: 8.0),
           Flexible(
             child: TPText(

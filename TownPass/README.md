@@ -1,39 +1,52 @@
-# What is Town Pass?
+# TownPass — integrated Studio build
 
-Town Pass is an open-source project developed by the Taipei City Government. With the growth of smart cities, the demand for digitalization in city management and citizen services continues to rise. As we enter a new digital era, our goal is to involve citizens in the process, combining third-party expertise and innovation to make digital life in Taipei more convenient.
+Native Flutter app with the original assistant navigation, plus the completed milk-service experience:
 
-Town Pass is not just an application; it is an open community project. Through open-source, every citizen can participate in the ideation, development, and optimization of the application. This not only enhances citizen engagement and satisfaction but also leverages collective intelligence to continuously improve the application, making it truly serve the people. Furthermore, we hope that various municipalities can widely adopt the open-source framework of Town Pass, integrate it with their existing municipal service systems, and quickly have their own applications to enhance digital governance.
+- Weekly status, child switching, record/history controls and the separate trip tab.
+- Family invitations, shared outings and school-to-home store search.
+- The original offline 3D passport: upright cover, serif title, lower emblem, large lower actions and no decorative animation captions.
+- Product-style local service flows for missing municipal APIs, persistent receipts/preferences, message actions, carrier storage and feedback.
 
-Open source is a key driver of technological progress and social development. Through open-source, Town Pass will become an ever-evolving platform, attracting developers from all backgrounds to contribute. We welcome experts to submit code, report issues, provide suggestions, and even develop new features and creative ideas, working together to perfect Town Pass as we advance toward a smart city.
+Existing profiles/history are preserved. First use can seed fictional profiles only if no family state exists; `--dart-define=MILK_SHOWCASE=false` disables that seed. Local collection updates the selected family's same quota/passport records, with weekly duplicate protection and retry-safe event IDs. Isolated mock and HTTP transports remain separate operator options.
 
-# Getting Started
+## Build
 
-We highly recommend to read through our [document](https://tpe-guideline.web.app/en/docs/) for more detail.
+Use Flutter matching `.fvmrc` or a compatible SDK. Validation used Flutter 3.47.8 / Dart 3.13.7.
 
-Here are some quick setup guide.
+```sh
+flutter pub get
+dart run build_runner build
+flutter test
+flutter build ios --simulator --debug
+```
 
-## Requirement
+Generated `.g.dart` / `.gen.dart` files and build caches are intentionally not committed. The passport HTML and its license are bundled under `assets/passport/`, so an ordinary Flutter build does not require Node or a server.
 
-- [Flutter](https://docs.flutter.dev/get-started/install) or [FVM](https://fvm.app/documentation/getting-started/installation)
-- [XCode](https://developer.apple.com/xcode/) (for iOS)
-- [Android SDK](https://developer.android.com/studio/index.html) (for Android, with or without Android Studio)
+## Service configuration
 
-## Build the Project
+Collection and local request/preference flows work without an external API. Map tiles, iOS native store search, external linked services and the existing assistant backend retain their network requirements. The iOS implementation includes native card OCR and store search; the Android host does not yet implement those two native channels.
 
-1. Get the packages project needed:
+Family sharing across devices uses the included LAN relay:
 
-   ``` bash
-   flutter pub get
-   ```
+```sh
+python3 tools/milk_demo_server/server.py --host 127.0.0.1 --port 8769 --enable-demo-transactions
+```
 
-2. Generate additional needed dart code for the project.
+For physical phones, bind the computer's private Wi-Fi IPv4 address instead. Configure that address in advanced connection settings or with `--dart-define=MILK_DEMO_SERVER=http://PRIVATE_IP:8769`. The relay is temporary and intended for a trusted LAN; restart invalidates its in-memory credentials. No credentials or student card numbers belong in source control.
 
-   ``` bash
-   dart run build_runner build
-   ```
+The existing assistant's local backend workflow is documented in [`../tools/navigation_lab/README.md`](../tools/navigation_lab/README.md). This integration preserves its navigation, APIs and tests.
 
-3. You are all set now, Run the project from your IDE or the through the command line:
+## Verification
 
-   ``` bash
-   flutter run
-   ```
+```sh
+flutter test
+python3 -m unittest discover -s tools/milk_demo_server -v
+```
+
+The native passport integration check is separate:
+
+```sh
+flutter test integration_test/milk_passport_webview_test.dart -d SIMULATOR_ID
+```
+
+Prior Studio verification covered 132 focused app tests, 27 renderer tests, native iOS file-origin WebGL, family data consistency and mobile screenshots. Main integration validation passes all 151 Flutter tests (including the existing assistant suite and new combined-shell smoke test), all 31 relay tests, all 27 renderer tests, and the iOS simulator build. Physical-phone performance, real government submissions and complete English translation are not claimed. The iOS app identity/signing and Debug transport configuration are retained from this repository's main branch, not copied from a temporary preview or another developer's signing team.
